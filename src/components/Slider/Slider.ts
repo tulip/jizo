@@ -2,7 +2,7 @@ import { DomHelpers } from "@utils";
 import "@styles/components/slider/slider.scss";
 
 export default class Slider extends HTMLElement {
-  private slideStage: Element;
+  private slideStage: Element | null;
   private slideOffset: number;
   private currentOffset: number;
   private activeSlideIndex: number;
@@ -12,6 +12,7 @@ export default class Slider extends HTMLElement {
     super();
 
     this.render();
+    this.slideStage = null;
     this.slideOffset = 0;
     this.currentOffset = 0;
     this.activeSlideIndex = 0;
@@ -57,7 +58,7 @@ export default class Slider extends HTMLElement {
           this.querySelector(
             ":scope > .cc-slider > .cc-slider__buttons > button.cc-slider__next"
           )!.removeAttribute("disabled");
-          this.slideStage.setAttribute(
+          this.slideStage!.setAttribute(
             "style",
             `transform: translateX(-${this.currentOffset}px);`
           );
@@ -79,7 +80,7 @@ export default class Slider extends HTMLElement {
           this.querySelector(
             ":scope > .cc-slider > .cc-slider__buttons > button.cc-slider__prev"
           )!.removeAttribute("disabled");
-          this.slideStage.setAttribute(
+          this.slideStage!.setAttribute(
             "style",
             `transform: translateX(-${this.currentOffset}px);`
           );
