@@ -1,0 +1,15 @@
+@mixin transition($prop: all) {
+  transition: $prop $t-def $tf-cubic-bezier;
+}
+
+@mixin transition-slow($prop: all) {
+  transition: $prop $t-slow $tf-cubic-bezier;
+}
+
+@mixin transition-slower($prop: all) {
+  transition: $prop $t-slower $tf-cubic-bezier;
+}
+
+@mixin transition-super-slow($prop: all) {
+  transition: $prop $t-super-slow $tf-cubic-bezier;
+}

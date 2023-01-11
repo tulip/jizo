@@ -1,0 +1,14 @@
+$logo-master-height: 200px;
+$logo-master-width: 275px;
+
+#logo-master {
+  height: $logo-master-height;
+  width: $logo-master-width;
+
+  > svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: $logo-master-height;
+  }
+}

@@ -1,0 +1,15 @@
+/** Timing */
+$t-super-slow: 2s;
+$t-slower: 1s;
+$t-slow: 0.5s;
+$t-def: 0.375s;
+
+$timings: (
+  'super-slow': $t-super-slow,
+  'slower': $t-slower,
+  'slow': $t-slow,
+  'def': $t-def,
+);
+
+/** Timing Function */
+$tf-cubic-bezier: cubic-bezier(0.79, 0.19, 0.35, 0.98);

@@ -1,0 +1,43 @@
+* {
+  font-family: $ff-default;
+}
+
+h1 {
+  font-size: $hs-1;
+}
+
+h2 {
+  font-size: $hs-2;
+}
+
+h3 {
+  font-size: $hs-3;
+}
+
+h4 {
+  font-size: $hs-4;
+}
+
+h5 {
+  font-size: $hs-5;
+}
+
+h6 {
+  font-size: $hs-6;
+}
+
+a,
+p {
+  line-height: map-get($line-heights, 'lh-2');
+}
+
+code {
+  background-color: var(--c-bg-color-grey);
+  padding: calc(#{$m-1} / 2);
+  color: $c-red;
+  border-radius: 2px;
+}
+
+.text-no-wrap {
+  white-space: nowrap !important;
+}

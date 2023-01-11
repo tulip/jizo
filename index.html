@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="/src/styles/index.scss" />
+  </head>
+  <body data-theme="dark">
+
+    <main id="main-content">
+      <div class="cc-banner">
+        <div class="container">
+          <div class="row">
+
+            <!-- Toggle dark-mode -->
+            <div id="toggle-theme" class="toggle-btn">
+              <input type="checkbox" id="dark-mode-toggle" />
+              <label for="dark-mode-toggle">
+                <em class="sr-only">Toggle Dark Mode</em>
+              </label>
+            </div>
+
+            <div class="col-6 mx-auto">
+              <h1 class="mb-4 text-center">Welcome!</h1>
+              <p class="mb-6">This tool will help visualize the results of a report run by the <code>@axe-core/cli</code> tool. All reports should be uploaded in <code>.json</code> format.</p>
+              <cc-file-picker class="mb-5"></cc-file-picker>
+              <cc-axe-report-viewer class="mb-5"></cc-axe-report-viewer>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

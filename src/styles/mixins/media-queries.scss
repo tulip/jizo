@@ -1,0 +1,35 @@
+@mixin mq-mobile() {
+  @media (min-width: $bp-2) {
+    @content;
+  }
+}
+
+@mixin mq-tablet() {
+  @media (min-width: $bp-3) {
+    @content;
+  }
+}
+
+@mixin mq-desktop() {
+  @media (min-width: $bp-4) {
+    @content;
+  }
+}
+
+@mixin mq-giant() {
+  @media (min-width: $bp-5) {
+    @content;
+  }
+}
+
+@mixin mq-2k() {
+  @media (min-width: $bp-6) {
+    @content;
+  }
+}
+
+@mixin mq-4k() {
+  @media (min-width: $bp-7) {
+    @content;
+  }
+}

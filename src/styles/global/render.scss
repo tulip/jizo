@@ -1,0 +1,19 @@
+// Store any styles specific to requirements for the
+// `render()` method of custom Web Components here
+//
+// This shit is in the HTML right now, you need to
+// compile it then inject in the head first, lazy ass
+.cc-load {
+  display: none;
+  opacity: 0;
+  @include transition(opacity);
+
+  &[data-rendered='true'] {
+    display: block;
+  }
+
+  &[data-opaque='true'] {
+    opacity: 1;
+    @include transition(opacity);
+  }
+}

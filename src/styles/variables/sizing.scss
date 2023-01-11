@@ -1,0 +1,120 @@
+/** Widths */
+$w-max-x-0: 820px;
+$w-max-x-1: 960px;
+$w-max-x-2: 1200px;
+$w-max-x-3: 1440px;
+
+$widths: (
+  'w-max-x-0': $w-max-x-0,
+  'w-max-x-1': $w-max-x-1,
+  'w-max-x-2': $w-max-x-2,
+  'w-max-x-3': $w-max-x-3,
+);
+
+/** Margins */
+$m-1: 4px;
+$m-2: 8px;
+$m-3: 16px;
+$m-4: 24px;
+$m-5: 32px;
+$m-6: 64px;
+$m-7: 96px;
+$m-8: 128px;
+
+$margins: (
+  'm-1': $m-1,
+  'm-2': $m-2,
+  'm-3': $m-3,
+  'm-4': $m-4,
+  'm-5': $m-5,
+  'm-6': $m-6,
+  'm-7': $m-7,
+  'm-8': $m-8,
+);
+
+/** Gutters */
+$gutter-y: $m-3;
+$gutter-x: math.div($m-4, 2);
+$gutter-def: $gutter-y $gutter-x;
+$gutter-lg: ($gutter-y * 2) ($gutter-x * 2);
+
+$gutters: (
+  'gutter-y': $gutter-y,
+  'gutter-x': $gutter-x,
+  'gutter-def': $gutter-def,
+  'gutter-lg': $gutter-lg,
+);
+
+/** Fonts */
+$fs-1: 11px;
+$fs-2: 13px;
+$fs-3: 16px;
+$fs-4: 18px;
+$fs-5: 24px;
+$fs-6: 32px;
+$fs-7: 48px;
+$fs-8: 60px;
+
+$font-sizes: (
+  'fs-1': $fs-1,
+  'fs-2': $fs-2,
+  'fs-3': $fs-3,
+  'fs-4': $fs-4,
+  'fs-5': $fs-5,
+  'fs-6': $fs-6,
+  'fs-7': $fs-7,
+  'fs-8': $fs-8,
+);
+
+$hs-1: $fs-7;
+$hs-2: $fs-6;
+$hs-3: $fs-5;
+$hs-4: $fs-4;
+$hs-5: $fs-3;
+$hs-6: $fs-2;
+
+$header-sizes: (
+  'hs-1': $hs-1,
+  'hs-2': $hs-2,
+  'hs-3': $hs-3,
+  'hs-4': $hs-4,
+  'hs-5': $hs-5,
+  'hs-6': $hs-6,
+);
+
+$lh-0: 0.75;
+$lh-1: 1;
+$lh-2: 1.25;
+$lh-3: 1.5;
+
+$line-heights: (
+  'lh-0': $lh-0,
+  'lh-1': $lh-1,
+  'lh-2': $lh-2,
+  'lh-3': $lh-3,
+);
+
+/** Border Radii */
+$br-1: 8px;
+$br-2: 16px;
+$br-3: 48px;
+$br-100: 50%;
+
+/** Breakpoints */
+$bp-1: 480px; // <= Mobile
+$bp-2: 728px; // <= Tablet
+$bp-3: 1024px; // <= Small Display
+$bp-4: 1200px; // <= Modern Display
+$bp-5: 1440px; // <= Large Display
+$bp-6: 1920px; // <= XL Display
+$bp-7: 2160px; // <= 4k Display
+
+$breakpoints: (
+  'bp-1': $bp-1,
+  'bp-2': $bp-2,
+  'bp-3': $bp-3,
+  'bp-4': $bp-4,
+  'bp-5': $bp-5,
+  'bp-6': $bp-6,
+  'bp-7': $bp-7,
+);

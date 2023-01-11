@@ -1,0 +1,14 @@
+.btn {
+  background-color: var(--c-btn-bg-color);
+  color: var(--c-btn-f-color);
+  cursor: pointer;
+  @include padding($m-2 $m-5);
+
+  &__rounded {
+    @extend .btn;
+
+    border-radius: $br-1;
+  }
+}
+
+@import './toggle-button';

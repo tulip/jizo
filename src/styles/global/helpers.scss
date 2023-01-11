@@ -1,0 +1,171 @@
+/*#region Text Helpers
+*/
+.text-uppercase {
+  text-transform: uppercase;
+}
+
+.text-italic {
+  font-style: italic;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+@each $class, $weight in $font-weights {
+  .#{$class} {
+    font-weight: $weight;
+  }
+}
+/*#endregion*/
+
+/*#region Margin Helpers */
+.mt-auto {
+  margin-top: auto;
+}
+
+.mr-auto {
+  margin-right: auto;
+}
+
+.mb-auto {
+  margin-bottom: auto;
+}
+
+.ml-auto {
+  margin-left: auto;
+}
+
+.mx-auto {
+  margin: 0 auto;
+}
+
+$index: 1;
+@each $name, $margin, $i in $margins {
+  .mt-#{$index} {
+    margin-top: $margin;
+  }
+
+  .mr-#{$index} {
+    margin-right: $margin;
+  }
+
+  .mb-#{$index} {
+    margin-bottom: $margin;
+  }
+
+  .ml-#{$index} {
+    margin-left: $margin;
+  }
+
+  .mx-#{$index} {
+    margin-left: $margin;
+    margin-right: $margin;
+  }
+
+  .my-#{$index} {
+    margin-top: $margin;
+    margin-bottom: $margin;
+  }
+
+  .m-#{$index} {
+    margin: $margin;
+  }
+
+  $index: $index + 1;
+}
+/*#endregion*/
+
+/*#region Padding Helpers */
+.pt-0 {
+  padding-top: 0;
+}
+.pr-0 {
+  padding-right: 0;
+}
+.pb-0 {
+  padding-bottom: 0;
+}
+.pl-0 {
+  padding-left: 0;
+}
+.px-0 {
+  padding-right: 0;
+  padding-left: 0;
+}
+.py-0 {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+$index: 1;
+@each $name, $padding, $i in $margins {
+  .pt-#{$index} {
+    padding-top: $padding;
+  }
+
+  .pr-#{$index} {
+    padding-right: $padding;
+  }
+
+  .pb-#{$index} {
+    padding-bottom: $padding;
+  }
+
+  .pl-#{$index} {
+    padding-left: $padding;
+  }
+
+  .px-#{$index} {
+    padding-left: $padding;
+    padding-right: $padding;
+  }
+
+  .py-#{$index} {
+    padding-top: $padding;
+    padding-bottom: $padding;
+  }
+
+  .p-#{$index} {
+    padding: $padding;
+  }
+
+  $index: $index + 1;
+}
+/*#endregion*/
+
+/*#region Display Helpers */
+.d-flex {
+  display: flex !important;
+}
+
+.align-items-center {
+  align-items: center !important;
+}
+
+.align-items-end {
+  align-items: flex-end !important;
+}
+
+.align-items-start {
+  align-items: flex-start !important;
+}
+/*#endregion*/
+
+.sr-only {
+  position: absolute;
+  height: 1px;
+  width: 1px;
+  top: -100vh;
+  left: -100vw;
+  overflow: hidden;
+  opacity: 0;
+  color: transparent;
+}

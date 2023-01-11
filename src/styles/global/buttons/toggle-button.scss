@@ -1,0 +1,60 @@
+$toggle-width: calc($m-2 * 10); // 80px
+$toggle-height: $m-3 + $m-4; // 40px
+$toggle-btn-size: $m-5; // 32px
+$toggle-btn-x: $m-1; // 4px
+$toggle-tween: $m-6; // 64px
+
+.toggle-btn {
+  position: absolute;
+  width: $toggle-width;
+  height: $toggle-height;
+  top: 0;
+  right: $gutter-x;
+
+  input[type='checkbox'] {
+    height: 0;
+    width: 0;
+    visibility: hidden;
+
+    &:checked {
+      + label {
+        background: $c-grey-800;
+
+        &:after {
+          left: calc(100% - #{$toggle-btn-x});
+          transform: translateX(-100%);
+          background-color: $c-white;
+        }
+      }
+    }
+  }
+
+  label {
+    position: absolute;
+    cursor: pointer;
+    width: $toggle-width;
+    height: $toggle-height;
+    background: $c-white;
+    display: block;
+    border-radius: 100px;
+    top: 0;
+    z-index: 1;
+
+    &:after {
+      content: '';
+      position: absolute;
+      top: $toggle-btn-x;
+      left: $toggle-btn-x;
+      width: $toggle-btn-size;
+      height: $toggle-btn-size;
+      background: $c-grey-800;
+      border-radius: 50%;
+      transition: 0.3s;
+    }
+
+    // animation tweening
+    &:active:after {
+      width: $toggle-tween;
+    }
+  }
+}

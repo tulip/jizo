@@ -1,0 +1,52 @@
+/** Default Colors */
+$c-grey-100: #e9ecef;
+$c-grey-200: #dee2e6;
+$c-grey-300: #ced4da;
+$c-grey-400: #adb5bd;
+$c-grey-500: #6c757d;
+$c-grey-600: #495057;
+$c-grey-700: #343a40;
+$c-grey-800: #212529;
+$c-grey-900: #0e0f0f;
+
+$c-blue: #264653;
+$c-green: #2a9d8f;
+$c-yellow: #e9c46a;
+$c-orange: #f4a261;
+$c-red: #e76851;
+$c-white: #f8f9fa;
+$c-black: $c-grey-900;
+$c-grey: $c-grey-500;
+
+$colors: (
+  'c-blue': $c-blue,
+  'c-green': $c-green,
+  'c-yellow': $c-yellow,
+  'c-orange': $c-orange,
+  'c-red': $c-red,
+  'c-white': $c-white,
+  'c-black': $c-black,
+  'c-grey': $c-grey,
+);
+
+$theme-colors: (
+  'primary': map.get($colors, 'c-blue'),
+  'secondary': map.get($colors, 'c-green'),
+  'tertiary': map.get($colors, 'c-yellow'),
+  'caution': map.get($colors, 'c-orange'),
+  'error': map.get($colors, 'c-red'),
+  'grey': map.get($colors, 'c-grey'),
+);
+
+$bg-dark: $c-grey-800;
+$bg-lite: $c-grey-200;
+$bs-def: 2px 3px 14px -1px rgba(0, 0, 0, 0.65);
+$bs-lg: 2px 3px 22px 2px rgba(0, 0, 0, 0.65);
+$bs-hover: 2px 27px 30px 2px rgba(0, 0, 0, 0.55);
+$border-color-def: $c-grey;
+$border-color-lite: $c-grey-300;
+$border: solid 1px $border-color-def;
+
+/** Font Colors */
+$fc-def: $c-black;
+$fc-lite: $c-white;

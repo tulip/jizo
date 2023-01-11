@@ -1,0 +1,40 @@
+@import '@styles/variables';
+@import '@styles/mixins';
+
+.cc-dropdown {
+  width: 100%;
+  border-radius: 3px;
+  overflow: hidden;
+  @include margin(x x #{map-get($margins, 'm-3')});
+
+  > .dropdown-label {
+    @include font(
+      $font-weight: map-get($font-weights, 'fw-lite'),
+      $font-size: map-get($font-sizes, 'fs-5')
+    );
+    @include padding(x x #{map-get($margins, 'm-1')});
+    cursor: pointer;
+    transition: all 600ms cubic-bezier(0.23, 1, 0.32, 1);
+    font-weight: 600;
+    margin-bottom: 0;
+  }
+
+  > *:not(summary) {
+    opacity: 0;
+  }
+
+  &[open] {
+    @include padding(x x #{map-get($margins, 'm-2')});
+
+    > .dropdown-label {
+      margin-bottom: map-get($margins, 'm-2');
+      padding-bottom: map-get($margins, 'm-2');
+      border-bottom: 1px solid rgba(var(--c-black), 0.1);
+    }
+
+    > *:not(summary) {
+      opacity: 1;
+      @include transition(opacity);
+    }
+  }
+}

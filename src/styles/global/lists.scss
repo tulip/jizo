@@ -1,0 +1,11 @@
+ul {
+  list-style: disc;
+}
+
+ol {
+  list-style: number;
+}
+
+li {
+  margin-bottom: math.div(map-get($gutters, 'gutter-y'), 2);
+}

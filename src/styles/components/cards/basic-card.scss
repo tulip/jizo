@@ -1,0 +1,13 @@
+@import '@styles/variables';
+@import '@styles/mixins';
+
+.cc-basic-card {
+  @include font($line-height: $lh-3);
+  padding: $gutter-lg;
+  border: $border;
+  border-color: var(--c-border-color);
+
+  &__rounded {
+    border-radius: $br-1;
+  }
+}

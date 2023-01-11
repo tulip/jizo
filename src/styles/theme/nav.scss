@@ -1,0 +1,35 @@
+$nav-bs-open: 2px 3px 4px -1px rgb(0, 0, 0, 0.1);
+$nav-width: 225px;
+
+#nav-index {
+  width: $nav-width;
+
+  > ul > li > cc-dropdown {
+    .cc-dropdown {
+      border: $border;
+      border-radius: math.div($br-1, 2);
+      border-color: var(--c-border-color);
+      background-color: var(--c-bg-color-grey);
+
+      > .dropdown-label {
+        background-color: var(--c-bg-color);
+      }
+
+      > * {
+        display: block;
+        @include padding($m-2 $m-4);
+      }
+
+      &[open] > .dropdown-label {
+        box-shadow: $nav-bs-open;
+      }
+    }
+  }
+}
+
+// Dark Mode Override
+body[data-theme='dark'] {
+  #nav-index > ul > li > cc-dropdown > .cc-dropdown {
+    background-color: $c-black;
+  }
+}

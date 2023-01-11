@@ -1,0 +1,46 @@
+.container {
+  margin: 0 auto;
+  padding: $gutter-lg;
+  max-width: 100%;
+
+  @include mq-desktop() {
+    max-width: $w-max-x-1;
+  }
+
+  @include mq-giant() {
+    max-width: $w-max-x-2;
+  }
+
+  @include mq-2k() {
+    max-width: $w-max-x-3;
+  }
+}
+
+.row,
+.col {
+  display: flex;
+  flex: 1 0 auto;
+}
+
+.row {
+  margin: 0 (-$gutter-x);
+  flex-wrap: wrap;
+}
+
+.col {
+  flex-direction: column;
+  flex: 1 0 auto;
+  max-width: 100%;
+  padding: 0 $gutter-x;
+}
+
+@for $i from 1 through 8 {
+  .col-#{$i} {
+    @extend .col;
+
+    @include mq-tablet() {
+      flex: 1 0 math.percentage(math.div($i, 8));
+      max-width: math.percentage(math.div($i, 8));
+    }
+  }
+}

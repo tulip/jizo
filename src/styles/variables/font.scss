@@ -1,0 +1,17 @@
+/** Font Families */
+$ff-default: Arial, Helvetica, sans-serif;
+
+/** Font Weights */
+$fw-lite: 300;
+$fw-reg: 400;
+$fw-med: 500;
+$fw-bold: 700;
+$fw-black: 900;
+
+$font-weights: (
+  'fw-lite': $fw-lite,
+  'fw-reg': $fw-reg,
+  'fw-med': $fw-med,
+  'fw-bold': $fw-bold,
+  'fw-black': $fw-black,
+);
