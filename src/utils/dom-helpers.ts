@@ -43,3 +43,11 @@ export const loadComponent = function (element: Element) {
     }
   }
 };
+
+export const inheritParentSelectors = function (
+  parent: Element,
+  child: Element
+) {
+  parent.classList.forEach((cssClass) => child.classList.add(cssClass));
+  parent.removeAttribute("class");
+};

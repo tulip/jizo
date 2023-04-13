@@ -30,6 +30,12 @@ const loadModules = () => {
       });
     }
 
+    if (document.querySelectorAll(`${COMPONENT_PREFIX}-button-basic`).length) {
+      await import("@components/Buttons/ButtonBasic").then((module) => {
+        _REGISTRY_.push(module.default);
+      });
+    }
+
     if (document.querySelectorAll(`${COMPONENT_PREFIX}-file-picker`).length) {
       await import("@components/Global/FilePicker").then((module) => {
         _REGISTRY_.push(module.default);
