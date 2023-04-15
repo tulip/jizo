@@ -2962,6 +2962,11 @@ dist.ipcHelper = ipcHelper;
 var is_1 = dist.is = is;
 var optimizer_1 = dist.optimizer = optimizer;
 dist.platform = platform;
+function configureIpc() {
+  require$$0.ipcMain.handle("create-report", async () => {
+    require$$0.BrowserWindow.getFocusedWindow().setTitle("Banananannananana");
+  });
+}
 function createWindow() {
   const mainWindow = new require$$0.BrowserWindow({
     width: 900,
@@ -2988,6 +2993,7 @@ function createWindow() {
 }
 require$$0.app.whenReady().then(() => {
   electronApp_1.setAppUserModelId("com.electron");
+  configureIpc();
   require$$0.app.on("browser-window-created", (_, window2) => {
     optimizer_1.watchWindowShortcuts(window2);
   });

@@ -90,4 +90,8 @@ loadModules().then((registry) => {
   initModules(registry as Array<CustomElementConstructor>);
 });
 
+document.getElementById('btn__create-report')?.addEventListener('click', async () => {
+  await window.axeApi.createReport();
+});
+
 export {};

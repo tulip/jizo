@@ -39,7 +39,7 @@ export default class ButtonBasic extends HTMLElement {
   }
 
   private template = `
-    <button class="cc-basic-card" role="button">
+    <button class="cc-basic-btn" role="button">
     </button>
   `;
 }

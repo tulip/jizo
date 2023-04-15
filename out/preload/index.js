@@ -84,11 +84,13 @@ function exposeElectronAPI() {
 }
 var electronAPI_1 = dist.electronAPI = electronAPI;
 dist.exposeElectronAPI = exposeElectronAPI;
-const api = {};
+const api = {
+  createReport: () => require$$0.ipcRenderer.invoke("create-report")
+};
 if (process.contextIsolated) {
   try {
     require$$0.contextBridge.exposeInMainWorld("electron", electronAPI_1);
-    require$$0.contextBridge.exposeInMainWorld("api", api);
+    require$$0.contextBridge.exposeInMainWorld("axeApi", api);
   } catch (error) {
     console.error(error);
   }

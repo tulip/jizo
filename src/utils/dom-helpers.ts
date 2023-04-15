@@ -50,4 +50,9 @@ export const inheritParentSelectors = function (
 ) {
   parent.classList.forEach((cssClass) => child.classList.add(cssClass));
   parent.removeAttribute("class");
+
+  if (parent.id) {
+    child.id = parent.id;
+    parent.removeAttribute("id");
+  }
 };
