@@ -1,20 +1,28 @@
 :root {
   --c-bg-color: #{$bg-lite};
+  --c-bg-color__inverse: #{$bg-dark};
   --c-bg-color-grey: #{$c-grey-300};
+
   --c-f-color: #{$fc-def};
+  --c-f-color__inverse: #{$fc-lite};
+  --c-hr-color: #{$border-color-def};
+  --c-btn-f-color: #{$c-black};
+  
   --c-border-color: #{$border-color-def};
 
   --c-btn-bg-color: #{lighten($c-blue, 70%)};
-  --c-btn-f-color: #{$c-black};
+  
   --c-btn-box-shadow: #{$bs-def};
-  --c-hr-color: #{$border-color-def};
 }
 
 body[data-theme='dark'] {
   --c-bg-color: #{$bg-dark};
+  --c-bg-color__inverse: #{$bg-lite};
   --c-bg-color-grey: #{$c-grey-700};
-  --c-f-color: #{$fc-lite};
-  --c-border-color: #{$border-color-lite};
 
+  --c-f-color: #{$fc-lite};
+  --c-f-color__inverse: #{$fc-def};
   --c-hr-color: #{$border-color-lite};
+
+  --c-border-color: #{$border-color-lite};
 }

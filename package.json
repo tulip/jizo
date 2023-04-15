@@ -5,11 +5,10 @@
   "license": "MIT",
   "main": "./out/main/index.js",
   "scripts": {
-    "start": "npm run dev",
+    "start": "electron-vite dev",
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "electron": "electron-vite dev",
     "axe": "axe"
   },
   "devDependencies": {

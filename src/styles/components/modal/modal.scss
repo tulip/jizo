@@ -1,0 +1,47 @@
+@import '@styles/variables';
+
+cc-modal {
+    display: inline-block;
+}
+
+.cc-modal {
+    display: inline-block;
+
+    div[slot=content] {
+        padding: $gutter-def;
+        position: absolute;
+        left: 50%;
+        top: 30%;
+        transform: translateX(-50%);
+        background-color: var(--c-bg-color);;
+        border-radius: $br-1;
+    }
+
+    &__background {
+        display: none;
+        position: absolute;
+        background-color: var(--c-bg-color-grey);
+        left: 0;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        z-index: 100;
+    }
+
+    &__close {
+        position: absolute;
+        top: 30px;
+        right: 30px;
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+    }
+
+    &.show-content {
+        .cc-modal {
+            &__background {
+                display: block;
+            }
+        }
+    }
+}

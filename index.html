@@ -8,29 +8,61 @@
     <main id="main-content">
       <div class="cc-banner">
         <div class="container">
+          <!-- main container-->
           <div class="row">
-
             <!-- Toggle dark-mode -->
-            <div id="toggle-theme" class="toggle-btn">
+            <div id="toggle-theme" class="toggle-btn mt-4">
               <input type="checkbox" id="dark-mode-toggle" />
               <label for="dark-mode-toggle">
                 <em class="sr-only">Toggle Dark Mode</em>
               </label>
             </div>
+          </div>
 
+          <section class="row" aria-label="Introduction">
             <div class="col-6 mx-auto">
               <h1 class="mb-4 text-center">Hey.</h1>
               <p class="mb-4 text-center">This tool is yet-to-be-named, but I've been cobbling it together to help me generate and view a11y reports via the use of <code>@axe-core/cli</code>.</p>
               <p class="mb-4 text-center">I've started putting together some basic functionality, such as running one-off reports against a URL of your choice, in addition to viewing the reports which have been generated.</p>
               <p class="mb-4 text-center">The current information displayed from the reports is limited <em>only</em> to errors. This should be kept in mind while working with your report, as much of the context will be absent until such a time that the application is fleshed out more.</p>
-              <p class="mb-4 text-center">I'm one couch. Please be patient with my while I figure this all out :D</p>
-              <cc-button-basic class="mb-3 btn__rounded" id="btn__create-report">Create a Report</cc-button-basic>
-              <cc-button-basic class="mb-3 btn__rounded" id="btn__view-report">View a Report</cc-button-basic>
-              <cc-file-picker class="mb-5"></cc-file-picker>
-              <cc-axe-report-viewer class="mb-5"></cc-axe-report-viewer>
+              <p class="mb-4 text-center">I'm one couch. Please be patient with my while I figure this all out!</p>
             </div>
+          </section>
 
-          </div>
+          <section aria-label="Report Actions" class="text-center">
+            <cc-modal>
+              <span slot="trigger" class="mb-3">Create a Report</span>
+              <div slot="content">
+                <div class="container">
+                  <div class="row">
+                    <div class="col">
+                      <form id="axe__create-report">
+                        <label>
+                          Enter a URL to test:
+                          <input type="text" id="axe__report-target" placeholder="https://google.com"/>
+                        </label>
+                        <label>
+                          Enter a filename:
+                          <input type="text" id="axe__report-target" placeholder="test"/>
+                        </label>
+                      </form>
+                    </div>
+                  </div>
+                  <div class="row">
+
+                  </div>
+                </div>
+              </div>
+            </cc-modal>
+
+            <cc-modal>
+              <span slot="trigger" class="mb-3" id="btn__view-report">View a Report</span>
+              <div slot="content">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt asperiores consequatur vitae deleniti dolore distinctio assumenda consectetur, quam nemo laboriosam?</p>
+              </div>
+            </cc-modal>
+          </section>
+          <!-- end main container-->
         </div>
       </div>
     </main>

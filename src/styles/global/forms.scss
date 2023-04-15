@@ -1,0 +1,21 @@
+form {
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--c-bg-color);
+    padding: $gutter-def;
+    border-radius: $br-1;
+
+    label {
+        font-weight: $fw-bold;
+        margin: 0 $gutter-x $gutter-y 0;
+    }
+
+    input {
+        font-weight: $fw-reg;
+        padding: $m-1 $m-2;
+        border-radius: #{$br-1 / 2};
+        background-color: var(--c-bg-color__inverse);
+        color: var(--c-f-color__inverse);
+    }
+}

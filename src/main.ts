@@ -68,6 +68,12 @@ const loadModules = () => {
       });
     }
 
+    if (document.querySelectorAll(`${COMPONENT_PREFIX}-modal`).length) {
+      await import("@components/Modal/Modal").then((module) => {
+        _REGISTRY_.push(module.default);
+      });
+    }
+
     resolve(_REGISTRY_);
   });
 };
@@ -88,10 +94,6 @@ globalThis.InitModules = initModules;
 
 loadModules().then((registry) => {
   initModules(registry as Array<CustomElementConstructor>);
-});
-
-document.getElementById('btn__create-report')?.addEventListener('click', async () => {
-  await window.axeApi.createReport();
 });
 
 export {};
