@@ -1,6 +1,8 @@
 import { contextBridge, ipcRenderer } from "electron";
 import { electronAPI } from "@electron-toolkit/preload";
 
+require('dotenv').config();
+
 const api = {
   createReport: () => ipcRenderer.invoke("create-report"),
 };

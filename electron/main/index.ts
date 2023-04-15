@@ -1,22 +1,28 @@
-import { app, shell, BrowserWindow, ipcMain, dialog } from "electron";
+import { app, shell, BrowserWindow, ipcMain } from "electron";
 import { join } from "path";
 import { electronApp, optimizer, is } from "@electron-toolkit/utils";
+import { spawn } from 'node:child_process';
+
+import AxeReporter from "../src/AxeReporter/axe-reporter";
 
 function configureIpc() {
   ipcMain.handle("create-report", async () => {
-
+    const axeReporter = new AxeReporter();
+    axeReporter.create();
   });
 }
 
 function createWindow(): void {
   const mainWindow = new BrowserWindow({
-    width: 900,
-    height: 670,
+    width: 1280,
+    height: 960,
     show: false,
     autoHideMenuBar: true,
     webPreferences: {
-      preload: join(__dirname, "../preload/index.js"),
       sandbox: false,
+      nodeIntegration: true,
+      contextIsolation: true,
+      preload: join(__dirname, "../preload/index.js"),
     },
   });
 
