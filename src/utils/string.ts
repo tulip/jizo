@@ -13,10 +13,4 @@ String.prototype.toCamelCase = function(separator = ' ') {
     .join('');
 };
 
-String.prototype.padWithChar = function(len: number, char: string = '-') {
-  if (!len) return -1;
-  if (char.length > 1) return -1;
-  return 'asdf';
-}
-
 export {};

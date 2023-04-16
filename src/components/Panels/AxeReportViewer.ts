@@ -1,31 +1,31 @@
 import { DomHelpers } from "@utils";
 import "@styles/components/panels/report-viewer.scss";
 
-type FilePickerChangedEventDetail = {
-  type: string;
-  files: FileList;
-};
+import { FilePickerChangedEventDetail } from '@components/Global/FilePicker/types';
 
 export default class AxeReportViewer extends HTMLElement {
+  hidePanel: boolean;
+
   constructor() {
     super();
 
-    this.render();
+    this.hidePanel = (typeof this.dataset.hideText === 'undefined') ? false : true;
     this.id = crypto.randomUUID();
+    this.render();
   }
 
   private clone() {
     this.innerHTML = this.template;
   }
 
-  render() {
+  protected render() {
     this.clone();
   }
 
-  drawReport(jsonString: string) {
+  private drawReport(jsonString: string) {
     const jsonObj = JSON.parse(jsonString)[0];
     const wrapper = this.querySelector("section");
-    wrapper!.textContent = "";
+    wrapper!.innerHTML = "";
 
     const roots = this.parseJsonObject(jsonObj);
 
@@ -40,7 +40,7 @@ export default class AxeReportViewer extends HTMLElement {
       });
   }
 
-  parseJsonObject(obj: any) {
+  private parseJsonObject(obj: any) {
     const { url, timestamp, violations } = obj;
 
     const urlElement = document.createElement("div");
@@ -81,7 +81,7 @@ export default class AxeReportViewer extends HTMLElement {
     return [urlElement, timestampElement, violationsElement, violationsDetails];
   }
 
-  makeDetailsRow = (key: HTMLElement, val: HTMLElement) => {
+  private makeDetailsRow = (key: HTMLElement, val: HTMLElement) => {
     const row = document.createElement("div");
     row.setAttribute("class", "d-flex align-items-start");
     row.appendChild(key.cloneNode(true));
@@ -90,7 +90,7 @@ export default class AxeReportViewer extends HTMLElement {
     return row;
   };
 
-  formatViolations(violations: Array<any>) {
+  private formatViolations(violations: Array<any>) {
     const formatted: Array<any> = [];
 
     violations.forEach((violation) => {
@@ -145,7 +145,7 @@ export default class AxeReportViewer extends HTMLElement {
     return formatted;
   }
 
-  formatNodes(nodes: Array<any>) {
+  private formatNodes(nodes: Array<any>) {
     const makeSlide = (slideData: any, index: number) => {
       const slide = document.createElement("cc-slide");
 
@@ -195,7 +195,13 @@ export default class AxeReportViewer extends HTMLElement {
     return slider;
   }
 
-  connectedCallback() {
+  private connectedCallback() {
+    if (!this.hidePanel) {
+      this.querySelector('.cc-report-viewer__axe')!.appendChild(document.createElement('p'));
+      this.querySelector('.cc-report-viewer__axe > p')!.innerHTML = 
+        'This is the default text for the Axe Report viewing pane. This text can be hidden by providing the <code>data-hide-text</code> property to the component.';
+    }
+    
     DomHelpers.loadComponent(this);
 
     document.addEventListener("filePickerChanged", (event) => {
@@ -217,7 +223,6 @@ export default class AxeReportViewer extends HTMLElement {
 
   private template = `
     <section id="report-viewer-${this.id}" aria-label="Axe Report Viewer" class="cc-report-viewer__axe py-3 pr-3">
-      The contents of your report will be displayed here...
     <section>
   `;
 }

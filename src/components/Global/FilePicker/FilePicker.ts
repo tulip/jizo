@@ -1,11 +1,5 @@
 import { DomHelpers } from "@utils";
-
-const FilePickerChangedEvent = new CustomEvent("filePickerChanged", {
-  detail: {
-    type: "FilePickerChanged",
-    files: null,
-  },
-});
+import { FilePickerChangedEvent } from "./events";
 
 export default class FilePicker extends HTMLElement {
   constructor() {
@@ -54,7 +48,7 @@ export default class FilePicker extends HTMLElement {
         Upload report
         <input id="file-picker-${this.id}" type="file" hidden />
       </label>
-      <span class="ml-4 p-2">No file selected</span>
+      <span class="p-2">No file selected</span>
     </form>
   `;
 }

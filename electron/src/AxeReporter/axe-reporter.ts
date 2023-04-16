@@ -11,7 +11,7 @@ export default class AxeReporter {
         this.IS_WINDOWS = process.platform === 'win32';
         this.process = null;
         this.timestamp = new Date();
-        this.fileName = `${this.timestamp.getFullYear()}_${this.timestamp.getMonth()}_${this.timestamp.getDate()}_report`
+        this.fileName = `${this.timestamp.getFullYear()}_${String(this.timestamp.getMonth()).padStart(2, '0')}_${String(this.timestamp.getDate()).padStart(2, '0')}_${this.timestamp.getTime()}_report`;
         this.fileExtension = 'json';
     }
 

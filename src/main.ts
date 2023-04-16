@@ -37,7 +37,7 @@ const loadModules = () => {
     }
 
     if (document.querySelectorAll(`${COMPONENT_PREFIX}-file-picker`).length) {
-      await import("@components/Global/FilePicker").then((module) => {
+      await import("@components/Global/FilePicker/FilePicker").then((module) => {
         _REGISTRY_.push(module.default);
       });
     }

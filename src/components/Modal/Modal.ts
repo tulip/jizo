@@ -13,7 +13,7 @@ export default class Modal extends HTMLElement {
     this.render();
 
     // bindings
-    this.closeModal = this.closeModal.bind(this);
+    this.close = this.close.bind(this);
   }
 
   private clone() {
@@ -54,7 +54,7 @@ export default class Modal extends HTMLElement {
     this.clone();
   }
 
-  private closeModal() {
+  private close() {
     this.querySelector('.cc-modal')?.classList.remove('show-content');
   }
 
@@ -62,10 +62,18 @@ export default class Modal extends HTMLElement {
     DomHelpers.loadComponent(this);
     this.trigger = this.querySelector('.cc-modal__trigger');
     this.content = this.querySelector('.cc-modal__trigger + *');
-    this.querySelector('.cc-modal__close')!.addEventListener('click', this.closeModal);
+    this.querySelector('.cc-modal__close')!.addEventListener('click', this.close);
     this.trigger!.addEventListener('click', () => {
       this.querySelector('.cc-modal')?.classList.add('show-content');
     });
+
+    // The modal can be closed via listening for events which may be ejected from child
+    // components. The correct event name must be passed as a prop via `data-close-on`
+    if (this.dataset.closeOn) {
+      document.addEventListener(`${this.dataset.closeOn}`, () => {
+        this.close();
+      });
+    }
   }
 
   private template = `
