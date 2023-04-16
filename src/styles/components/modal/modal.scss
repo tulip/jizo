@@ -1,6 +1,7 @@
 @import '@styles/variables';
 
-cc-modal {
+cc-modal,
+cc-modal.cc-load[data-rendered=true] {
     display: inline-block;
 }
 

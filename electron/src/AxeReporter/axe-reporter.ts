@@ -16,6 +16,8 @@ export default class AxeReporter {
     }
 
     create = (target: string = 'https://google.com', fileName: string = this.fileName) => {
+        console.log(target);
+        console.log(fileName);
         if (fileName) { this.fileName = fileName }
         const spawnCmd = this.IS_WINDOWS ? 'npm.cmd' : 'npm';
         this.process = spawn(
@@ -35,5 +37,9 @@ export default class AxeReporter {
         );
 
         this.process.stdout.on('data', (d) => console.log(d.toString()));
+
+        this.process.on('exit', () => {
+            // send event to front end to let it know the report is done !
+        });
     }
 }

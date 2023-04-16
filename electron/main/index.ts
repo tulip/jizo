@@ -6,9 +6,17 @@ import { spawn } from 'node:child_process';
 import AxeReporter from "../src/AxeReporter/axe-reporter";
 
 function configureIpc() {
-  ipcMain.handle("create-report", async () => {
+  ipcMain.handle("create-report", async (_, args) => {
     const axeReporter = new AxeReporter();
-    axeReporter.create();
+    if (args.length) {
+      const url = args[0];
+      
+      if (args[1]) {
+        axeReporter.create(url, args[1]);
+      } else {
+        axeReporter.create(url);
+      }
+    }
   });
 }
 

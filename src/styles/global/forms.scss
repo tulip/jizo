@@ -14,8 +14,13 @@ form {
     input {
         font-weight: $fw-reg;
         padding: $m-1 $m-2;
-        border-radius: #{$br-1 / 2};
+        border-radius: math.div($br-1, 2);
         background-color: var(--c-bg-color__inverse);
         color: var(--c-f-color__inverse);
+
+        &::placeholder {
+            font-style: italic;
+            opacity: 0.5;
+        }
     }
 }

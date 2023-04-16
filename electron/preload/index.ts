@@ -4,7 +4,7 @@ import { electronAPI } from "@electron-toolkit/preload";
 require('dotenv').config();
 
 const api = {
-  createReport: () => ipcRenderer.invoke("create-report"),
+  createReport: async (url: string, filename: string) => ipcRenderer.invoke("create-report", [url, filename]),
 };
 
 if (process.contextIsolated) {

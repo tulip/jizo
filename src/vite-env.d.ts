@@ -8,6 +8,7 @@ declare global {
   interface String {
     toKebabCase(): string;
     toCamelCase(separator?: string): string;
+    padWithChar(len: number, char?: string): string | number;
   }
 
   interface CustomEvent<Detail> {

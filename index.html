@@ -30,7 +30,7 @@
           </section>
 
           <section aria-label="Report Actions" class="text-center">
-            <cc-modal>
+            <cc-modal class="cc-load">
               <span slot="trigger" class="mb-3">Create a Report</span>
               <div slot="content">
                 <div class="container">
@@ -45,6 +45,8 @@
                           Enter a filename:
                           <input type="text" id="axe__report-target" placeholder="test"/>
                         </label>
+                        <span>Files will be saved in <code>.json</code> format.</span>
+                        <button id="axe__report-submit" class="btn__rounded text-center mt-4" type="submit">Run Report</button>
                       </form>
                     </div>
                   </div>
@@ -55,7 +57,7 @@
               </div>
             </cc-modal>
 
-            <cc-modal>
+            <cc-modal class="cc-load">
               <span slot="trigger" class="mb-3" id="btn__view-report">View a Report</span>
               <div slot="content">
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt asperiores consequatur vitae deleniti dolore distinctio assumenda consectetur, quam nemo laboriosam?</p>

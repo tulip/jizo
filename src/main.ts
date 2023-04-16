@@ -96,4 +96,14 @@ loadModules().then((registry) => {
   initModules(registry as Array<CustomElementConstructor>);
 });
 
-export {};
+document.getElementById('axe__create-report')?.addEventListener('submit', async (event) => {
+  event.preventDefault();
+  const inputs = (event.target as HTMLElement)!.querySelectorAll('input');
+  const vals:Array<string> = [];
+  inputs.forEach((input) => {
+    vals.push(input.value);
+  });
+  await window.axeApi.createReport(vals[0], vals[1]);
+});
+
+export { };
