@@ -1,7 +1,6 @@
 import { app, shell, BrowserWindow, ipcMain } from "electron";
 import { join } from "path";
 import { electronApp, optimizer, is } from "@electron-toolkit/utils";
-import { spawn } from 'node:child_process';
 
 import AxeReporter from "../src/AxeReporter/axe-reporter";
 
@@ -10,7 +9,6 @@ function configureIpc() {
     const axeReporter = new AxeReporter();
     if (args.length) {
       const url = args[0];
-      
       if (args[1]) {
         axeReporter.create(url, args[1]);
       } else {

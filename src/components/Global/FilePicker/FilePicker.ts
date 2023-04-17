@@ -44,7 +44,7 @@ export default class FilePicker extends HTMLElement {
 
   private template = `
     <form class="cc-file-picker" id="cc-file-picker-${this.id}">
-      <label for="file-picker-${this.id}" class="btn__rounded">
+      <label for="file-picker-${this.id}" class="btn__rounded mr-0">
         Upload report
         <input id="file-picker-${this.id}" type="file" hidden />
       </label>

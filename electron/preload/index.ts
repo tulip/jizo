@@ -5,6 +5,7 @@ require('dotenv').config();
 
 const api = {
   createReport: async (url: string, filename: string) => ipcRenderer.invoke("create-report", [url, filename]),
+  reportCreated: (callback) => ipcRenderer.on('update-counter', callback),
 };
 
 if (process.contextIsolated) {

@@ -1,0 +1,28 @@
+.loader__1 {
+  position: absolute;
+  box-sizing: border-box;
+  border-radius: $br-1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: $m-2;
+  background: $c-red;
+
+  &:before {
+    content: '';
+    position: absolute;
+    border-radius: $br-1;
+    width: 36px;
+    height: 18px;
+    left: $m-2;
+    background: $c-white;
+    animation: push 1.125s infinite ease-in-out;
+  }
+}
+
+@keyframes push {
+  50% {
+    left: calc(100% - 36px - $m-2);
+  }
+}

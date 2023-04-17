@@ -3,12 +3,14 @@ $t-super-slow: 2s;
 $t-slower: 1s;
 $t-slow: 0.5s;
 $t-def: 0.375s;
+$t-fast: 0.125s;
 
 $timings: (
   'super-slow': $t-super-slow,
   'slower': $t-slower,
   'slow': $t-slow,
   'def': $t-def,
+  'fast': $t-fast
 );
 
 /** Timing Function */

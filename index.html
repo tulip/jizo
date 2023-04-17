@@ -36,7 +36,7 @@
               <div class="container">
                 <div class="row">
                   <div class="col">
-                    <form id="axe__create-report">
+                    <form id="axe__create-report" class="text-left">
                       <label>
                         Enter a URL to test:
                         <input type="text" id="axe__report-target" placeholder="https://google.com"/>
@@ -46,7 +46,10 @@
                         <input type="text" id="axe__report-target" placeholder="test"/>
                       </label>
                       <span>Files will be saved in <code>.json</code> format.</span>
-                      <button id="axe__report-submit" class="btn__rounded text-center mt-4" type="submit">Run Report</button>
+                      <button id="axe__report-submit" class="btn__rounded text-center mt-4" type="submit">
+                        <span class="loader__1"></span>
+                        <span>Run Report</span>
+                      </button>
                     </form>
                   </div>
                 </div>
@@ -64,7 +67,7 @@
               <div class="container">
                 <div class="row">
                   <div class="col">
-                    <cc-file-picker class="mb-5"></cc-file-picker>
+                    <cc-file-picker class="mb-5 text-center"></cc-file-picker>
                   </div>
                 </div>
               </div>

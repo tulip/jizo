@@ -1,3 +1,7 @@
+@mixin transition-fast($prop: all) {
+  transition: $prop $t-fast $tf-cubic-bezier;
+}
+
 @mixin transition($prop: all) {
   transition: $prop $t-def $tf-cubic-bezier;
 }
