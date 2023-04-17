@@ -46,6 +46,7 @@ npm start
 - [ ] Figure out a basic "setup" process (define save location, etc)
 - [x] ~~Update readme to include reference to https://github.com/open-indy/Koa11y~~
 - [ ] Integrate `sitespeed.io` functionality
+- [ ] Support for multiple URLs or a URL list
 
 ## License
 MIT
