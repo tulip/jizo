@@ -32,11 +32,11 @@ npm start
 * No way to clear a report that has been loaded without refreshing the page. This is obviously not-ideal and is a poor user experience (in addition to everything else that is bad about this)
 
 ## Todo
-[ ] Disable the inputs for the `axe__create-report` form during generation
-[ ] Add toast functionality
-[ ] Add a toast specifically for notifying the user that a report is done
-[ ] Make it so a user can clear the report without having to refresh the page
-[ ] Flesh out the object that is used to display the data from the report (add more than just errors)
+- [ ] Disable the inputs for the `axe__create-report` form during generation
+- [ ] Add toast functionality
+- [ ] Add a toast specifically for notifying the user that a report is done
+- [ ] Make it so a user can clear the report without having to refresh the page
+- [ ] Flesh out the object that is used to display the data from the report (add more than just errors)
 
 ## License
 MIT
