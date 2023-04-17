@@ -39,6 +39,7 @@ npm start
 - [ ] Add a toast specifically for notifying the user that a report is done
 - [ ] Make it so a user can clear the report without having to refresh the page
 - [ ] Flesh out the object that is used to display the data from the report (add more than just errors)
+- [ ] Make it so you can control output directory with the `.env` file
 
 ## License
 MIT
