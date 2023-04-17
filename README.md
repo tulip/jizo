@@ -44,7 +44,7 @@ npm start
 - [ ] Make it so you can control output directory with the `.env` file
 - [ ] Move component registry into its own file so that the main doesn't get stupid fucking big
 - [ ] Figure out a basic "setup" process (define save location, etc)
-- [x] Update readme to include reference to https://github.com/open-indy/Koa11y
+- [x] ~~Update readme to include reference to https://github.com/open-indy/Koa11y~~
 - [ ] Integrate `sitespeed.io` functionality
 
 ## License
