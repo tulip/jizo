@@ -10,7 +10,7 @@ If you've worked with tools like `@axe-core/cli`, you will be all too familiar w
 ## Neat!
 If you're interested in getting started with this tool, there are a few things to keep in mind before proceeding. 
 
-_First and foremost_, functionality is limited. Right now, users can only generate reports to pre-determined location on the client's file system. This build should be considered __pre-alpha__.
+_First and foremost_, functionality is limited. Right now, users can only output reports to pre-determined location on the client's file system. This build should be considered __pre-alpha__.
 
 ## Nitty-gritty! (Quickstart)
 Let's get started by cloning the repo. Once you have done that, let's run:
