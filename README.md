@@ -37,8 +37,8 @@ npm start
 
 ## Todo
 - [ ] Disable the inputs for the `axe__create-report` form during generation
-- [ ] Add toast functionality
-- [ ] Add a toast specifically for notifying the user that a report is done
+- [x] ~~Add toast functionality~~
+- [x] ~~Add a toast specifically for notifying the user that a report is done~~
 - [ ] Make it so a user can clear the report without having to refresh the page
 - [ ] Flesh out the object that is used to display the data from the report (add more than just errors)
 - [ ] Make it so you can control output directory with the `.env` file
