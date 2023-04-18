@@ -1,0 +1,33 @@
+.cc-toast {
+  box-shadow: $bs-def;
+  position: absolute;
+  padding: $gutter-def;
+  min-width: 450px;
+  max-width: 650px;
+  z-index: 9999;
+
+  > h1 {
+    @include font($font-size: $fs-6);
+  }
+
+  &.top,
+  &.bottom {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+
+  &.top {
+    top: 0;
+    border-radius: 0 0 $br-1 $br-1;
+  }
+
+  &.bottom {
+    bottom: 0;
+    border-radius: $br-1 $br-1 0 0;
+  }
+
+  &__success {
+    background-color: $c-green;
+  }
+}

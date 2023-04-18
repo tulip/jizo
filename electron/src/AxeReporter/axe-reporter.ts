@@ -1,5 +1,5 @@
 import { ChildProcessWithoutNullStreams, spawn } from 'node:child_process';
-import { BrowserWindow } from 'electron'; 
+import { BrowserWindow } from 'electron';
 
 export default class AxeReporter {
     IS_WINDOWS: boolean;
@@ -27,7 +27,7 @@ export default class AxeReporter {
                 '--',
                 `${target}`,
                 '--tags',
-                'wcag2a',
+                'wcag2aa,wcag21aa,wcag22aa,best-practice',
                 '--dir',
                 './axe-results/',
                 '--save',

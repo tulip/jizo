@@ -37,9 +37,11 @@ const loadModules = () => {
     }
 
     if (document.querySelectorAll(`${COMPONENT_PREFIX}-file-picker`).length) {
-      await import("@components/Global/FilePicker/FilePicker").then((module) => {
-        _REGISTRY_.push(module.default);
-      });
+      await import("@components/Global/FilePicker/FilePicker").then(
+        (module) => {
+          _REGISTRY_.push(module.default);
+        }
+      );
     }
 
     if (document.querySelectorAll(`${COMPONENT_PREFIX}-dropdown`).length) {
@@ -74,6 +76,12 @@ const loadModules = () => {
       });
     }
 
+    if (document.querySelectorAll(`${COMPONENT_PREFIX}-toast`).length) {
+      await import("@components/Global/Toast/Toast").then((module) => {
+        _REGISTRY_.push(module.default);
+      });
+    }
+
     resolve(_REGISTRY_);
   });
 };
@@ -96,24 +104,54 @@ loadModules().then((registry) => {
   initModules(registry as Array<CustomElementConstructor>);
 });
 
-document.getElementById('axe__create-report')?.addEventListener('submit', async (event) => {
-  event.preventDefault();
+document
+  .getElementById("axe__create-report")
+  ?.addEventListener("submit", async (event) => {
+    event.preventDefault();
 
-  // URL is required
-  if (!(document.getElementById('axe__report-target') as HTMLInputElement).value.length) {
-    throw new Error('axe__create-report: a URL is required !');
-  }
+    // URL is required
+    if (
+      !(document.getElementById("axe__report-target") as HTMLInputElement).value
+        .length
+    ) {
+      throw new Error("axe__create-report: a URL is required !");
+    }
 
-  const inputs = (event.target as HTMLElement)!.querySelectorAll('input');
-  const vals:Array<string> = [];
-  inputs.forEach((input) => { vals.push(input.value); });
-  document.getElementById('axe__report-submit')?.setAttribute('disabled', 'true');
+    const inputs = (event.target as HTMLElement)!.querySelectorAll("input");
+    const vals: Array<string> = [];
+    inputs.forEach((input) => {
+      vals.push(input.value);
+    });
+    document
+      .getElementById("axe__report-submit")
+      ?.setAttribute("disabled", "true");
 
-  await window.axeApi.createReport(vals[0], vals[1]);
+    await window.axeApi.createReport(vals[0], vals[1]);
 
-  window.electron.ipcRenderer.on('report-created', () => {
-    document.getElementById('axe__report-submit')?.removeAttribute('disabled');
+    window.electron.ipcRenderer.on("report-created", () => {
+      document
+        .getElementById("axe__report-submit")
+        ?.removeAttribute("disabled");
+
+      const toast = document.createElement("cc-toast");
+      toast.setAttribute("data-type", "success");
+      toast.setAttribute("data-position", "top");
+
+      const msg = document.createElement("p");
+      msg.classList.add("cc-toast__msg");
+      msg.setAttribute("slot", "msg");
+      msg.textContent =
+        "Your report has been successfully generated and saved in the output directory configured in your environment variables.";
+
+      toast.appendChild(msg);
+
+      globalThis
+        .LoadModules()
+        .then((registry: Array<CustomElementConstructor>) => {
+          globalThis.InitModules(registry);
+        });
+      document.getElementById("main-content")?.appendChild(toast);
+    });
   });
-});
 
-export { };
+export {};
