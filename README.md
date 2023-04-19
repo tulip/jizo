@@ -32,10 +32,7 @@ npm start
 ```
 
 ## Known Issues
----
-* __Critical__: Web Components which are re-added to the DOM result in the following exception: `Uncaught DOMException: Failed to construct 'CustomElement': The result must not have children...`.
-  * This is a result of the specific WebComponent's constructor -- these components must be refactored (ref. https://stackoverflow.com/questions/59970043/custom-element-setup-constructor-vs-connectedcallback/59970158#59970158)
-* No way to clear a report that has been loaded without refreshing the page. This is obviously not-ideal and is a poor user experience (in addition to everything else that is bad about this)
+See [all known issues](https://github.com/ctangney-tulip/axe-viewer/issues).
 
 ## Todo
 - [ ] Disable the inputs for the `axe__create-report` form during generation
