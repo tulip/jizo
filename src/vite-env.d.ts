@@ -2,8 +2,7 @@
 
 declare global {
   var Watcher: InterfaceObserver;
-  var LoadModules: function();
-  var InitModules: function(Array<CustomElementConstructor>);
+  var Registry: Registry;
   var axeApi: AxeApi;
   var electron: ElectronApi;
 

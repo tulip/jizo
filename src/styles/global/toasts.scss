@@ -1,32 +1,64 @@
 .cc-toast {
   box-shadow: $bs-def;
   position: absolute;
-  padding: $gutter-def;
-  min-width: 450px;
-  max-width: 650px;
+  height: 0;
+  overflow: hidden;
+  width: 550px;
   z-index: 9999;
+  @include transition(all);
 
   > h1 {
     @include font($font-size: $fs-6);
   }
 
+  > * {
+    opacity: 0;
+    @include transition-fast(opacity);
+  }
+
+  // animation
+  &.spawn {
+    height: auto;
+    padding: $gutter-def;
+    @include transition(all);
+
+    > * {
+      opacity: 1;
+      @include transition-fast(opacity);
+    }
+  }
+
+  &.despawn {
+    height: 0 !important;
+    padding: 0 !important;
+    @include transition(all);
+
+    > * {
+      opacity: 0;
+      @include transition-fast(opacity);
+    }
+  }
+
+  // positioning
   &.top,
   &.bottom {
     left: 50%;
     transform: translateX(-50%);
   }
 
-
   &.top {
     top: 0;
     border-radius: 0 0 $br-1 $br-1;
+    padding-top: $m-4;
   }
 
   &.bottom {
     bottom: 0;
     border-radius: $br-1 $br-1 0 0;
+    padding-bottom: $m-4;
   }
 
+  // styles
   &__success {
     background-color: $c-green;
   }

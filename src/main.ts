@@ -2,6 +2,7 @@
 const COMPONENT_PREFIX = "cc";
 const LOAD_CLASS = `.${COMPONENT_PREFIX}-load`;
 
+import Registry from './registry';
 import "@utils/string.ts";
 
 import { GlobalStyles, WindowWatcher } from "@utils";
@@ -20,89 +21,9 @@ if (document.getElementById("toggle-theme")) {
   });
 }
 
-const loadModules = () => {
-  return new Promise(async (resolve) => {
-    const _REGISTRY_: Array<CustomElementConstructor> = [];
-
-    if (document.querySelectorAll(`${COMPONENT_PREFIX}-card-basic`).length) {
-      await import("@components/Cards/CardBasic").then((module) => {
-        _REGISTRY_.push(module.default);
-      });
-    }
-
-    if (document.querySelectorAll(`${COMPONENT_PREFIX}-button-basic`).length) {
-      await import("@components/Buttons/ButtonBasic").then((module) => {
-        _REGISTRY_.push(module.default);
-      });
-    }
-
-    if (document.querySelectorAll(`${COMPONENT_PREFIX}-file-picker`).length) {
-      await import("@components/Global/FilePicker/FilePicker").then(
-        (module) => {
-          _REGISTRY_.push(module.default);
-        }
-      );
-    }
-
-    if (document.querySelectorAll(`${COMPONENT_PREFIX}-dropdown`).length) {
-      await import("@components/Dropdowns/Dropdown").then((module) => {
-        _REGISTRY_.push(module.default);
-      });
-    }
-
-    if (document.querySelectorAll(`${COMPONENT_PREFIX}-slide`).length) {
-      await import("@components/Slider/Slide").then((module) => {
-        _REGISTRY_.push(module.default);
-      });
-    }
-
-    if (document.querySelectorAll(`${COMPONENT_PREFIX}-slider`).length) {
-      await import("@components/Slider/Slider").then((module) => {
-        _REGISTRY_.push(module.default);
-      });
-    }
-
-    if (
-      document.querySelectorAll(`${COMPONENT_PREFIX}-axe-report-viewer`).length
-    ) {
-      await import("@components/Panels/AxeReportViewer").then((module) => {
-        _REGISTRY_.push(module.default);
-      });
-    }
-
-    if (document.querySelectorAll(`${COMPONENT_PREFIX}-modal`).length) {
-      await import("@components/Modal/Modal").then((module) => {
-        _REGISTRY_.push(module.default);
-      });
-    }
-
-    if (document.querySelectorAll(`${COMPONENT_PREFIX}-toast`).length) {
-      await import("@components/Global/Toast/Toast").then((module) => {
-        _REGISTRY_.push(module.default);
-      });
-    }
-
-    resolve(_REGISTRY_);
-  });
-};
-
-const initModules = (registry: Array<CustomElementConstructor>) => {
-  (registry as Array<CustomElementConstructor>).forEach((item) => {
-    if (!customElements.get(`${COMPONENT_PREFIX}-${item.name.toKebabCase()}`)) {
-      customElements.define(
-        `${COMPONENT_PREFIX}-${item.name.toKebabCase()}`,
-        item
-      );
-    }
-  });
-};
-
-globalThis.LoadModules = loadModules;
-globalThis.InitModules = initModules;
-
-loadModules().then((registry) => {
-  initModules(registry as Array<CustomElementConstructor>);
-});
+// make new registry here -- remove load modules doo-doo
+const REGISTRY = new Registry(COMPONENT_PREFIX);
+globalThis.Registry = REGISTRY;
 
 document
   .getElementById("axe__create-report")
@@ -120,6 +41,7 @@ document
     const inputs = (event.target as HTMLElement)!.querySelectorAll("input");
     const vals: Array<string> = [];
     inputs.forEach((input) => {
+      input.setAttribute("disabled", "true");
       vals.push(input.value);
     });
     document
@@ -127,30 +49,35 @@ document
       ?.setAttribute("disabled", "true");
 
     await window.axeApi.createReport(vals[0], vals[1]);
+  });
 
-    window.electron.ipcRenderer.on("report-created", () => {
-      document
-        .getElementById("axe__report-submit")
-        ?.removeAttribute("disabled");
+  window.electron.ipcRenderer.on("report-created", () => {
+    document
+      .getElementById("axe__report-submit")
+      ?.removeAttribute("disabled");
 
-      const toast = document.createElement("cc-toast");
-      toast.setAttribute("data-type", "success");
-      toast.setAttribute("data-position", "top");
+    const toast = document.createElement("cc-toast");
+    toast.setAttribute("data-type", "success");
+    toast.setAttribute("data-position", "top");
 
-      const msg = document.createElement("p");
-      msg.classList.add("cc-toast__msg");
-      msg.setAttribute("slot", "msg");
-      msg.textContent =
-        "Your report has been successfully generated and saved in the output directory configured in your environment variables.";
+    const msg = document.createElement("p");
+    msg.setAttribute("class", "cc-toast__msg text-center");
+    msg.setAttribute("slot", "msg");
+    msg.textContent =
+      "Your report has been successfully generated and saved in the output directory configured in your environment variables.";
 
-      toast.appendChild(msg);
+    toast.appendChild(msg);
+    console.log(toast);
+    document.getElementById("main-content")?.appendChild(toast);
 
-      globalThis
-        .LoadModules()
-        .then((registry: Array<CustomElementConstructor>) => {
-          globalThis.InitModules(registry);
-        });
-      document.getElementById("main-content")?.appendChild(toast);
+    REGISTRY.loadModules().then((registry) => {
+      REGISTRY.registry = registry;
+      REGISTRY.initRegistry();
+    });
+
+    const inputs = document.getElementById('axe__create-report')?.querySelectorAll("input");
+    inputs && inputs.forEach((input) => {
+      input.removeAttribute("disabled");
     });
   });
 
