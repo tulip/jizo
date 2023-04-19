@@ -35,13 +35,13 @@ npm start
 See [all known issues](https://github.com/ctangney-tulip/axe-viewer/issues).
 
 ## Todo
-- [ ] Disable the inputs for the `axe__create-report` form during generation
+- [x] ~~Disable the inputs for the `axe__create-report` form during generation~~
 - [x] ~~Add toast functionality~~
 - [x] ~~Add a toast specifically for notifying the user that a report is done~~
 - [ ] Make it so a user can clear the report without having to refresh the page
 - [ ] Flesh out the object that is used to display the data from the report (add more than just errors)
 - [ ] Make it so you can control output directory with the `.env` file
-- [ ] Move component registry into its own file so that the main doesn't get stupid fucking big
+- [x] ~~Move component registry into its own file so that the main doesn't get stupid f*cking big~~
 - [ ] Figure out a basic "setup" process (define save location, etc)
 - [x] ~~Update readme to include reference to https://github.com/open-indy/Koa11y~~
 - [ ] Integrate `sitespeed.io` functionality
