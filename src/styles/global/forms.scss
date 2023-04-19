@@ -21,5 +21,10 @@ form {
             font-style: italic;
             opacity: 0.5;
         }
+
+        &[disabled] {
+            background-color: $c-grey-400;
+            color: $c-grey-700;
+        }
     }
 }

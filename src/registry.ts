@@ -93,6 +93,13 @@ export default class Registry {
     });
   };
 
+  update = () => {
+    this.loadModules().then((registry) => {
+      this.registry = registry;
+      this.initRegistry();
+    });
+  };
+
   init = async () => {
     this.loadModules().then((registry) => {
       this.registry = registry;

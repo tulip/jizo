@@ -33,11 +33,7 @@ export default class AxeReportViewer extends HTMLElement {
       if (root) wrapper?.appendChild(root);
     });
 
-    globalThis
-      .LoadModules()
-      .then((registry: Array<CustomElementConstructor>) => {
-        globalThis.InitModules(registry);
-      });
+    globalThis.Registry.update();
   }
 
   private parseJsonObject(obj: any) {
@@ -76,6 +72,7 @@ export default class AxeReportViewer extends HTMLElement {
     const violationsDetails = document.createElement("div");
     this.formatViolations(violations).forEach((violation) => {
       violationsDetails.appendChild(violation);
+      DomHelpers.loadComponent(violation);
     });
 
     return [urlElement, timestampElement, violationsElement, violationsDetails];
@@ -132,11 +129,7 @@ export default class AxeReportViewer extends HTMLElement {
       if (violation.nodes.length) {
         const violationEle = this.formatNodes(violation.nodes);
         deets.appendChild(violationEle);
-        globalThis
-          .LoadModules()
-          .then((registry: Array<CustomElementConstructor>) => {
-            globalThis.InitModules(registry);
-          });
+        globalThis.Registry.update();
       }
 
       formatted.push(deets);
@@ -198,10 +191,10 @@ export default class AxeReportViewer extends HTMLElement {
   private connectedCallback() {
     if (!this.hidePanel) {
       this.querySelector('.cc-report-viewer__axe')!.appendChild(document.createElement('p'));
-      this.querySelector('.cc-report-viewer__axe > p')!.innerHTML = 
+      this.querySelector('.cc-report-viewer__axe > p')!.innerHTML =
         'This is the default text for the Axe Report viewing pane. This text can be hidden by providing the <code>data-hide-text</code> property to the component.';
     }
-    
+
     DomHelpers.loadComponent(this);
 
     document.addEventListener("filePickerChanged", (event) => {
