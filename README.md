@@ -10,7 +10,7 @@ While working on some a11y audits (many, really) over the years, I quickly began
 If you've worked with tools like `@axe-core/cli`, you will be all too familiar with the process of sifting through cryptic JSON reports in order to figure out what your scan turned up. In the distant future, humans will probably be equipped with some JSON parsing library, capable of reading these reports at a glance. Until such a time, I wanted to devise a way to display this information in human-digestable chunks 😆
 
 ## Neat!
-If you're interested in getting started with this tool, there are a few things to keep in mind before proceeding. 
+If you're interested in getting started with this tool, there are a few things to keep in mind before proceeding.
 
 _First and foremost_, functionality is limited. Right now, users can only output reports to a pre-determined location on the client's file system. This build should be considered __pre-alpha__.
 
@@ -45,7 +45,8 @@ See [all known issues](https://github.com/ctangney-tulip/axe-viewer/issues).
 - [ ] Figure out a basic "setup" process (define save location, etc)
 - [x] ~~Update readme to include reference to https://github.com/open-indy/Koa11y~~
 - [ ] Integrate `sitespeed.io` functionality
-- [ ] Support for multiple URLs or a URL list
+- [ ] Support for ~~multiple URLs or a URL list~~ sitemaps
+- [ ] Add "system tray" so users can follow the node output
 
 ## License
 MIT
