@@ -78,6 +78,12 @@ export default class Registry {
         });
       }
 
+      if (document.querySelectorAll(`${this.prefix}-alert`).length) {
+        await import("@components/Modal/Alert").then((module) => {
+          registry.push(module.default);
+        });
+      }
+
       resolve(registry);
     });
   };

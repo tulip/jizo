@@ -5,8 +5,10 @@ require('dotenv').config();
 
 const api = {
   createReport: async (url: string, filename: string) => ipcRenderer.invoke("create-report", [url, filename]),
+  createSitemapReport: async (sitemap) => ipcRenderer.invoke("create-sitemap-report", [sitemap]),
+  resumeReport: async (url: string, filename: string) => ipcRenderer.invoke("resume-report", [url, filename]),
   reportCreated: (callback) => ipcRenderer.on('report-created', callback),
-  sitemapFound: async (callback) => ipcRenderer.on('sitemap-found', callback),
+  sitemapFound: async (sitemap) => ipcRenderer.on('sitemap-found', sitemap),
 };
 
 if (process.contextIsolated) {

@@ -29,6 +29,8 @@ globalThis.Registry = REGISTRY;
 
 document.getElementById("axe__create-report")?.addEventListener("submit", axeCreateReport.handleSubmit);
 window.electron.ipcRenderer.on("report-created", axeCreateReport.handleReportCreated);
-window.electron.ipcRenderer.on("sitemap-found", sitemap.handleSitemapFound);
+window.electron.ipcRenderer.on("sitemap-found", (_: any, sm: string) => {
+  sitemap.handleSitemapFound(sm);
+});
 
 export {};

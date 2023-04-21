@@ -1,10 +1,12 @@
 import { app, shell, BrowserWindow, ipcMain } from "electron";
 import { join } from "path";
 import { electronApp, optimizer, is } from "@electron-toolkit/utils";
-import { handleCreateReport } from "../src/AxeReporter/events";
+import { handleCreateReport, handleCreateSitemapReport, resumeReport } from "../src/AxeReporter/events";
 
 function configureIpc() {
   ipcMain.handle("create-report", handleCreateReport);
+  ipcMain.handle("create-sitemap-report", handleCreateSitemapReport);
+  ipcMain.handle("resume-report", resumeReport)
 }
 
 function createWindow(): void {

@@ -19,7 +19,7 @@ export const healthCheck = async (url: string) => {
 
 export const findSiteMap = async (url: string) => {
   if (!url) {
-    throw new Error("findeSiteMap - `@url` is required");
+    throw new Error("findSiteMap - `@url` is required");
   }
 
   const pattern = /^((http|https|ftp):\/\/)/;

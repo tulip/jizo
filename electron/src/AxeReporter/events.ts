@@ -3,7 +3,6 @@ import { BrowserWindow } from "electron";
 import AxeReporter from "./axe-reporter";
 
 export const handleCreateReport = async (_, args) => {
-  const axeReporter = new AxeReporter();
   if (args.length) {
     const url = args[0];
     healthCheck(url).then(async (res) => {
@@ -15,13 +14,7 @@ export const handleCreateReport = async (_, args) => {
               win.webContents.send("sitemap-found", sitemap);
             });
           } else {
-            console.log('no sitemap found! :(');
-            console.log('proceeding as per usual');
-            // if (args[1]) {
-            //   axeReporter.create(url, args[1]);
-            // } else {
-            //   axeReporter.create(url);
-            // }
+            resumeReport(_, args);
           }
         });
       } else {
@@ -30,9 +23,21 @@ export const handleCreateReport = async (_, args) => {
     }).catch((err) => {
       // toast for the user to let them know that the URL they want to test does not exist
     });
-    // ask the user if they wanna sitemap it up
       // make directory for domain
-      // make a csv file of all the locations
-      // figure out how to axe/cli with csv file
+      // parse the urls returned in the sitemap
+  }
+}
+
+export const handleCreateSitemapReport = async (_, args) => {
+  console.log(args[0]);
+}
+
+export const resumeReport = async (_, args) => {
+  const axeReporter = new AxeReporter();
+  const url = args[0];
+  if (args[1]) {
+    axeReporter.create(url, args[1]);
+  } else {
+    axeReporter.create(url);
   }
 }
