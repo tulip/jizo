@@ -4,6 +4,7 @@ const LOAD_CLASS = `.${COMPONENT_PREFIX}-load`;
 import Registry from "./registry";
 
 import { axeCreateReport } from "./include/axeCreateReport";
+import { sitemap } from "./include/sitemap";
 import { GlobalStyles, WindowWatcher } from "@utils";
 
 import "@utils/string.ts";
@@ -28,5 +29,6 @@ globalThis.Registry = REGISTRY;
 
 document.getElementById("axe__create-report")?.addEventListener("submit", axeCreateReport.handleSubmit);
 window.electron.ipcRenderer.on("report-created", axeCreateReport.handleReportCreated);
+window.electron.ipcRenderer.on("sitemap-found", sitemap.handleSitemapFound);
 
 export {};

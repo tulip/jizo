@@ -1,21 +1,10 @@
 import { app, shell, BrowserWindow, ipcMain } from "electron";
 import { join } from "path";
 import { electronApp, optimizer, is } from "@electron-toolkit/utils";
-
-import AxeReporter from "../src/AxeReporter/axe-reporter";
+import { handleCreateReport } from "../src/AxeReporter/events";
 
 function configureIpc() {
-  ipcMain.handle("create-report", async (_, args) => {
-    const axeReporter = new AxeReporter();
-    if (args.length) {
-      const url = args[0];
-      if (args[1]) {
-        axeReporter.create(url, args[1]);
-      } else {
-        axeReporter.create(url);
-      }
-    }
-  });
+  ipcMain.handle("create-report", handleCreateReport);
 }
 
 function createWindow(): void {
