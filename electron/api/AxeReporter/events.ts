@@ -1,4 +1,5 @@
-import { healthCheck, findSiteMap } from "../../src/utils/web-helpers";
+import { healthCheck } from "../../api/utils/web-helpers";
+import { findSiteMap, createUrlSet } from "../../api/Sitemap/sitemap";
 import { BrowserWindow } from "electron";
 import AxeReporter from "./axe-reporter";
 
@@ -16,20 +17,31 @@ export const handleCreateReport = async (_, args) => {
           } else {
             resumeReport(_, args);
           }
+        }).catch((err) => {
+          throw new Error("findSiteMap - `@url` has returned a non-OK response code");
         });
       } else {
-        throw new Error("healthCheck - `@url` has returned a non-OK response code");
+        resumeReport(_, args);
       }
     }).catch((err) => {
-      // toast for the user to let them know that the URL they want to test does not exist
+      throw new Error("healthCheck - `@url` has returned a non-OK response code");
     });
-      // make directory for domain
-      // parse the urls returned in the sitemap
   }
 }
 
 export const handleCreateSitemapReport = async (_, args) => {
-  console.log(args[0]);
+  if (!args[0]) {
+    // need to communicate this to the front end
+    throw new Error("handleCreateSitemapReport - there was an error parsing the `@sitemap` that was returned.");
+  }
+  // make directory for domain
+  try {
+    const isDone = await createUrlSet(args[0]);
+    console.log(isDone);
+  } catch(err) {
+    console.log(`An error occurred: ${err}`);
+  }
+  console.log(`Reports have been generated in a subdirectory under the default output folder as configured by your .env file.`);
 }
 
 export const resumeReport = async (_, args) => {
