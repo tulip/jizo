@@ -1,3 +1,3 @@
 export type SitemapType = {
-    urls: Array<string>;
+  urls: Array<string>;
 };

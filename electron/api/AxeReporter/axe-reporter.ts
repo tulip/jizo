@@ -1,5 +1,6 @@
 import { ChildProcessWithoutNullStreams, spawn } from "node:child_process";
 import { BrowserWindow } from "electron";
+import path from "node:path";
 
 export default class AxeReporter {
   IS_WINDOWS: boolean;
@@ -37,7 +38,7 @@ export default class AxeReporter {
       "--tags",
       "wcag2aa,wcag21aa,wcag22aa,best-practice",
       "--dir",
-      "./axe-results/",
+      process.env.AXE_RESULT_DIR ? path.join(__dirname, process.env.AXE_RESULT_DIR) : "./axe-results",
       "--save",
       `${this.fileName}.${this.fileExtension}`,
     ]);

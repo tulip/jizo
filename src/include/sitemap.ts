@@ -43,8 +43,7 @@ export const sitemap = {
     const alertContent = document.createElement("p");
     alertContent.classList.add("text-center");
     alertContent.setAttribute("slot", "content");
-    alertContent.textContent =
-      "We were able to locate a sitemap at the URL you provided. Would you like us to perform a more in-depth scan utilizing this sitemap? This process will take significantly longer!";
+    alertContent.textContent = 'We were able to locate a sitemap for this URL! Would you like us to save this sitemap in CSV format?';
 
     const alertDismiss = document.createElement("button");
     alertDismiss.setAttribute("class", "btn__rounded btn__dismiss");

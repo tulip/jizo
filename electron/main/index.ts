@@ -2,6 +2,9 @@ import { app, shell, BrowserWindow, ipcMain } from "electron";
 import { join } from "path";
 import { electronApp, optimizer, is } from "@electron-toolkit/utils";
 import { handleCreateReport, handleCreateSitemapReport, resumeReport } from "../api/AxeReporter/events";
+import * as dotenv from 'dotenv';
+
+dotenv.config();
 
 function configureIpc() {
   ipcMain.handle("create-report", handleCreateReport);

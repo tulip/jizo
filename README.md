@@ -40,11 +40,13 @@ See [all known issues](https://github.com/ctangney-tulip/axe-viewer/issues).
 - [x] ~~Add a toast specifically for notifying the user that a report is done~~
 - [ ] Make it so a user can clear the report without having to refresh the page
 - [ ] Flesh out the object that is used to display the data from the report (add more than just errors)
-- [ ] Make it so you can control output directory with the `.env` file
+- [x] ~~Make it so you can control output directory with the `.env` file~~
 - [x] ~~Move component registry into its own file so that the main doesn't get stupid f*cking big~~
 - [ ] Figure out a basic "setup" process (define save location, etc)
 - [x] ~~Update readme to include reference to https://github.com/open-indy/Koa11y~~
 - [ ] Integrate `sitespeed.io` functionality
+- [ ] Integrate `lighthouse` functionality
+- [ ] Integrate `puppeteer` for functional testing
 - [ ] Support for ~~multiple URLs or a URL list~~ sitemaps
 - [ ] Add "system tray" so users can follow the node output
 
