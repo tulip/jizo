@@ -34,8 +34,19 @@ export default class Alert extends HTMLElement {
   }
 
   private clone() {
-    const slots = this.querySelectorAll("[slot]");
     this.innerHTML = this.template;
+  }
+
+  private close() {
+    this.querySelector(".cc-alert")?.removeAttribute("open");
+    this.remove();
+  }
+
+  protected connectedCallback() {
+    const slots = this.querySelectorAll("[slot]");
+    
+    this.clone();
+    
     slots.forEach((slot: Element) => {
       this.querySelector(
         `slot[name="${slot.getAttribute("slot")}"]`
@@ -49,15 +60,6 @@ export default class Alert extends HTMLElement {
     if (this.action) {
       this.querySelector("form")!.appendChild(this.action);
     }
-  }
-
-  private close() {
-    this.querySelector(".cc-alert")?.removeAttribute("open");
-    this.remove();
-  }
-
-  protected connectedCallback() {
-    this.clone();
 
     this.querySelector("form")?.addEventListener("submit", this.close);
 

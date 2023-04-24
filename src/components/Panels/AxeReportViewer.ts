@@ -11,24 +11,17 @@ export default class AxeReportViewer extends HTMLElement {
 
     this.hidePanel = (typeof this.dataset.hideText === 'undefined') ? false : true;
     this.id = crypto.randomUUID();
-    this.render();
   }
 
   private clone() {
     this.innerHTML = this.template;
   }
 
-  protected render() {
-    this.clone();
-  }
-
-  private drawReport(jsonString: string) {
+  private async drawReport(jsonString: string) {
     const jsonObj = JSON.parse(jsonString)[0];
-    const wrapper = this.querySelector("section");
-    wrapper!.innerHTML = "";
+    const wrapper = this.querySelector(".cc-report-viewer__axe");
 
-    const roots = this.parseJsonObject(jsonObj);
-
+    const roots = await this.parseJsonObject(jsonObj);
     roots.map((root) => {
       if (root) wrapper?.appendChild(root);
     });
@@ -37,46 +30,49 @@ export default class AxeReportViewer extends HTMLElement {
   }
 
   private parseJsonObject(obj: any) {
-    const { url, timestamp, violations } = obj;
+    return new Promise<Array<HTMLElement>>((resolve) => {
+      const { url, timestamp, violations } = obj;
 
-    const urlElement = document.createElement("div");
-    const urlH2 = document.createElement("h2");
-    urlH2.textContent = "URL: ";
-    const urlSpan = document.createElement("span");
-    urlSpan.textContent = url;
-    urlSpan.setAttribute("class", "pl-3");
-    urlElement.appendChild(urlH2);
-    urlElement.appendChild(urlSpan);
-    urlElement.setAttribute("class", "mb-4 d-flex align-items-center");
+      const urlElement = document.createElement("div");
+      const urlH2 = document.createElement("h2");
+      urlH2.textContent = "URL: ";
+      const urlSpan = document.createElement("span");
+      urlSpan.textContent = url;
+      urlSpan.setAttribute("class", "pl-3");
+      urlElement.appendChild(urlH2);
+      urlElement.appendChild(urlSpan);
+      urlElement.setAttribute("class", "mb-4 d-flex align-items-center");
 
-    const timestampElement = document.createElement("div");
-    const timestampH2 = document.createElement("h2");
-    timestampH2.textContent = "Date Captured: ";
-    const timestampSpan = document.createElement("span");
-    timestampSpan.textContent = timestamp;
-    timestampSpan.setAttribute("class", "pl-3");
-    timestampElement.appendChild(timestampH2);
-    timestampElement.appendChild(timestampSpan);
-    timestampElement.setAttribute("class", "mb-4 d-flex align-items-center");
+      const timestampElement = document.createElement("div");
+      const timestampH2 = document.createElement("h2");
+      timestampH2.textContent = "Date Captured: ";
+      const timestampSpan = document.createElement("span");
+      timestampSpan.textContent = timestamp;
+      timestampSpan.setAttribute("class", "pl-3");
+      timestampElement.appendChild(timestampH2);
+      timestampElement.appendChild(timestampSpan);
+      timestampElement.setAttribute("class", "mb-4 d-flex align-items-center");
 
-    const violationsElement = document.createElement("div");
-    const violationsH2 = document.createElement("h2");
-    violationsH2.textContent = "Violations: ";
-    const violationsSpan = document.createElement("span");
-    violationsSpan.textContent = violations.length;
-    violationsSpan.setAttribute("class", "pl-3");
-    violationsElement.appendChild(violationsH2);
-    violationsElement.appendChild(violationsSpan);
-    violationsElement.setAttribute("class", "mb-5 d-flex align-items-center");
+      const violationsElement = document.createElement("div");
+      const violationsH2 = document.createElement("h2");
+      violationsH2.textContent = "Violations: ";
+      const violationsSpan = document.createElement("span");
+      violationsSpan.textContent = violations.length;
+      violationsSpan.setAttribute("class", "pl-3");
+      violationsElement.appendChild(violationsH2);
+      violationsElement.appendChild(violationsSpan);
+      violationsElement.setAttribute("class", "mb-5 d-flex align-items-center");
 
-    const violationsDetails = document.createElement("div");
-    this.formatViolations(violations).forEach((violation) => {
-      violationsDetails.appendChild(violation);
-      DomHelpers.loadComponent(violation);
+      const violationsDetails = document.createElement("div");
+      this.formatViolations(violations).forEach((violation) => {
+        violationsDetails.appendChild(violation);
+        DomHelpers.loadComponent(violation);
+      });
+
+      resolve([urlElement, timestampElement, violationsElement, violationsDetails]);
     });
-
-    return [urlElement, timestampElement, violationsElement, violationsDetails];
   }
+
 
   private makeDetailsRow = (key: HTMLElement, val: HTMLElement) => {
     const row = document.createElement("div");
@@ -129,7 +125,6 @@ export default class AxeReportViewer extends HTMLElement {
       if (violation.nodes.length) {
         const violationEle = this.formatNodes(violation.nodes);
         deets.appendChild(violationEle);
-        globalThis.Registry.update();
       }
 
       formatted.push(deets);
@@ -174,7 +169,6 @@ export default class AxeReportViewer extends HTMLElement {
       return slide;
     };
 
-    // TODO: replace with slider once built
     const slider = document.createElement("cc-slider");
 
     if (nodes.length === 1) {
@@ -195,6 +189,8 @@ export default class AxeReportViewer extends HTMLElement {
         'This is the default text for the Axe Report viewing pane. This text can be hidden by providing the <code>data-hide-text</code> property to the component.';
     }
 
+    this.clone();
+    
     DomHelpers.loadComponent(this);
 
     document.addEventListener("filePickerChanged", (event) => {
@@ -206,6 +202,7 @@ export default class AxeReportViewer extends HTMLElement {
       if (file !== null) {
         const reader = new FileReader();
         reader.onload = (event) => {
+          this.clone();
           const jsonString = event.target?.result;
           this.drawReport(jsonString as string);
         };
@@ -216,6 +213,6 @@ export default class AxeReportViewer extends HTMLElement {
 
   private template = `
     <section id="report-viewer-${this.id}" aria-label="Axe Report Viewer" class="cc-report-viewer__axe py-3 pr-3">
-    <section>
+    </section>
   `;
 }

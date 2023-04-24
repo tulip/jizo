@@ -4,16 +4,19 @@ import "@styles/components/dropdowns/dropdown.scss";
 export default class Dropdown extends HTMLElement {
   constructor() {
     super();
-
-    this.render();
   }
 
   private clone() {
+    this.innerHTML = this.template;
+  }
+
+  connectedCallback() {
     const slots = this.querySelectorAll("[slot]");
     const children = Array.from(this.children).filter(
       (child) => !child.getAttribute("slot")
     );
-    this.innerHTML = this.template;
+    
+    this.clone();
 
     slots.forEach((slot: Element) => {
       const slotName = slot.getAttribute("slot");
@@ -33,13 +36,7 @@ export default class Dropdown extends HTMLElement {
     children.forEach((child: Element) => {
       this.querySelector(":scope > details")!.appendChild(child);
     });
-  }
 
-  render() {
-    this.clone();
-  }
-
-  connectedCallback() {
     DomHelpers.loadComponent(this);
   }
 

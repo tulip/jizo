@@ -44,11 +44,14 @@ See [all known issues](https://github.com/ctangney-tulip/axe-viewer/issues).
 - [x] ~~Move component registry into its own file so that the main doesn't get stupid f*cking big~~
 - [ ] Figure out a basic "setup" process (define save location, etc)
 - [x] ~~Update readme to include reference to https://github.com/open-indy/Koa11y~~
+- [x] ~~Check for sitemap at URL; create CSV if it exists~~
+- [ ] Scan CSV file of URLs
+- [x] ~~Add "system tray" so users can follow the node output~~
+- [ ] Theme / style / design work
+- [ ] Iconography
 - [ ] Integrate `sitespeed.io` functionality
 - [ ] Integrate `lighthouse` functionality
 - [ ] Integrate `puppeteer` for functional testing
-- [ ] Support for ~~multiple URLs or a URL list~~ sitemaps
-- [x] ~~Add "system tray" so users can follow the node output~~
 
 ## License
 MIT

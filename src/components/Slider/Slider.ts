@@ -11,7 +11,6 @@ export default class Slider extends HTMLElement {
   constructor() {
     super();
 
-    this.render();
     this.slideStage = null;
     this.slideOffset = 0;
     this.currentOffset = 0;
@@ -19,33 +18,8 @@ export default class Slider extends HTMLElement {
     this.lastSlideIndex = -1;
   }
 
-  private async clone(children: Array<Element>) {
-    const slots = this.querySelectorAll("[slot]");
-
+  private async clone() {
     this.innerHTML = this.template;
-
-    slots.forEach((slot: Element) => {
-      const slotName = slot.getAttribute("slot");
-
-      if (
-        slotName!.toLowerCase() === "body" &&
-        DomHelpers.isDivElement(slot) === false
-      ) {
-        throw new Error('Slot `<slot="body">` must be a DIV element.');
-      }
-
-      this.querySelector(
-        `slot[name="${slot.getAttribute("slot")}"]`
-      )!.replaceWith(slot);
-    });
-
-    if (children.length) {
-      children.forEach((child) =>
-        this.querySelector(
-          ":scope > .cc-slider > .cc-slider__stage"
-        )?.appendChild(child)
-      );
-    }
   }
 
   private bindListeners() {
@@ -94,11 +68,36 @@ export default class Slider extends HTMLElement {
     );
   }
 
-  async render() {
+  protected async connectedCallback() {
+    const slots = this.querySelectorAll("[slot]");
     const children = Array.from(this.children).filter(
       (child) => !child.getAttribute("slot")
     );
-    await this.clone(children);
+
+    await this.clone();
+
+    slots.forEach((slot: Element) => {
+      const slotName = slot.getAttribute("slot");
+
+      if (
+        slotName!.toLowerCase() === "body" &&
+        DomHelpers.isDivElement(slot) === false
+      ) {
+        throw new Error('Slot `<slot="body">` must be a DIV element.');
+      }
+
+      this.querySelector(
+        `slot[name="${slot.getAttribute("slot")}"]`
+      )!.replaceWith(slot);
+    });
+
+    if (children.length) {
+      children.forEach((child) =>
+        this.querySelector(
+          ":scope > .cc-slider > .cc-slider__stage"
+        )?.appendChild(child)
+      );
+    }
 
     this.slideStage = this.querySelector(
       ":scope > .cc-slider > .cc-slider__stage"
@@ -107,9 +106,7 @@ export default class Slider extends HTMLElement {
     this.lastSlideIndex = children.length - 1;
 
     this.bindListeners();
-  }
 
-  connectedCallback() {
     DomHelpers.loadComponent(this);
   }
 

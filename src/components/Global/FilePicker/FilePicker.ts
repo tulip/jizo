@@ -22,6 +22,7 @@ export default class FilePicker extends HTMLElement {
 
     this.querySelector("input")?.addEventListener("change", (event: Event) => {
       if (!(event.target instanceof HTMLInputElement)) return;
+      event.stopImmediatePropagation();
 
       let files: FileList = <FileList>(<HTMLInputElement>event.target).files;
 
