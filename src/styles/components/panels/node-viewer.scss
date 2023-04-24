@@ -1,0 +1,106 @@
+@import '@styles/variables';
+@import '@styles/mixins';
+
+$panel-min-height: 300px;
+
+cc-node-js-panel {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  transform: translateY(0);
+  z-index: 200;
+  @include transition-fast(transform);
+
+  &[data-open] {
+    transform: translateY(-$panel-min-height);
+    @include transition(transform);
+
+    .btn__show {
+      display: none;
+    }
+  }
+}
+
+.cc-node-js-panel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+
+  button {
+    white-space: nowrap;
+  }
+
+  &__controls {
+    position: absolute;
+    top: $m-3;
+    right: $m-3;
+    height: $m-5; // 32px
+  }
+
+  &__console {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+
+  &__content {
+    padding: $m-5;
+    background-color: rgba(0, 0, 0, 0.5);
+    height: $panel-min-height;
+    overflow: auto;
+    width: 100%;
+
+    p, span {
+        @include font($font-family: monospace);
+    }
+    p {
+        display: block;
+        padding-bottom: $m-3;
+
+        &:before {
+          content: '🪓 > ';
+          display: inline-block;
+          position: relative;
+          padding-right: $m-2;
+        }
+    }
+
+    &:last-child:after {
+      display: inline-block;
+      content: '';
+      height: 14px;
+      width: 2px;
+      background-color: $c-white;
+      position: relative;
+      right: -6px;
+      top: 3px;
+      opacity: 0;
+      animation: blink 1.25s linear infinite;
+    }
+  }
+
+  .btn {
+    &__close,
+    &__show {
+      @include font($font-size: $fs-1, $font-color: var(--c-f-color__inverse));
+      background-color: var(--c-bg-color__inverse);
+      position: absolute;
+      padding: $m-2;
+      right: 0;
+    }
+
+    &__show {
+      top: -$m-5 - $m-4;
+    }
+  }
+}
+
+@keyframes blink {
+  0% {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 0.75;
+  }
+}

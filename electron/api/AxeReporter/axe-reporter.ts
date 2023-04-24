@@ -38,12 +38,16 @@ export default class AxeReporter {
       "--tags",
       "wcag2aa,wcag21aa,wcag22aa,best-practice",
       "--dir",
-      process.env.AXE_RESULT_DIR ? path.join(__dirname, process.env.AXE_RESULT_DIR) : "./axe-results",
+      process.env.AXE_RESULT_DIR ? process.env.AXE_RESULT_DIR : "./axe-results",
       "--save",
       `${this.fileName}.${this.fileExtension}`,
     ]);
 
-    this.process.stdout.on("data", (d) => console.log(d.toString()));
+    this.process.stdout.on("data", (d) => {
+      BrowserWindow.getAllWindows().forEach((win) => {
+        win.webContents.send("update-node-output", d.toString());
+      });
+    });
 
     this.process.on("exit", () => {
       BrowserWindow.getAllWindows().forEach((win) => {

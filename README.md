@@ -48,7 +48,7 @@ See [all known issues](https://github.com/ctangney-tulip/axe-viewer/issues).
 - [ ] Integrate `lighthouse` functionality
 - [ ] Integrate `puppeteer` for functional testing
 - [ ] Support for ~~multiple URLs or a URL list~~ sitemaps
-- [ ] Add "system tray" so users can follow the node output
+- [x] ~~Add "system tray" so users can follow the node output~~
 
 ## License
 MIT

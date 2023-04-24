@@ -33,4 +33,8 @@ window.electron.ipcRenderer.on("sitemap-found", (_: any, sm: string) => {
   sitemap.handleSitemapFound(sm);
 });
 
+window.electron.ipcRenderer.on("update-node-output", (_: any, output: string) => {
+  document.dispatchEvent(new CustomEvent("update-node-output", { detail: output }));
+});
+
 export {};

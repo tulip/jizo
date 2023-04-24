@@ -84,6 +84,12 @@ export default class Registry {
         });
       }
 
+      if (document.querySelectorAll(`${this.prefix}-node-js-panel`).length) {
+        await import("@components/Panels/NodeViewer").then((module) => {
+          registry.push(module.default);
+        });
+      }
+
       resolve(registry);
     });
   };
