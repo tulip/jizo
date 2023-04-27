@@ -20,13 +20,15 @@ export default class AxeReportViewer extends HTMLElement {
   private async drawReport(jsonString: string) {
     const jsonObj = JSON.parse(jsonString)[0];
     const wrapper = this.querySelector(".cc-report-viewer__axe");
+    wrapper!.innerHTML = '';
 
-    const roots = await this.parseJsonObject(jsonObj);
-    roots.map((root) => {
-      if (root) wrapper?.appendChild(root);
-    });
+    const clearReportBtn = document.createElement('button');
+    clearReportBtn.classList.add('btn__rounded');
+    clearReportBtn.textContent = 'Clear Report';
+    wrapper!.appendChild(clearReportBtn);
+    clearReportBtn.addEventListener('click', this.clone.bind(this));
 
-    globalThis.Registry.update();
+    return await this.parseJsonObject(jsonObj);
   }
 
   private parseJsonObject(obj: any) {
@@ -190,7 +192,7 @@ export default class AxeReportViewer extends HTMLElement {
     }
 
     this.clone();
-    
+
     DomHelpers.loadComponent(this);
 
     document.addEventListener("filePickerChanged", (event) => {
@@ -201,10 +203,14 @@ export default class AxeReportViewer extends HTMLElement {
 
       if (file !== null) {
         const reader = new FileReader();
-        reader.onload = (event) => {
+        reader.onload = async (event) => {
           this.clone();
           const jsonString = event.target?.result;
-          this.drawReport(jsonString as string);
+          const roots = await this.drawReport(jsonString as string);
+          for await (const root of roots) {
+            this.querySelector(".cc-report-viewer__axe")?.appendChild(root);
+          };
+          globalThis.Registry.update();
         };
         reader.readAsText(file);
       }

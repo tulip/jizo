@@ -18,76 +18,104 @@ export default class Registry {
       const registry: Array<CustomElementConstructor> = [];
 
       if (document.querySelectorAll(`${this.prefix}-card-basic`).length) {
-        await import("@components/Cards/CardBasic").then((module) => {
-          registry.push(module.default);
-        });
+        if (!this.registry.filter((item) => item.name === "CardBasic").length) {
+          await import("@components/Cards/CardBasic").then((module) => {
+            registry.push(module.default);
+          });
+        }
       }
 
-      if (
-        document.querySelectorAll(`${this.prefix}-button-basic`).length
-      ) {
-        await import("@components/Buttons/ButtonBasic").then((module) => {
-          registry.push(module.default);
-        });
+      if (document.querySelectorAll(`${this.prefix}-button-basic`).length) {
+        if (
+          !this.registry.filter((item) => item.name === "ButtonBasic").length
+        ) {
+          await import("@components/Buttons/ButtonBasic").then((module) => {
+            registry.push(module.default);
+          });
+        }
       }
 
       if (document.querySelectorAll(`${this.prefix}-file-picker`).length) {
-        await import("@components/Global/FilePicker/FilePicker").then(
-          (module) => {
-            registry.push(module.default);
-          }
-        );
+        if (
+          !this.registry.filter((item) => item.name === "FilePicker").length
+        ) {
+          await import("@components/Global/FilePicker/FilePicker").then(
+            (module) => {
+              registry.push(module.default);
+            }
+          );
+        }
       }
 
       if (document.querySelectorAll(`${this.prefix}-dropdown`).length) {
-        await import("@components/Dropdowns/Dropdown").then((module) => {
-          registry.push(module.default);
-        });
+        if (!this.registry.filter((item) => item.name === "Dropdown").length) {
+          await import("@components/Dropdowns/Dropdown").then((module) => {
+            registry.push(module.default);
+          });
+        }
       }
 
       if (document.querySelectorAll(`${this.prefix}-slide`).length) {
-        await import("@components/Slider/Slide").then((module) => {
-          registry.push(module.default);
-        });
+        if (!this.registry.filter((item) => item.name === "Slide").length) {
+          await import("@components/Slider/Slide").then((module) => {
+            registry.push(module.default);
+          });
+        }
       }
 
       if (document.querySelectorAll(`${this.prefix}-slider`).length) {
-        await import("@components/Slider/Slider").then((module) => {
-          registry.push(module.default);
-        });
+        if (!this.registry.filter((item) => item.name === "Slider").length) {
+          await import("@components/Slider/Slider").then((module) => {
+            registry.push(module.default);
+          });
+        }
       }
 
       if (
-        document.querySelectorAll(`${this.prefix}-axe-report-viewer`)
-          .length
+        document.querySelectorAll(`${this.prefix}-axe-report-viewer`).length
       ) {
-        await import("@components/Panels/AxeReportViewer").then((module) => {
-          registry.push(module.default);
-        });
+        if (
+          !this.registry.filter((item) => item.name === "AxeReportViewer")
+            .length
+        ) {
+          await import("@components/Panels/AxeReportViewer").then((module) => {
+            registry.push(module.default);
+          });
+        }
       }
 
       if (document.querySelectorAll(`${this.prefix}-modal`).length) {
-        await import("@components/Modal/Modal").then((module) => {
-          registry.push(module.default);
-        });
+        if (!this.registry.filter((item) => item.name === "Modal").length) {
+          await import("@components/Modal/Modal").then((module) => {
+            registry.push(module.default);
+          });
+        }
       }
 
       if (document.querySelectorAll(`${this.prefix}-toast`).length) {
-        await import("@components/Global/Toast/Toast").then((module) => {
-          registry.push(module.default);
-        });
+        if (!this.registry.filter((item) => item.name === "Toast").length) {
+          await import("@components/Global/Toast/Toast").then((module) => {
+            registry.push(module.default);
+          });
+        }
       }
 
       if (document.querySelectorAll(`${this.prefix}-alert`).length) {
-        await import("@components/Modal/Alert").then((module) => {
-          registry.push(module.default);
-        });
+        if (!this.registry.filter((item) => item.name === "Alert").length) {
+          await import("@components/Modal/Alert").then((module) => {
+            registry.push(module.default);
+          });
+        }
       }
 
       if (document.querySelectorAll(`${this.prefix}-node-js-panel`).length) {
-        await import("@components/Panels/NodeViewer").then((module) => {
-          registry.push(module.default);
-        });
+        if (
+          !this.registry.filter((item) => item.name === "NodeJsPanel").length
+        ) {
+          await import("@components/Panels/NodeViewer").then((module) => {
+            registry.push(module.default);
+          });
+        }
       }
 
       resolve(registry);
@@ -105,11 +133,8 @@ export default class Registry {
     });
   };
 
-  update = () => {
-    this.loadModules().then((registry) => {
-      this.registry = registry;
-      this.initRegistry();
-    });
+  update = async () => {
+    await this.init();
   };
 
   init = async () => {
@@ -117,10 +142,9 @@ export default class Registry {
       this.registry = registry;
       this.initRegistry();
     });
-  }
+  };
 
   get = (name: string) => {
-    console.log(this.registry.find((item) => item.name === 'FilePicker'));
     return this.registry.find((item) => item.name === name);
   };
 }

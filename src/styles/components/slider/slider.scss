@@ -12,6 +12,7 @@ cc-slider {
       width: 100%;
       @include transition(transform);
 
+      > .cc-slide,
       > cc-slide {
         flex: 1 0 100%;
       }

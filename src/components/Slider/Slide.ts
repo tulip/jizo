@@ -9,28 +9,12 @@ export default class Slide extends HTMLElement {
     this.innerHTML = this.template;
   }
 
-  connectedCallback() {
-    const slots = this.querySelectorAll("[slot]");
+  protected connectedCallback() {
     const children = Array.from(this.children).filter(
       (child) => !child.getAttribute("slot")
     );
 
     this.clone();
-
-    slots.forEach((slot: Element) => {
-      const slotName = slot.getAttribute("slot");
-
-      if (
-        slotName!.toLowerCase() === "body" &&
-        DomHelpers.isDivElement(slot) === false
-      ) {
-        throw new Error('Slot `<slot="body">` must be a DIV element.');
-      }
-
-      this.querySelector(
-        `slot[name="${slot.getAttribute("slot")}"]`
-      )!.replaceWith(slot);
-    });
 
     children.length &&
       children.forEach((child) =>

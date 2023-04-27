@@ -18,11 +18,11 @@ export default class Slider extends HTMLElement {
     this.lastSlideIndex = -1;
   }
 
-  private async clone() {
+  private clone() {
     this.innerHTML = this.template;
   }
 
-  private bindListeners() {
+  private bindListeners(slides: Array<Element>) {
     this.querySelector("button.cc-slider__prev")!.addEventListener(
       "click",
       (event) => {
@@ -66,46 +66,35 @@ export default class Slider extends HTMLElement {
             ?.setAttribute("disabled", "true");
       }
     );
+
+    window.addEventListener("resize", () => {
+      this.slideOffset = slides[0].getBoundingClientRect().width;
+    });
   }
 
-  protected async connectedCallback() {
-    const slots = this.querySelectorAll("[slot]");
-    const children = Array.from(this.children).filter(
-      (child) => !child.getAttribute("slot")
+  protected connectedCallback() {
+    const slides = Array.from(this.querySelectorAll(':scope cc-slide')).filter(
+      (child) => DomHelpers.isTypeof(child, "cc-slide")
     );
 
-    await this.clone();
+    this.clone();
 
-    slots.forEach((slot: Element) => {
-      const slotName = slot.getAttribute("slot");
-
-      if (
-        slotName!.toLowerCase() === "body" &&
-        DomHelpers.isDivElement(slot) === false
-      ) {
-        throw new Error('Slot `<slot="body">` must be a DIV element.');
-      }
-
-      this.querySelector(
-        `slot[name="${slot.getAttribute("slot")}"]`
-      )!.replaceWith(slot);
-    });
-
-    if (children.length) {
-      children.forEach((child) =>
+    if (slides.length) {
+      slides.forEach((child) => {
         this.querySelector(
           ":scope > .cc-slider > .cc-slider__stage"
-        )?.appendChild(child)
-      );
+        )?.appendChild(child);
+      });
     }
 
     this.slideStage = this.querySelector(
       ":scope > .cc-slider > .cc-slider__stage"
     )!;
-    this.slideOffset = children[0].clientWidth;
-    this.lastSlideIndex = children.length - 1;
+    this.slideOffset =
+      this.querySelector(".cc-slide")!.getBoundingClientRect().width;
+    this.lastSlideIndex = slides.length - 1;
 
-    this.bindListeners();
+    this.bindListeners(slides);
 
     DomHelpers.loadComponent(this);
   }

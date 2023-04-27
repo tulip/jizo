@@ -56,3 +56,16 @@ export const inheritParentSelectors = function (
     parent.removeAttribute("id");
   }
 };
+
+
+export const debounce = function(callback: Function) {
+  let timer: any;
+  return () => {
+    if (timer) {
+      clearTimeout(timer);
+    }
+    timer = setTimeout(() => {
+      callback();
+    }, 250);
+  };
+};
