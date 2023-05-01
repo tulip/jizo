@@ -9,25 +9,8 @@ export default class Alert extends HTMLElement {
   constructor() {
     super();
 
-    this.dismiss = this.querySelector('[slot="dismiss"]')?.cloneNode(
-      true
-    ) as HTMLButtonElement;
-    if (this.dismiss && DomHelpers.isTypeof(this.dismiss, "button") === false) {
-      throw new Error('Slot `<slot="dismiss">` must be a BUTTON element.');
-    }
-    if (this.querySelector('[slot="dismiss"]')) {
-      this.querySelector('[slot="dismiss"]')?.remove();
-    }
-
-    this.action = this.querySelector('[slot="action"]')?.cloneNode(
-      true
-    ) as HTMLButtonElement;
-    if (this.action && DomHelpers.isTypeof(this.action, "button") === false) {
-      throw new Error('Slot `<slot="action">` must be a BUTTON element.');
-    }
-    if (this.querySelector('[slot="action"]')) {
-      this.querySelector('[slot="action"]')?.remove();
-    }
+    this.dismiss = null;
+    this.action = null;
 
     // bindings
     this.close = this.close.bind(this);
@@ -44,13 +27,31 @@ export default class Alert extends HTMLElement {
 
   protected connectedCallback() {
     const slots = this.querySelectorAll("[slot]");
-    
+
     this.clone();
-    
+
     slots.forEach((slot: Element) => {
+      const slotName = slot.getAttribute("slot");
+
+      if (slotName!.toLowerCase() === "dismiss") {
+        this.dismiss = slot as HTMLButtonElement;
+
+        if (DomHelpers.isTypeof(slot, "button") === false) {
+          throw new Error('Slot `<slot="dismiss">` must be a BUTTON element.');
+        }
+      }
+
+      if (slotName!.toLowerCase() === "action") {
+        this.action = slot as HTMLButtonElement;
+
+        if (DomHelpers.isTypeof(slot, "button") === false) {
+          throw new Error('Slot `<slot="dismiss">` must be a BUTTON element.');
+        }
+      }
+
       this.querySelector(
         `slot[name="${slot.getAttribute("slot")}"]`
-      )!.replaceWith(slot);
+      )?.replaceWith(slot);
     });
 
     if (this.dismiss) {

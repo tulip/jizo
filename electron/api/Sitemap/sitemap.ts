@@ -63,7 +63,6 @@ export const findSiteMap = async (url: string) => {
 
   Sitemap.host = url;
   const slugs = process.env.SITEMAP_URLS!.split(",").map((item) => item.trim());
-  console.log(slugs);
 
   let shouldBreak = 0;
   let sitemapUrl = "";
