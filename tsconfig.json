@@ -22,5 +22,10 @@
     "skipLibCheck": true,
     "experimentalDecorators": true
   },
-  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.scss"]
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.d.ts",
+    "src/**/*.scss",
+    "electron/**/*.ts"
+  ]
 }
