@@ -24,11 +24,14 @@ export default class AxeReporter {
 
   create = (
     target: string = "https://google.com",
-    fileName: string = this.fileName
+    fileName: string
   ) => {
     if (fileName) {
       this.fileName = fileName;
+    } else {
+      this.fileName = `${target.toKebabCase()}-${this.fileName}`;
     }
+
     const spawnCmd = this.IS_WINDOWS ? "npm.cmd" : "npm";
     this.process = spawn(`${spawnCmd}`, [
       "run",

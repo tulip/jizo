@@ -4,6 +4,8 @@ import { electronApp, optimizer, is } from "@electron-toolkit/utils";
 import { handleCreateReport, handleCreateSitemapReport, resumeReport } from "../api/AxeReporter/events";
 import * as dotenv from 'dotenv';
 
+import "../utils/string";
+
 dotenv.config();
 
 function configureIpc() {
