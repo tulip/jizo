@@ -23,16 +23,27 @@ const handleAlertDismiss = async (event: Event) => {
   }
 }
 
+let SITEMAP = '';
+
 const handleAlertAction = async (event: Event) => {
   const details = (event as CustomEvent<String, AlertDismissedEventDetail>)
     .detail as unknown as AlertDismissedEventDetail;
-  if (details.action === "createSitemapReport") {
-    window.axeApi.createSitemapReport(SITEMAP);
+  if (details.action === "createSitemapCsv") {
+    const form = document.getElementById(
+      "axe__create-report"
+    ) as HTMLFormElement;
+    const inputs = form!.querySelectorAll("input");
+    const vals: Array<string> = [];
+
+    inputs.forEach((input) => {
+      input.setAttribute("disabled", "true");
+      vals.push(input.value);
+    });
+
+    window.axeApi.createSitemapCsv(SITEMAP, vals[0], vals[1]);
   };
   document.removeEventListener("alertAction", handleAlertAction);
 }
-
-let SITEMAP = '';
 
 export const sitemap = {
   handleAlertDismiss: handleAlertDismiss,
@@ -54,7 +65,7 @@ export const sitemap = {
     const alertAction = document.createElement("button");
     alertAction.setAttribute("class", "btn__rounded btn__action");
     alertAction.setAttribute("slot", "action");
-    alertAction.setAttribute("data-action", "createSitemapReport");
+    alertAction.setAttribute("data-action", "createSitemapCsv");
     alertAction.textContent = "Sure!";
 
     sitemapAlert.appendChild(alertContent);

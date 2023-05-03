@@ -3,7 +3,7 @@ import { findSiteMap, createUrlSet } from "../../api/Sitemap/sitemap";
 import { BrowserWindow } from "electron";
 import AxeReporter from "./axe-reporter";
 
-export const handleCreateReport = async (_, args) => {
+export const handleCreateReport = async (_: any, args: Array<any>) => {
   if (args.length) {
     const url = args[0];
     healthCheck(url).then(async (res) => {
@@ -29,22 +29,27 @@ export const handleCreateReport = async (_, args) => {
   }
 }
 
-export const handleCreateSitemapReport = async (_, args) => {
+export const handleCreateSitemapCsv = async (_: any, args: Array<any>) => {
   if (!args[0]) {
     // need to communicate this to the front end
-    throw new Error("handleCreateSitemapReport - there was an error parsing the `@sitemap` that was returned.");
+    throw new Error("handleCreateSitemapCsv - there was an error parsing the `@sitemap` that was returned.");
   }
   // make directory for domain
   try {
-    const isDone = await createUrlSet(args[0]);
-    console.log(isDone);
+    await createUrlSet(args[0]);
+
+    if(!args[1]) {
+      throw new Error("handleCreateSitemapCsv - there was an error generating a report for the `@url` provided.");
+    }
+    let vals = args;
+    vals.shift();
+    resumeReport(_, vals);
   } catch(err) {
     console.log(`An error occurred: ${err}`);
   }
-  console.log(`Reports have been generated in a subdirectory under the default output folder as configured by your .env file.`);
 }
 
-export const resumeReport = async (_, args) => {
+export const resumeReport = async (_: any, args: Array<any>) => {
   const axeReporter = new AxeReporter();
   const url = args[0];
   if (args[1]) {

@@ -23,7 +23,7 @@ export default class AxeReporter {
 
   create = (
     target: string = "https://google.com",
-    fileName: string
+    fileName?: string
   ) => {
     if (fileName) {
       this.fileName = fileName;

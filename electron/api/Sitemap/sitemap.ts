@@ -2,7 +2,7 @@ import { appendFile } from "fs";
 import { healthCheck } from "../../utils/web-helpers";
 import { SitemapType } from "./types";
 import * as cheerio from "cheerio";
-import path from "node:path";
+import { BrowserWindow } from "electron";
 import fs from "fs";
 
 const Sitemap: SitemapType = {
@@ -22,8 +22,14 @@ const readSitemap = async (url: string) => {
       return result.text();
     });
   }
+
+  return false;
 };
 
+/**
+ * Generates a CSV file from the sitemap URLs
+ * @returns Promise<void>
+ */
 const makeCsvFile = async () => {
   const outputDir = `${process.env.AXE_RESULT_DIR}/sitemaps/`;
   if (!fs.existsSync(outputDir)) {
@@ -32,13 +38,21 @@ const makeCsvFile = async () => {
   const filename = `${
     Sitemap.host.length ? `${Sitemap.host.toKebabCase()}-` : ""
   }sitemap.csv`;
-  console.log(
-    `Generating a CSV file at the following location: ${outputDir}${filename}`
-  );
+  BrowserWindow.getAllWindows().forEach((win) => {
+    win.webContents.send(
+      "update-node-output",
+      `Generating a CSV file at the following location: ${outputDir}${filename}`
+    );
+  });
   const strData = Sitemap.urls.map((row) => row).join("\n");
   try {
     appendFile(`${outputDir}${filename}`, strData, () => {
-      console.log(`CSV file created at ${outputDir}${filename}`);
+      BrowserWindow.getAllWindows().forEach((win) => {
+        win.webContents.send(
+          "update-node-output",
+          `CSV file created at ${outputDir}${filename}`
+        );
+      });
     });
   } catch (err) {
     console.error(`CSV file could not be created at ${outputDir}${filename}`);
@@ -68,7 +82,6 @@ export const findSiteMap = async (url: string) => {
   let sitemapUrl = "";
   let i = 0;
   for await (const slug of slugs) {
-    // console.log('looking for sitemap at', sitemapUrl);
     i += 1;
     if (await healthCheck(`${url}/${slug}`)) {
       sitemapUrl = `${url}/${slug}`;
@@ -135,7 +148,12 @@ export const createUrlSet = async (sitemap: string) => {
     });
   }
 
-  console.log(`Found ${Sitemap.urls.length} urls`);
+  BrowserWindow.getAllWindows().forEach((win) => {
+    win.webContents.send(
+      "update-node-output",
+      `Found ${Sitemap.urls.length} urls`
+    );
+  });
   makeCsvFile();
 
   return true;

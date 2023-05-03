@@ -1,6 +1,6 @@
 export const FilePickerChangedEvent = new CustomEvent("filePickerChanged", {
     detail: {
-        type: "FilePickerChanged",
+        action: null,
         files: null,
     },
 });

@@ -1,7 +1,7 @@
 import { DomHelpers } from "@utils";
 import "@styles/components/panels/report-viewer.scss";
 
-import { FilePickerChangedEventDetail } from '@components/Global/FilePicker/types';
+import { FilePickerChangedEventDetail } from "@components/Global/FilePicker/types";
 
 export default class AxeReportViewer extends HTMLElement {
   hidePanel: boolean;
@@ -9,7 +9,8 @@ export default class AxeReportViewer extends HTMLElement {
   constructor() {
     super();
 
-    this.hidePanel = (typeof this.dataset.hideText === 'undefined') ? false : true;
+    this.hidePanel =
+      typeof this.dataset.hideText === "undefined" ? false : true;
     this.id = crypto.randomUUID();
   }
 
@@ -20,13 +21,13 @@ export default class AxeReportViewer extends HTMLElement {
   private async drawReport(jsonString: string) {
     const jsonObj = JSON.parse(jsonString)[0];
     const wrapper = this.querySelector(".cc-report-viewer__axe");
-    wrapper!.innerHTML = '';
+    wrapper!.innerHTML = "";
 
-    const clearReportBtn = document.createElement('button');
-    clearReportBtn.classList.add('btn__rounded');
-    clearReportBtn.textContent = 'Clear Report';
+    const clearReportBtn = document.createElement("button");
+    clearReportBtn.classList.add("btn__rounded");
+    clearReportBtn.textContent = "Clear Report";
     wrapper!.appendChild(clearReportBtn);
-    clearReportBtn.addEventListener('click', this.clone.bind(this));
+    clearReportBtn.addEventListener("click", this.clone.bind(this));
 
     return await this.parseJsonObject(jsonObj);
   }
@@ -71,10 +72,14 @@ export default class AxeReportViewer extends HTMLElement {
         DomHelpers.loadComponent(violation);
       });
 
-      resolve([urlElement, timestampElement, violationsElement, violationsDetails]);
+      resolve([
+        urlElement,
+        timestampElement,
+        violationsElement,
+        violationsDetails,
+      ]);
     });
   }
-
 
   private makeDetailsRow = (key: HTMLElement, val: HTMLElement) => {
     const row = document.createElement("div");
@@ -184,11 +189,27 @@ export default class AxeReportViewer extends HTMLElement {
     return slider;
   }
 
+  private viewReport(file: File) {
+    const reader = new FileReader();
+    reader.onload = async (event) => {
+      this.clone();
+      const jsonString = event.target?.result;
+      const roots = await this.drawReport(jsonString as string);
+      for await (const root of roots) {
+        this.querySelector(".cc-report-viewer__axe")?.appendChild(root);
+      }
+      globalThis.Registry.update();
+    };
+    reader.readAsText(file);
+  }
+
   private connectedCallback() {
     if (!this.hidePanel) {
-      this.querySelector('.cc-report-viewer__axe')!.appendChild(document.createElement('p'));
-      this.querySelector('.cc-report-viewer__axe > p')!.innerHTML =
-        'This is the default text for the Axe Report viewing pane. This text can be hidden by providing the <code>data-hide-text</code> property to the component.';
+      this.querySelector(".cc-report-viewer__axe")!.appendChild(
+        document.createElement("p")
+      );
+      this.querySelector(".cc-report-viewer__axe > p")!.innerHTML =
+        "This is the default text for the Axe Report viewing pane. This text can be hidden by providing the <code>data-hide-text</code> property to the component.";
     }
 
     this.clone();
@@ -202,17 +223,9 @@ export default class AxeReportViewer extends HTMLElement {
       const file = details.files[0];
 
       if (file !== null) {
-        const reader = new FileReader();
-        reader.onload = async (event) => {
-          this.clone();
-          const jsonString = event.target?.result;
-          const roots = await this.drawReport(jsonString as string);
-          for await (const root of roots) {
-            this.querySelector(".cc-report-viewer__axe")?.appendChild(root);
-          };
-          globalThis.Registry.update();
-        };
-        reader.readAsText(file);
+        if (details.action === "view-report") {
+          this.viewReport(file);
+        }
       }
     });
   }

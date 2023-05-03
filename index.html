@@ -64,7 +64,22 @@
               <div class="container">
                 <div class="row">
                   <div class="col">
-                    <cc-file-picker class="mb-5 text-center"></cc-file-picker>
+                    <cc-file-picker data-file-type="json" data-action="view-report" class="mb-5 text-center"></cc-file-picker>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </cc-modal>
+
+          <!-- bulk -->
+          <cc-modal class="cc-load" data-close-on="filePickerChanged">
+            <span slot="trigger" class="mb-3" id="btn__view-report">Generate Bulk Report</span>
+            <div slot="content">
+              <div class="container">
+                <div class="row">
+                  <div class="col">
+                    <p>Files should be uploaded as <code>.csv</code> only.</p>
+                    <cc-file-picker data-file-type="csv" data-action="create-bulk-report" class="mb-5 text-center"></cc-file-picker>
                   </div>
                 </div>
               </div>

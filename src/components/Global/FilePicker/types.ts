@@ -1,4 +1,4 @@
 export type FilePickerChangedEventDetail = {
-    type: string;
+    action: string;
     files: FileList;
 };

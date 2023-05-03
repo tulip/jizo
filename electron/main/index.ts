@@ -1,7 +1,7 @@
 import { app, shell, BrowserWindow, ipcMain } from "electron";
 import { join } from "path";
 import { electronApp, optimizer, is } from "@electron-toolkit/utils";
-import { handleCreateReport, handleCreateSitemapReport, resumeReport } from "../api/AxeReporter/events";
+import { handleCreateReport, handleCreateSitemapCsv, resumeReport } from "../api/AxeReporter/events";
 import * as dotenv from 'dotenv';
 
 import "../utils/string";
@@ -10,7 +10,7 @@ dotenv.config();
 
 function configureIpc() {
   ipcMain.handle("create-report", handleCreateReport);
-  ipcMain.handle("create-sitemap-report", handleCreateSitemapReport);
+  ipcMain.handle("create-sitemap-csv", handleCreateSitemapCsv);
   ipcMain.handle("resume-report", resumeReport)
 }
 
