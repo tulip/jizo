@@ -1,6 +1,6 @@
 import { ChildProcessWithoutNullStreams, spawn } from "node:child_process";
-import { join } from "path";
 import { BrowserWindow } from "electron";
+import chromedriver from "chromedriver";
 
 export default class AxeReporter {
   IS_WINDOWS: boolean;
@@ -8,7 +8,6 @@ export default class AxeReporter {
   timestamp: Date;
   fileName: string;
   fileExtension: string;
-  chromeDriver: string;
 
   constructor() {
     this.IS_WINDOWS = process.platform === "win32";
@@ -21,7 +20,6 @@ export default class AxeReporter {
       "0"
     )}_${this.timestamp.getTime()}_report`;
     this.fileExtension = "json";
-    this.chromeDriver = join(__dirname, `../drivers/${this.IS_WINDOWS ? "win" : "linux"}/chromedriver${this.IS_WINDOWS ? ".exe" : ""}`);
   }
 
   create = (
@@ -40,7 +38,6 @@ export default class AxeReporter {
       "axe",
       "--",
       `${target}`,
-      `--chromedriver-path="${this.chromeDriver}"`,
       "--tags",
       "wcag2aa,wcag21aa,wcag22aa,best-practice",
       "--dir",
@@ -48,6 +45,12 @@ export default class AxeReporter {
       "--save",
       `${this.fileName}.${this.fileExtension}`,
     ]);
+
+    this.process.stderr.on("data", (d) => {
+      BrowserWindow.getAllWindows().forEach((win) => {
+        win.webContents.send("update-node-output", d.toString());
+      })
+    });
 
     this.process.stdout.on("data", (d) => {
       BrowserWindow.getAllWindows().forEach((win) => {
