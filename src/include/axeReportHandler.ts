@@ -1,4 +1,4 @@
-export const axeCreateReport = {
+export const axeReportHandler = {
   handleCreateAxeReport: async (event: SubmitEvent) => {
     event.preventDefault();
 
@@ -43,7 +43,7 @@ export const axeCreateReport = {
       .getElementById("url__report-submit")
       ?.setAttribute("disabled", "true");
 
-    
+
     await window.axeApi.createUrlList(vals[0], vals[1]);
   },
   handleReportCreated: (formId: string) => {

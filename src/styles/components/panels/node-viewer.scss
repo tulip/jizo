@@ -87,7 +87,7 @@ cc-node-js-panel {
       background-color: var(--c-bg-color__inverse);
       position: absolute;
       padding: $m-2;
-      right: 0;
+      right: $gutter-x;
     }
 
     &__show {

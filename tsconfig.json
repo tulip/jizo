@@ -26,6 +26,6 @@
     "src/**/*.ts",
     "src/**/*.d.ts",
     "src/**/*.scss",
-    "electron/**/*.ts"
+    "src/electron/**/*.ts"
   ]
 }

@@ -207,6 +207,7 @@ $index: 1;
 }
 /*#endregion*/
 
+/*#region Display Helpers */
 .sr-only {
   position: absolute !important;
   height: 1px !important;
@@ -217,3 +218,8 @@ $index: 1;
   opacity: 0 !important;
   color: transparent !important;
 }
+
+.overflow-hidden {
+  overflow: hidden !important;
+}
+/*#endregion */

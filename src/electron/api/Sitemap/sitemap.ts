@@ -1,4 +1,4 @@
-import { appendFile } from "fs";
+import { writeFile } from "fs";
 import { healthCheck } from "../../utils/web-helpers";
 import { SitemapType } from "./types";
 import * as cheerio from "cheerio";
@@ -44,9 +44,11 @@ const makeCsvFile = async () => {
       `Generating a CSV file at the following location: ${outputDir}${filename}`
     );
   });
+  Sitemap.urls = [];
   const strData = Sitemap.urls.map((row) => row).join("\n");
   try {
-    appendFile(`${outputDir}${filename}`, strData, () => {
+
+    writeFile(`${outputDir}${filename}`, strData, () => {
       BrowserWindow.getAllWindows().forEach((win) => {
         win.webContents.send(
           "update-node-output",

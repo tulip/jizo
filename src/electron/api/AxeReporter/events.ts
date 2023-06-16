@@ -1,5 +1,5 @@
 import { healthCheck } from "../../utils/web-helpers";
-import { findSiteMap, createUrlSet } from "../../api/Sitemap/sitemap";
+import { findSiteMap, createUrlSet } from "../Sitemap/sitemap";
 import { BrowserWindow } from "electron";
 import AxeReporter from "./axe-reporter";
 

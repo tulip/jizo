@@ -3,7 +3,7 @@ const COMPONENT_PREFIX = "cc";
 const LOAD_CLASS = `.${COMPONENT_PREFIX}-load`;
 import Registry from "./registry";
 
-import { axeCreateReport } from "./include/axeCreateReport";
+import { axeReportHandler } from "./include/axeReportHandler";
 import { sitemap } from "./include/sitemapAlert";
 import { GlobalStyles, WindowWatcher } from "@utils";
 
@@ -27,16 +27,16 @@ if (document.getElementById("toggle-theme")) {
 const REGISTRY = new Registry(COMPONENT_PREFIX);
 globalThis.Registry = REGISTRY;
 
-document.getElementById("axe__create-report")?.addEventListener("submit", axeCreateReport.handleCreateAxeReport);
-document.getElementById("url__create-report")?.addEventListener("submit", axeCreateReport.handleCreateUrlList);
+document.getElementById("axe__create-report")?.addEventListener("submit", axeReportHandler.handleCreateAxeReport);
+document.getElementById("url__create-report")?.addEventListener("submit", axeReportHandler.handleCreateUrlList);
 
 window.electron.ipcRenderer.on("report-created", (_: any, details: any) => {
   switch (details.type.toLowerCase()) {
     case "axe-report":
-      axeCreateReport.handleReportCreated("axe__create-report");   
+      axeReportHandler.handleReportCreated("axe__create-report");
       break;
     case "url-list":
-      axeCreateReport.handleReportCreated("url__create-report");
+      axeReportHandler.handleReportCreated("url__create-report");
       break;
   }
 });

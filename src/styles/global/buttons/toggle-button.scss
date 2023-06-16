@@ -9,7 +9,7 @@ $toggle-tween: $m-6; // 64px
   width: $toggle-width;
   height: $toggle-height;
   top: 0;
-  right: $gutter-x;
+  right: $gutter-x * 2;
 
   input[type='checkbox'] {
     height: 0;
