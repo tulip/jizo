@@ -20,6 +20,7 @@ function createWindow(): void {
     width: 1280,
     height: 768,
     show: false,
+    icon: join(__dirname, "../../jizo.ico"),
     autoHideMenuBar: true,
     webPreferences: {
       sandbox: false,
