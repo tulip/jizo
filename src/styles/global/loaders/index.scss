@@ -1,1 +1,22 @@
 @import './loader-1';
+
+.btn,
+.btn__rounded {
+  &.loader {
+    overflow: hidden;
+
+    > .loader__1 {
+      transform: translateY(-100%);
+      @include transition-fast(transform);
+    }
+
+    &[disabled] {
+      pointer-events: none;
+
+      > .loader__1 {
+        transform: translateY(0);
+        @include transition-fast(transform);
+      }
+    }
+  }
+}

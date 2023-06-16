@@ -1,6 +1,5 @@
 import { ChildProcessWithoutNullStreams, spawn } from "node:child_process";
 import { BrowserWindow } from "electron";
-import chromedriver from "chromedriver";
 
 export default class AxeReporter {
   IS_WINDOWS: boolean;
@@ -60,7 +59,9 @@ export default class AxeReporter {
 
     this.process.on("exit", () => {
       BrowserWindow.getAllWindows().forEach((win) => {
-        win.webContents.send("report-created");
+        win.webContents.send("report-created", {
+          type: "axe-report"
+        });
       });
     });
   };

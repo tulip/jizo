@@ -4,8 +4,9 @@ import { electronAPI } from "@electron-toolkit/preload";
 require('dotenv').config();
 
 const api = {
-  createReport: async (url: string, filename: string) => ipcRenderer.invoke("create-report", [url, filename]),
-  createSitemapCsv: async (sitemap: any, url: string, filename: string) => ipcRenderer.invoke("create-sitemap-csv", [sitemap, url, filename]),
+  createAxeReport: async (url: string, filename: string) => ipcRenderer.invoke("create-axe-report", [url, filename]),
+  createUrlList: async (url: string, filename: string) => ipcRenderer.invoke("create-url-list", [url, filename]),
+  createSitemapCsv: async (sitemap: any, url: string, filename: string, shouldResume: boolean) => ipcRenderer.invoke("create-sitemap-csv", [sitemap, url, filename, shouldResume]),
   resumeReport: async (url: string, filename: string) => ipcRenderer.invoke("resume-report", [url, filename]),
   reportCreated: (callback: (event: Electron.IpcRendererEvent, ...args: any[]) => void) => ipcRenderer.on('report-created', callback),
   sitemapFound: async (sitemap: (event: Electron.IpcRendererEvent, ...args: any[]) => void) => ipcRenderer.on('sitemap-found', sitemap),

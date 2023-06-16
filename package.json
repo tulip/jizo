@@ -5,7 +5,6 @@
   "license": "MIT",
   "main": "./out/main/index.js",
   "scripts": {
-    "cp:drivers": "cp -R ./drivers ./out",
     "start": "electron-vite dev",
     "dev": "vite",
     "build": "tsc && vite build",
@@ -14,7 +13,6 @@
   },
   "devDependencies": {
     "@rollup/plugin-alias": "^3.1.9",
-    "@types/chromedriver": "^81.0.1",
     "@types/node": "^18.8.1",
     "@vitejs/plugin-legacy": "^2.2.0",
     "axe-core": "^4.7.2",
@@ -34,7 +32,6 @@
     "ansi_up": "^5.2.1",
     "cheerio": "^1.0.0-rc.12",
     "chrome-launcher": "^0.15.1",
-    "chromedriver": "^114.0.2",
     "dotenv": "^16.0.3",
     "electron": "^24.1.1",
     "lighthouse": "^9.6.8",

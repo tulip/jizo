@@ -51,7 +51,6 @@ export default class NodeJsPanel extends HTMLElement {
   };
 
   private updateContentBlock(content: string) {
-    console.log(content);
     const block = document.createElement('p');
     const ansi = this.ansi.ansi_to_html(content);
     block.innerHTML = ansi;

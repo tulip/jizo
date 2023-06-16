@@ -3,7 +3,7 @@ import { findSiteMap, createUrlSet } from "../../api/Sitemap/sitemap";
 import { BrowserWindow } from "electron";
 import AxeReporter from "./axe-reporter";
 
-export const handleCreateReport = async (_: any, args: Array<any>) => {
+export const handleCreateAxeReport = async (_: any, args: Array<any>) => {
   if (args.length) {
     const url = args[0];
     healthCheck(url).then(async (res) => {
@@ -12,7 +12,10 @@ export const handleCreateReport = async (_: any, args: Array<any>) => {
         findSiteMap(url).then((sitemap) => {
           if (sitemap) {
             BrowserWindow.getAllWindows().forEach((win) => {
-              win.webContents.send("sitemap-found", sitemap);
+              win.webContents.send("sitemap-found", {
+                type: "axe-report",
+                sm: sitemap
+              });
             });
           } else {
             resumeReport(_, args);
@@ -29,7 +32,31 @@ export const handleCreateReport = async (_: any, args: Array<any>) => {
   }
 }
 
-export const handleCreateSitemapCsv = async (_: any, args: Array<any>) => {
+export const handleCreateUrlList = async (_: any, args: Array<any>) => {
+  if (args.length) {
+    const url = args[0];
+    healthCheck(url).then(async (res) => {
+      if (res) {
+        findSiteMap(url).then((sitemap) => {
+          if (sitemap) {
+            BrowserWindow.getAllWindows().forEach((win) => {
+              win.webContents.send("sitemap-found", {
+                type: "url-list",
+                sm: sitemap
+              });
+            });
+          }
+        }).catch(() => {
+          throw new Error("findSiteMap - `@url` has returned a non-OK response code");
+        });
+      }
+    }).catch(() => {
+      throw new Error("healthCheck - `@url` has returned a non-OK response code");
+    });
+  }
+}
+
+export const createSitemapCsv = async (_: any, args: Array<any>) => {
   if (!args[0]) {
     // need to communicate this to the front end
     throw new Error("handleCreateSitemapCsv - there was an error parsing the `@sitemap` that was returned.");
@@ -41,9 +68,19 @@ export const handleCreateSitemapCsv = async (_: any, args: Array<any>) => {
     if(!args[1]) {
       throw new Error("handleCreateSitemapCsv - there was an error generating a report for the `@url` provided.");
     }
-    let vals = args;
-    vals.shift();
-    resumeReport(_, vals);
+
+    let resume = true;
+    if (args[3] !== undefined  && args[3] === false) { resume = args[3]; }
+    args.shift();
+    if (resume) {
+      resumeReport(_, args);
+    } else {
+      BrowserWindow.getAllWindows().forEach((win) => {
+        win.webContents.send("report-created", {
+          type: "url-list",
+        });
+      });
+    };
   } catch(err) {
     console.log(`An error occurred: ${err}`);
   }

@@ -1,5 +1,5 @@
 export const axeCreateReport = {
-  handleSubmit: async (event: SubmitEvent) => {
+  handleCreateAxeReport: async (event: SubmitEvent) => {
     event.preventDefault();
 
     // URL is required
@@ -20,10 +20,36 @@ export const axeCreateReport = {
       .getElementById("axe__report-submit")
       ?.setAttribute("disabled", "true");
 
-    await window.axeApi.createReport(vals[0], vals[1]);
+    await window.axeApi.createAxeReport(vals[0], vals[1]);
   },
-  handleReportCreated: () => {
-    document.getElementById("axe__report-submit")?.removeAttribute("disabled");
+  handleCreateUrlList: async (event: SubmitEvent) => {
+    event.preventDefault();
+
+    // URL is required
+    if (
+      !(document.getElementById("url__report-target") as HTMLInputElement).value
+        .length
+    ) {
+      throw new Error("url__create-url-list: a URL is required !");
+    }
+
+    const inputs = (event.target as HTMLElement)!.querySelectorAll("input");
+    const vals: Array<string> = [];
+    inputs.forEach((input) => {
+      input.setAttribute("disabled", "true");
+      vals.push(input.value);
+    });
+    document
+      .getElementById("url__report-submit")
+      ?.setAttribute("disabled", "true");
+
+    
+    await window.axeApi.createUrlList(vals[0], vals[1]);
+  },
+  handleReportCreated: (formId: string) => {
+    const form = document.getElementById(formId);
+    if (!form) { return; }
+    form.querySelector('button[type="submit"]')?.removeAttribute("disabled");
 
     const toast = document.createElement("cc-toast");
     toast.setAttribute("data-type", "success");
@@ -43,9 +69,7 @@ export const axeCreateReport = {
       globalThis.Registry.initRegistry();
     });
 
-    const inputs = document
-      .getElementById("axe__create-report")
-      ?.querySelectorAll("input");
+    const inputs = form.querySelectorAll("input");
     inputs &&
       inputs.forEach((input) => {
         input.removeAttribute("disabled");

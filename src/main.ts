@@ -4,7 +4,7 @@ const LOAD_CLASS = `.${COMPONENT_PREFIX}-load`;
 import Registry from "./registry";
 
 import { axeCreateReport } from "./include/axeCreateReport";
-import { sitemap } from "./include/sitemap";
+import { sitemap } from "./include/sitemapAlert";
 import { GlobalStyles, WindowWatcher } from "@utils";
 
 import "@utils/string.ts";
@@ -27,12 +27,22 @@ if (document.getElementById("toggle-theme")) {
 const REGISTRY = new Registry(COMPONENT_PREFIX);
 globalThis.Registry = REGISTRY;
 
-document.getElementById("axe__create-report")?.addEventListener("submit", axeCreateReport.handleSubmit);
-window.electron.ipcRenderer.on("report-created", axeCreateReport.handleReportCreated);
-window.electron.ipcRenderer.on("sitemap-found", (_: any, sm: string) => {
-  sitemap.handleSitemapFound(sm);
-});
+document.getElementById("axe__create-report")?.addEventListener("submit", axeCreateReport.handleCreateAxeReport);
+document.getElementById("url__create-report")?.addEventListener("submit", axeCreateReport.handleCreateUrlList);
 
+window.electron.ipcRenderer.on("report-created", (_: any, details: any) => {
+  switch (details.type.toLowerCase()) {
+    case "axe-report":
+      axeCreateReport.handleReportCreated("axe__create-report");   
+      break;
+    case "url-list":
+      axeCreateReport.handleReportCreated("url__create-report");
+      break;
+  }
+});
+window.electron.ipcRenderer.on("sitemap-found", (_: any, details: any) => {
+  sitemap.handleSitemapFound(details);
+});
 window.electron.ipcRenderer.on("update-node-output", (_: any, output: string) => {
   document.dispatchEvent(new CustomEvent("update-node-output", { detail: output }));
 });
