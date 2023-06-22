@@ -52,7 +52,7 @@ const handleAlertAction = async (event: Event) => {
   document.removeEventListener("alertAction", handleAlertAction);
 }
 
-export const sitemap = {
+export const SitemapAlert = {
   handleAlertDismiss: handleAlertDismiss,
   handleSitemapFound: async (details: any) => {
     SITEMAP = details.sm;

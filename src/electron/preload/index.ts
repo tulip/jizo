@@ -5,6 +5,7 @@ require('dotenv').config();
 
 const api = {
   createAxeReport: async (url: string, filename: string) => ipcRenderer.invoke("create-axe-report", [url, filename]),
+  createBulkAxeReport: async (path: string) => ipcRenderer.invoke("create-bulk-axe-report", [path]),
   createUrlList: async (url: string, filename: string) => ipcRenderer.invoke("create-url-list", [url, filename]),
   createSitemapCsv: async (sitemap: any, url: string, filename: string, shouldResume: boolean) => ipcRenderer.invoke("create-sitemap-csv", [sitemap, url, filename, shouldResume]),
   resumeReport: async (url: string, filename: string) => ipcRenderer.invoke("resume-report", [url, filename]),

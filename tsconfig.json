@@ -3,8 +3,10 @@
     "baseUrl": "src",
     "paths": {
       "@utils": ["utils/index.ts"],
+      "@utils/*": ["utils/*"],
       "@components": ["components/index.ts"],
-      "@components/*": ["components/*"]
+      "@components/*": ["components/*"],
+      "@jizo/*": ["electron/api/*"],
     },
     "target": "esnext",
     "useDefineForClassFields": true,

@@ -4,6 +4,15 @@ import legacy from '@vitejs/plugin-legacy';
 
 export default defineConfig({
   main: {
+    root: ".",
+    resolve: {
+      alias: {
+        '@components': resolve(__dirname, './src/components/'),
+        '@styles': resolve(__dirname, './src/styles/'),
+        '@utils': resolve(__dirname, './src/utils/'),
+        '@jizo': resolve(__dirname, './src/electron/api/'),
+      },
+    },
     build: {
       rollupOptions: {
         input: {
@@ -13,6 +22,15 @@ export default defineConfig({
     },
   },
   preload: {
+    root: ".",
+    resolve: {
+      alias: {
+        '@components': resolve(__dirname, './src/components/'),
+        '@styles': resolve(__dirname, './src/styles/'),
+        '@utils': resolve(__dirname, './src/utils/'),
+        '@jizo': resolve(__dirname, './src/electron/api/'),
+      },
+    },
     build: {
       rollupOptions: {
         input: {
@@ -33,6 +51,7 @@ export default defineConfig({
         '@components': resolve(__dirname, './src/components/'),
         '@styles': resolve(__dirname, './src/styles/'),
         '@utils': resolve(__dirname, './src/utils/'),
+        '@jizo': resolve(__dirname, './src/electron/api/'),
       },
     },
     build: {

@@ -7,6 +7,7 @@ export default class AxeReporter {
   timestamp: Date;
   fileName: string;
   fileExtension: string;
+  urlList: string[] | null;
 
   constructor() {
     this.IS_WINDOWS = process.platform === "win32";
@@ -19,9 +20,14 @@ export default class AxeReporter {
       "0"
     )}_${this.timestamp.getTime()}_report`;
     this.fileExtension = "json";
+    this.urlList = null;
   }
 
-  create = (
+  public setUrlList = (urlList: string[]) => {
+    this.urlList = urlList;
+  }
+
+  public create = (
     target: string = "https://google.com",
     fileName?: string
   ) => {

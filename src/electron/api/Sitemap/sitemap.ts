@@ -1,9 +1,10 @@
 import { writeFile } from "fs";
-import { healthCheck } from "../../utils/web-helpers";
-import { SitemapType } from "./types";
-import * as cheerio from "cheerio";
 import { BrowserWindow } from "electron";
 import fs from "fs";
+import * as cheerio from "cheerio";
+
+import { healthCheck } from "@utils/web-helpers";
+import { SitemapType } from "@jizo/Sitemap/types";
 
 const Sitemap: SitemapType = {
   host: "",
@@ -44,10 +45,10 @@ const makeCsvFile = async () => {
       `Generating a CSV file at the following location: ${outputDir}${filename}`
     );
   });
-  Sitemap.urls = [];
-  const strData = Sitemap.urls.map((row) => row).join("\n");
-  try {
 
+  const strData = Sitemap.urls.map((row) => row).join("\n");
+
+  try {
     writeFile(`${outputDir}${filename}`, strData, () => {
       BrowserWindow.getAllWindows().forEach((win) => {
         win.webContents.send(
@@ -118,6 +119,8 @@ export const findSiteMap = async (url: string) => {
  * @returns boolean
  */
 export const createUrlSet = async (sitemap: string) => {
+  Sitemap.urls = [];
+  
   const document = cheerio.load(sitemap);
   const sitemaps: Array<cheerio.Element> = document("sitemap").toArray();
   const locations: Array<cheerio.Element> = document("loc").toArray();
@@ -156,10 +159,7 @@ export const createUrlSet = async (sitemap: string) => {
       `Found ${Sitemap.urls.length} urls`
     );
   });
-  makeCsvFile();
+  await makeCsvFile();
 
   return true;
 };
-
-// parse urlsets
-// parse all loc

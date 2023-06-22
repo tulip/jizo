@@ -3,9 +3,10 @@ const COMPONENT_PREFIX = "cc";
 const LOAD_CLASS = `.${COMPONENT_PREFIX}-load`;
 import Registry from "./registry";
 
-import { axeReportHandler } from "./include/axeReportHandler";
-import { sitemap } from "./include/sitemapAlert";
 import { GlobalStyles, WindowWatcher } from "@utils";
+import { FilePickerChangedEventDetail } from "@components/Global/FilePicker/types";
+import { axeReportHandler } from "@jizo/AxeReporter/axe-report-handler";
+import { SitemapAlert } from "@jizo/Sitemap/sitemap-alert";
 
 import "@utils/string.ts";
 
@@ -23,12 +24,22 @@ if (document.getElementById("toggle-theme")) {
   });
 }
 
-// make new registry here -- remove load modules doo-doo
+// TODO : make new registry here -- remove load modules doo-doo
 const REGISTRY = new Registry(COMPONENT_PREFIX);
 globalThis.Registry = REGISTRY;
 
 document.getElementById("axe__create-report")?.addEventListener("submit", axeReportHandler.handleCreateAxeReport);
 document.getElementById("url__create-report")?.addEventListener("submit", axeReportHandler.handleCreateUrlList);
+document.addEventListener("filePickerChanged", async (event) => {
+  const details = (
+    event as CustomEvent<String, FilePickerChangedEventDetail>
+  ).detail as unknown as FilePickerChangedEventDetail;
+  const file = details.files[0];
+
+  if (details.action === "create-bulk-axe-report") {
+    await window.axeApi.createBulkAxeReport(file.path);
+  }
+});
 
 window.electron.ipcRenderer.on("report-created", (_: any, details: any) => {
   switch (details.type.toLowerCase()) {
@@ -40,9 +51,11 @@ window.electron.ipcRenderer.on("report-created", (_: any, details: any) => {
       break;
   }
 });
+
 window.electron.ipcRenderer.on("sitemap-found", (_: any, details: any) => {
-  sitemap.handleSitemapFound(details);
+  SitemapAlert.handleSitemapFound(details);
 });
+
 window.electron.ipcRenderer.on("update-node-output", (_: any, output: string) => {
   document.dispatchEvent(new CustomEvent("update-node-output", { detail: output }));
 });

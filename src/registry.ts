@@ -78,7 +78,7 @@ export default class Registry {
           !this.registry.filter((item) => item.name === "AxeReportViewer")
             .length
         ) {
-          await import("@components/Panels/AxeReportViewer").then((module) => {
+          await import("@components/Panels/AxeReportViewer/AxeReportViewer").then((module) => {
             registry.push(module.default);
           });
         }

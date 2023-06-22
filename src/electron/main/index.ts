@@ -1,15 +1,17 @@
 import { app, shell, BrowserWindow, ipcMain } from "electron";
 import { join } from "path";
 import { electronApp, optimizer, is } from "@electron-toolkit/utils";
-import { handleCreateAxeReport, handleCreateUrlList, createSitemapCsv, resumeReport } from "../api/AxeReporter/events";
+
+import { handleCreateAxeReport, handleCreateUrlList, handleCreateBulkAxeReport, createSitemapCsv, resumeReport } from "@jizo/AxeReporter/events";
 import * as dotenv from 'dotenv';
 
-import "../utils/string";
+import "@utils/string";
 
 dotenv.config();
 
 function configureIpc() {
   ipcMain.handle("create-axe-report", handleCreateAxeReport);
+  ipcMain.handle("create-bulk-axe-report", handleCreateBulkAxeReport);
   ipcMain.handle("create-url-list", handleCreateUrlList);
   ipcMain.handle("create-sitemap-csv", createSitemapCsv);
   ipcMain.handle("resume-report", resumeReport)
