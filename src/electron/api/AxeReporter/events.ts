@@ -10,7 +10,7 @@ import { parseUrlCsv } from "@utils/file-helpers";
 export const handleCreateAxeReport = async (_: any, args: Array<any>) => {
   if (args.length) {
     const url = args[0];
-    healthCheck(url).then(async (res) => {
+    healthCheck(url).then((res) => {
       if (res) {
         findSiteMap(url).then((sitemap) => {
           if (sitemap) {
@@ -33,6 +33,8 @@ export const handleCreateAxeReport = async (_: any, args: Array<any>) => {
       throw new Error("healthCheck - `@url` has returned a non-OK response code");
     });
   }
+
+  return;
 }
 
 export const handleCreateBulkAxeReport = async (_: any, args: Array<any>) => {
@@ -43,12 +45,13 @@ export const handleCreateBulkAxeReport = async (_: any, args: Array<any>) => {
         if (err) {
           throw new Error("handleCreateBulkAxeReport - error reading file.");
         }
-
         const urls = await parseUrlCsv(file) as Array<string>;
-
         if (urls.length) {
-          asyncForOf(urls, (url: string) => {
-            console.log(url);
+          asyncForOf(urls, async (url: string) => {
+            const isHealthy = await healthCheck(url);
+            if (isHealthy) {
+              await resumeReport(_, args); 
+            }
           });
         } else {
           return;
@@ -72,6 +75,8 @@ export const handleCreateBulkAxeReport = async (_: any, args: Array<any>) => {
   } else {
     throw new Error("handleCreateBulkAxeReport - no file was provided.");
   }
+
+  return; 
 }
 
 export const handleCreateUrlList = async (_: any, args: Array<any>) => {
@@ -96,6 +101,8 @@ export const handleCreateUrlList = async (_: any, args: Array<any>) => {
       throw new Error("healthCheck - `@url` has returned a non-OK response code");
     });
   }
+
+  return;
 }
 
 export const createSitemapCsv = async (_: any, args: Array<any>) => {
@@ -126,14 +133,20 @@ export const createSitemapCsv = async (_: any, args: Array<any>) => {
   } catch (err) {
     console.log(`An error occurred: ${err}`);
   }
+
+  return;
 }
 
-export const resumeReport = async (_: any, args: Array<any>) => {
-  const axeReporter = new AxeReporter();
-  const url = args[0];
-  if (args[1]) {
-    axeReporter.create(url, args[1]);
-  } else {
-    axeReporter.create(url);
-  }
+export const resumeReport = (_: any, args: Array<any>) => {
+  return new Promise(async (resolve) => {
+    const axeReporter = new AxeReporter();
+    const url = args[0];
+    if (args[1]) {
+      await axeReporter.create(url, args[1]);
+    } else {
+      await axeReporter.create(url);
+    }
+
+    resolve;
+  });
 }

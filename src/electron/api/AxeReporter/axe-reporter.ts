@@ -51,24 +51,29 @@ export default class AxeReporter {
       `${this.fileName}.${this.fileExtension}`,
     ]);
 
-    this.process.stderr.on("data", (d) => {
-      BrowserWindow.getAllWindows().forEach((win) => {
-        win.webContents.send("update-node-output", d.toString());
-      })
-    });
-
-    this.process.stdout.on("data", (d) => {
-      BrowserWindow.getAllWindows().forEach((win) => {
-        win.webContents.send("update-node-output", d.toString());
+    return new Promise((resolve, reject) => {
+      this.process!.stderr.on("data", (d) => {
+        BrowserWindow.getAllWindows().forEach((win) => {
+          win.webContents.send("update-node-output", d.toString());
+        })
       });
-    });
 
-    this.process.on("exit", () => {
-      BrowserWindow.getAllWindows().forEach((win) => {
-        win.webContents.send("report-created", {
-          type: "axe-report"
+      this.process!.stdout.on("data", (d) => {
+        BrowserWindow.getAllWindows().forEach((win) => {
+          win.webContents.send("update-node-output", d.toString());
         });
       });
+
+      this.process!.on("exit", () => {
+        BrowserWindow.getAllWindows().forEach((win) => {
+          win.webContents.send("report-created", {
+            type: "axe-report"
+          });
+        });
+        resolve;
+      });
+
+      this.process!.on("error", reject);
     });
   };
 }
