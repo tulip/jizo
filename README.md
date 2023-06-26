@@ -1,5 +1,6 @@
 # Jizō
 **Leading Developers Toward a Friendly, Accessible Web for All**
+
 This was inspired by another project -- [Koa11y](https://github.com/open-indy/Koa11y).
 
 ## What is this?
