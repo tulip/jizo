@@ -1,5 +1,12 @@
 String.prototype.toKebabCase = function () {
-  return String(this)
+  // for strings like URL's or paths, sometimes we need to nuke
+  // double-whacks, and other repeated non-alpha characters
+  let str = String(this);
+  while (str.match(/\W\W/g)) {
+    str = str.replace(/\W\W/g, '-');
+  }
+
+  return String(str)
     .replace(/([a-z])([A-Z])/g, '$1-$2')
     .replace(/[\s_]+/g, '-')
     .toLowerCase();

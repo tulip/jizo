@@ -120,7 +120,7 @@ export const findSiteMap = async (url: string) => {
  */
 export const createUrlSet = async (sitemap: string) => {
   Sitemap.urls = [];
-  
+
   const document = cheerio.load(sitemap);
   const sitemaps: Array<cheerio.Element> = document("sitemap").toArray();
   const locations: Array<cheerio.Element> = document("loc").toArray();
