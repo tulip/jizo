@@ -7,9 +7,12 @@ This was inspired by another project -- [Koa11y](https://github.com/open-indy/Ko
 While working on some a11y audits (many, really) over the years, I quickly began to yearn for a quick and / or dirty way to generate reports utilizing the veritalbe plethora of tools publicly available. In addition to just _making_ the reports, I really wanted to be able to interact with them _immediately_ in a way that was meaningful.
 
 ## What can I do with this right now?
-[✅] Generate accessibility reports utilizing `@axe-core/cli`.
-[✅] View accessibility reports which have been generated utilizing the `@axe-core/cli` tools.
-[✅] Generate `.csv` sitemaps, containing a list of all URL's associated with a domain, as determined by the `XML` sitemap.
+
+✅ Generate accessibility reports utilizing `@axe-core/cli`.
+
+✅ View accessibility reports which have been generated utilizing the `@axe-core/cli` tools.
+
+✅ Generate `.csv` sitemaps, containing a list of all URL's associated with a domain, as determined by the `XML` sitemap.
 
 ## What will I be able to do with this in the future?
 * Script user journeys to confirm that they are accessible to all users
