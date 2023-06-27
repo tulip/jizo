@@ -37,6 +37,9 @@ export default class AxeReporter {
       this.fileName = `${target.toKebabCase()}-${this.fileName}`;
     }
 
+    this.fileName = this.fileName.replaceAll('/', '-');
+    console.log(this.fileName);
+
     const spawnCmd = this.IS_WINDOWS ? "npm.cmd" : "npm";
     this.process = spawn(`${spawnCmd}`, [
       "run",

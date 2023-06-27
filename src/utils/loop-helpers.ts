@@ -1,7 +1,7 @@
 /**
  * For...Of loop which will wait for the previous iteration
  * before starting the next
- * 
+ *
  * @param arr Array<any>
  * @param callback Function
  */

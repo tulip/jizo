@@ -50,7 +50,7 @@ export const handleCreateBulkAxeReport = async (_: any, args: Array<any>) => {
           asyncForOf(urls, async (url: string) => {
             const isHealthy = await healthCheck(url);
             if (isHealthy) {
-              await resumeReport(_, args); 
+              await resumeReport(_, [url]);
             }
           });
         } else {
@@ -76,7 +76,7 @@ export const handleCreateBulkAxeReport = async (_: any, args: Array<any>) => {
     throw new Error("handleCreateBulkAxeReport - no file was provided.");
   }
 
-  return; 
+  return;
 }
 
 export const handleCreateUrlList = async (_: any, args: Array<any>) => {
