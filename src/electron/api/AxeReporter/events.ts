@@ -5,7 +5,7 @@ import AxeReporter from "@jizo/AxeReporter/axe-reporter";
 import { findSiteMap, createUrlSet } from "@jizo/Sitemap/sitemap";
 import { healthCheck } from "@utils/web-helpers";
 import { asyncForOf } from "@utils/loop-helpers";
-import { parseUrlCsv } from "@utils/file-helpers";
+import { segmentUrlCsv } from "@utils/file-helpers";
 
 export const handleCreateAxeReport = async (_: any, args: Array<any>) => {
   if (args.length) {
@@ -45,14 +45,17 @@ export const handleCreateBulkAxeReport = async (_: any, args: Array<any>) => {
         if (err) {
           throw new Error("handleCreateBulkAxeReport - error reading file.");
         }
-        const urls = await parseUrlCsv(file) as Array<string>;
+        const urls = await segmentUrlCsv(file) as Array<string>;
         if (urls.length) {
-          asyncForOf(urls, async (url: string) => {
-            const isHealthy = await healthCheck(url);
-            if (isHealthy) {
-              await resumeReport(_, [url]);
-            }
-          });
+          // asyncForOf(urls, async (url: string) => {
+          //   const isHealthy = await healthCheck(url);
+          //   if (isHealthy) {
+          //     await resumeReport(_, [url]);
+          //   }
+          // });
+
+          console.log(urls);
+
         } else {
           return;
           // TODO : feedback on no urls parsed

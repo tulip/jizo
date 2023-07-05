@@ -38,7 +38,6 @@ export default class AxeReporter {
     }
 
     this.fileName = this.fileName.replaceAll('/', '-');
-    console.log(this.fileName);
 
     const spawnCmd = this.IS_WINDOWS ? "npm.cmd" : "npm";
     this.process = spawn(`${spawnCmd}`, [
