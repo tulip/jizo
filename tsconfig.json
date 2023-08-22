@@ -4,8 +4,8 @@
     "paths": {
       "@utils": ["utils/index.ts"],
       "@utils/*": ["utils/*"],
-      "@components": ["components/index.ts"],
-      "@components/*": ["components/*"],
+      "@components": ["ui/components/index.ts"],
+      "@components/*": ["ui/components/*"],
       "@jizo/*": ["electron/api/*"],
     },
     "target": "esnext",
@@ -28,6 +28,6 @@
     "src/**/*.ts",
     "src/**/*.d.ts",
     "src/**/*.scss",
-    "src/electron/**/*.ts"
+    "src/electron/**/*.ts",
   ]
 }

@@ -6,17 +6,17 @@ export default defineConfig({
   main: {
     root: ".",
     resolve: {
-      alias: {
-        '@components': resolve(__dirname, './src/components/'),
-        '@styles': resolve(__dirname, './src/styles/'),
-        '@utils': resolve(__dirname, './src/utils/'),
-        '@jizo': resolve(__dirname, './src/electron/api/'),
-      },
+      alias: [
+        { find: "@components", replacement: resolve(__dirname, "./src/ui/components/") },
+        { find: "@styles", replacement: resolve(__dirname, "./src/ui/styles/") },
+        { find: "@utils", replacement: resolve(__dirname, "./src/utils/") },
+        { find: "@jizo", replacement: resolve(__dirname, "./src/electron/api/") },
+      ],
     },
     build: {
       rollupOptions: {
         input: {
-          index: resolve(__dirname, "src/electron/main/index.ts"),
+          index: resolve(__dirname, "./src/electron/main/index.ts"),
         },
       },
     },
@@ -24,42 +24,37 @@ export default defineConfig({
   preload: {
     root: ".",
     resolve: {
-      alias: {
-        '@components': resolve(__dirname, './src/components/'),
-        '@styles': resolve(__dirname, './src/styles/'),
-        '@utils': resolve(__dirname, './src/utils/'),
-        '@jizo': resolve(__dirname, './src/electron/api/'),
-      },
+      alias: [
+        { find: "@components", replacement: resolve(__dirname, "./src/ui/components/") },
+        { find: "@styles", replacement: resolve(__dirname, "./src/ui/styles/") },
+        { find: "@utils", replacement: resolve(__dirname, "./src/utils/") },
+        { find: "@jizo", replacement: resolve(__dirname, "./src/electron/api/") },
+      ],
     },
     build: {
       rollupOptions: {
         input: {
-          index: resolve(__dirname, "src/electron/preload/index.ts"),
+          index: resolve(__dirname, "./src/electron/preload/index.ts"),
         },
       },
     },
   },
   renderer: {
     root: ".",
-    plugins: [
-      legacy({
-        targets: ['defaults', 'not IE 11'],
-      }),
-    ],
     resolve: {
-      alias: {
-        '@components': resolve(__dirname, './src/components/'),
-        '@styles': resolve(__dirname, './src/styles/'),
-        '@utils': resolve(__dirname, './src/utils/'),
-        '@jizo': resolve(__dirname, './src/electron/api/'),
-      },
+      alias: [
+        { find: "@components", replacement: resolve(__dirname, "./src/ui/components/") },
+        { find: "@styles", replacement: resolve(__dirname, "./src/ui/styles/") },
+        { find: "@utils", replacement: resolve(__dirname, "./src/utils/") },
+        { find: "@jizo", replacement: resolve(__dirname, "./src/electron/api/") },
+      ],
     },
     build: {
       emptyOutDir: true,
       manifest: true,
       rollupOptions: {
         input: {
-          index: resolve(__dirname, "index.html"),
+          index: resolve(__dirname, "./index.html")
         },
       },
     },

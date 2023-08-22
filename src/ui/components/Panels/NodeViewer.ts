@@ -35,7 +35,7 @@ export default class NodeJsPanel extends HTMLElement {
       !this.isOpen && this.openPanel();
     });
 
-    document.addEventListener('update-node-output', (event) => {
+    document.addEventListener('update-node-output', (event: any) => {
       this.updateContentBlock(event.detail);
     });
   };
@@ -70,7 +70,7 @@ export default class NodeJsPanel extends HTMLElement {
 
   private template = `
     <div class="cc-node-js-panel">
-      <div class="cc-node-js-panel__controls"> 
+      <div class="cc-node-js-panel__controls">
         <button class="btn__rounded btn__show">
           Show Node Output
         </button>

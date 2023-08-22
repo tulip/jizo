@@ -203,6 +203,7 @@ export default class AxeReportViewer extends HTMLElement {
     reader.readAsText(file);
   }
 
+  // @ts-ignore
   private connectedCallback() {
     if (!this.hidePanel) {
       this.querySelector(".cc-report-viewer__axe")!.appendChild(

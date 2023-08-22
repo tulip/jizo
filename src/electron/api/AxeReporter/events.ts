@@ -4,7 +4,6 @@ import { access } from "fs";
 import AxeReporter from "@jizo/AxeReporter/axe-reporter";
 import { findSiteMap, createUrlSet } from "@jizo/Sitemap/sitemap";
 import { healthCheck } from "@utils/web-helpers";
-import { asyncForOf } from "@utils/loop-helpers";
 import { segmentUrlCsv } from "@utils/file-helpers";
 
 export const handleCreateAxeReport = async (_: any, args: Array<any>) => {
@@ -24,13 +23,13 @@ export const handleCreateAxeReport = async (_: any, args: Array<any>) => {
             resumeReport(_, args);
           }
         }).catch((err) => {
-          throw new Error("findSiteMap - `@url` has returned a non-OK response code");
+          throw new Error("findSiteMap - `@url` has returned a non-OK response code: " + err.message);
         });
       } else {
         resumeReport(_, args);
       }
     }).catch((err) => {
-      throw new Error("healthCheck - `@url` has returned a non-OK response code");
+      throw new Error("healthCheck - `@url` has returned a non-OK response code: " + err.message);
     });
   }
 
