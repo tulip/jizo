@@ -19,8 +19,8 @@ function configureIpc() {
 
 function createWindow(): void {
   const mainWindow = new BrowserWindow({
-    width: 1280,
-    height: 768,
+    width: 1600,
+    height: 900,
     show: false,
     icon: join(__dirname, "../../jizo.ico"),
     title: "Jizō",
