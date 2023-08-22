@@ -8,7 +8,7 @@ import { FilePickerChangedEventDetail } from "@components/Global/FilePicker/type
 import { axeReportHandler } from "@jizo/AxeReporter/axe-report-handler";
 import { SitemapAlert } from "@jizo/Sitemap/sitemap-alert";
 
-import "@utils/string.ts";
+import "@utils/string";
 
 const WatcherOpts = {
   threshold: 0.1,
