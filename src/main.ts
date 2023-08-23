@@ -37,7 +37,7 @@ document.addEventListener("filePickerChanged", async (event) => {
   const file = details.files[0];
 
   if (details.action === "create-bulk-axe-report") {
-    await window.axeApi.createBulkAxeReport(file.path);
+    await window.jizo.createBulkAxeReport(file.path);
   }
 });
 

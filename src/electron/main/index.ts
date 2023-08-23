@@ -2,7 +2,13 @@ import { app, shell, BrowserWindow, ipcMain } from "electron";
 import { join } from "path";
 import { electronApp, optimizer, is } from "@electron-toolkit/utils";
 
-import { handleCreateAxeReport, handleCreateUrlList, handleCreateBulkAxeReport, createSitemapCsv, resumeReport } from "@jizo/AxeReporter/events";
+import {
+  handleCreateAxeReport,
+  handleCreateUrlList,
+  handleCreateBulkAxeReport,
+  createSitemapCsv,
+  resumeReport
+} from "@jizo/AxeReporter/events";
 import * as dotenv from 'dotenv';
 
 import "@utils/string";

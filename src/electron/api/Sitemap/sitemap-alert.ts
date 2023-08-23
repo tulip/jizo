@@ -25,7 +25,7 @@ const handleAlertDismiss = async (event: Event) => {
       .querySelector("button[type='submit']")
       ?.setAttribute("disabled", "true");
 
-    window.axeApi.resumeReport(vals[0], vals[1]);
+    window.jizo.resumeReport(vals[0], vals[1]);
     document.removeEventListener("alertDismissed", handleAlertDismiss);
   }
 }
@@ -47,7 +47,7 @@ const handleAlertAction = async (event: Event) => {
 
     const shouldResumeReport = SELECTOR === "url__create-report" ? false : true;
 
-    window.axeApi.createSitemapCsv(SITEMAP, vals[0], vals[1], shouldResumeReport);
+    window.jizo.createSitemapCsv(SITEMAP, vals[0], vals[1], shouldResumeReport);
   };
   document.removeEventListener("alertAction", handleAlertAction);
 }

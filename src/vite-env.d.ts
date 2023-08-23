@@ -3,7 +3,7 @@
 declare global {
   var Watcher: InterfaceObserver;
   var Registry: Registry;
-  var axeApi: AxeApi;
+  var jizo: Jizo;
   var electron: ElectronApi;
 
   interface String {

@@ -3,7 +3,7 @@ import { electronAPI } from "@electron-toolkit/preload";
 
 require('dotenv').config();
 
-const api = {
+const jizo = {
   createAxeReport: async (url: string, filename: string) => ipcRenderer.invoke("create-axe-report", [url, filename]),
   createBulkAxeReport: async (path: string) => ipcRenderer.invoke("create-bulk-axe-report", [path]),
   createUrlList: async (url: string, filename: string) => ipcRenderer.invoke("create-url-list", [url, filename]),
@@ -17,7 +17,7 @@ const api = {
 if (process.contextIsolated) {
   try {
     contextBridge.exposeInMainWorld("electron", electronAPI);
-    contextBridge.exposeInMainWorld("axeApi", api);
+    contextBridge.exposeInMainWorld("jizo", jizo);
   } catch (error) {
     console.error(error);
   }
@@ -25,5 +25,5 @@ if (process.contextIsolated) {
   // @ts-ignore (define in dts)
   window.electron = electronAPI;
   // @ts-ignore (define in dts)
-  window.api = api;
+  window.jizo = jizo;
 }

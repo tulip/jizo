@@ -20,7 +20,7 @@ export const axeReportHandler = {
       .getElementById("axe__report-submit")
       ?.setAttribute("disabled", "true");
 
-    await window.axeApi.createAxeReport(vals[0], vals[1]);
+    await window.jizo.createAxeReport(vals[0], vals[1]);
   },
   handleCreateUrlList: async (event: SubmitEvent) => {
     event.preventDefault();
@@ -44,7 +44,7 @@ export const axeReportHandler = {
       ?.setAttribute("disabled", "true");
 
 
-    await window.axeApi.createUrlList(vals[0], vals[1]);
+    await window.jizo.createUrlList(vals[0], vals[1]);
   },
   handleReportCreated: (formId: string) => {
     const form = document.getElementById(formId);
