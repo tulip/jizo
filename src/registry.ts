@@ -4,11 +4,11 @@
 // https://developer.mozilla.org/en-US/docs/Web/API/CustomElementRegistry
 
 export default class Registry {
-  prefix: string = "cc";
+  prefix: string;
   registry: Array<CustomElementConstructor> = [];
 
-  constructor(prefix?: string) {
-    prefix && (this.prefix = prefix);
+  constructor(prefix: string) {
+    this.prefix = prefix;
 
     this.init();
   }

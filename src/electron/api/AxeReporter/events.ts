@@ -109,10 +109,11 @@ export const handleCreateUrlList = async (_: any, args: Array<any>) => {
 
 export const createSitemapCsv = async (_: any, args: Array<any>) => {
   if (!args[0]) {
-    // need to communicate this to the front end
+    // TODO: need to communicate this to the front end
     throw new Error("handleCreateSitemapCsv - there was an error parsing the `@sitemap` that was returned.");
   }
-  // make directory for domain
+
+  // TODO: make directory for domain
   try {
     await createUrlSet(args[0]);
 

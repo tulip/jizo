@@ -84,6 +84,7 @@ export const findSiteMap = async (url: string) => {
   let shouldBreak = 0;
   let sitemapUrl = "";
   let i = 0;
+  // TODO: error handling
   for await (const slug of slugs) {
     i += 1;
     if (await healthCheck(`${url}/${slug}`)) {

@@ -1,7 +1,7 @@
 import { contextBridge, ipcRenderer } from "electron";
 import { electronAPI } from "@electron-toolkit/preload";
-
-require('dotenv').config();
+import * as dotenv from 'dotenv';
+dotenv.config();
 
 const jizo = {
   createAxeReport: async (url: string, filename: string) => ipcRenderer.invoke("create-axe-report", [url, filename]),

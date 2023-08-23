@@ -24,12 +24,12 @@ if (document.getElementById("toggle-theme")) {
   });
 }
 
-// TODO : make new registry here -- remove load modules doo-doo
 const REGISTRY = new Registry(COMPONENT_PREFIX);
 globalThis.Registry = REGISTRY;
 
 document.getElementById("axe__create-report")?.addEventListener("submit", axeReportHandler.handleCreateAxeReport);
 document.getElementById("url__create-report")?.addEventListener("submit", axeReportHandler.handleCreateUrlList);
+
 document.addEventListener("filePickerChanged", async (event) => {
   const details = (
     event as CustomEvent<String, FilePickerChangedEventDetail>

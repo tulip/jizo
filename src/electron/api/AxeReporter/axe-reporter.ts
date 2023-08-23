@@ -6,7 +6,6 @@ export default class AxeReporter {
   process: ChildProcessWithoutNullStreams | null;
   timestamp: Date;
   fileName: string;
-  fileExtension: string;
   urlList: string[] | null;
 
   constructor() {
@@ -19,7 +18,6 @@ export default class AxeReporter {
       2,
       "0"
     )}_${this.timestamp.getTime()}_report`;
-    this.fileExtension = "json";
     this.urlList = null;
   }
 
@@ -46,11 +44,11 @@ export default class AxeReporter {
       "--",
       `${target}`,
       "--tags",
-      "wcag2aa,wcag21aa,wcag22aa,best-practice",
+      process.env.AXE_TAGS ? process.env.AXE_TAGS : "wcag2aa,wcag21aa,wcag22aa,best-practice",
       "--dir",
       process.env.AXE_RESULT_DIR ? process.env.AXE_RESULT_DIR : "./axe-results",
       "--save",
-      `${this.fileName}.${this.fileExtension}`,
+      `${this.fileName}.json`,
     ]);
 
     return new Promise((resolve, reject) => {

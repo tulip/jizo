@@ -59,7 +59,11 @@ export const axeReportHandler = {
     msg.setAttribute("class", "cc-toast__msg text-center");
     msg.setAttribute("slot", "msg");
     msg.textContent =
-      "Your report has been successfully generated and saved in the output directory configured in your environment variables.";
+      `Your report has been successfully generated and saved in the ${
+        process.env.AXE_RESULT_DIR
+        ? `${process.env.AXE_RESULT_DIR} directory`
+        : 'configured output directory'
+      }.`;
 
     toast.appendChild(msg);
     document.getElementById("main-content")?.appendChild(toast);
