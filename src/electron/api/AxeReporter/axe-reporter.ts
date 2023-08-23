@@ -1,6 +1,5 @@
 import { ChildProcessWithoutNullStreams, spawn } from "node:child_process";
 import { BrowserWindow } from "electron";
-import { resolve } from 'path';
 
 export default class AxeReporter {
   IS_WINDOWS: boolean;
