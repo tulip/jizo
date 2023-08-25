@@ -14,6 +14,12 @@
   @include mq-2k() {
     max-width: $w-max-x-3;
   }
+
+  &-fluid {
+    margin: 0 auto;
+    padding: $gutter-lg;
+    max-width: 100%;
+  }
 }
 
 .row,
@@ -29,7 +35,7 @@
 
 .col {
   flex-direction: column;
-  flex: 1 0 auto;
+  flex: 1 0 0;
   max-width: 100%;
   padding: 0 $gutter-x;
 }

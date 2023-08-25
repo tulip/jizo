@@ -205,9 +205,11 @@ $index: 1;
 .align-items-start {
   align-items: flex-start !important;
 }
-/*#endregion*/
 
-/*#region Display Helpers */
+.flex-0 {
+  flex: 0;
+}
+
 .sr-only {
   position: absolute !important;
   height: 1px !important;

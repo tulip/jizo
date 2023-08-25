@@ -7,10 +7,10 @@ export default defineConfig({
     root: ".",
     resolve: {
       alias: [
-        { find: "@components", replacement: resolve(__dirname, "./src/ui/components/") },
-        { find: "@styles", replacement: resolve(__dirname, "./src/ui/styles/") },
-        { find: "@utils", replacement: resolve(__dirname, "./src/utils/") },
-        { find: "@jizo", replacement: resolve(__dirname, "./src/electron/api/") },
+        { find: "@components", replacement: resolve(__dirname, "src/ui/components") },
+        { find: "@styles", replacement: resolve(__dirname, "src/ui/styles") },
+        { find: "@utils", replacement: resolve(__dirname, "src/utils") },
+        { find: "@jizo", replacement: resolve(__dirname, "src/electron/api") },
       ],
     },
     build: {
@@ -25,10 +25,10 @@ export default defineConfig({
     root: ".",
     resolve: {
       alias: [
-        { find: "@components", replacement: resolve(__dirname, "./src/ui/components/") },
-        { find: "@styles", replacement: resolve(__dirname, "./src/ui/styles/") },
-        { find: "@utils", replacement: resolve(__dirname, "./src/utils/") },
-        { find: "@jizo", replacement: resolve(__dirname, "./src/electron/api/") },
+        { find: "@components", replacement: resolve(__dirname, "src/ui/components") },
+        { find: "@styles", replacement: resolve(__dirname, "src/ui/styles") },
+        { find: "@utils", replacement: resolve(__dirname, "src/utils") },
+        { find: "@jizo", replacement: resolve(__dirname, "src/electron/api") },
       ],
     },
     build: {
@@ -43,10 +43,10 @@ export default defineConfig({
     root: ".",
     resolve: {
       alias: [
-        { find: "@components", replacement: resolve(__dirname, "./src/ui/components/") },
-        { find: "@styles", replacement: resolve(__dirname, "./src/ui/styles/") },
-        { find: "@utils", replacement: resolve(__dirname, "./src/utils/") },
-        { find: "@jizo", replacement: resolve(__dirname, "./src/electron/api/") },
+        { find: "@components", replacement: resolve(__dirname, "src/ui/components") },
+        { find: "@styles", replacement: resolve(__dirname, "src/ui/styles") },
+        { find: "@utils", replacement: resolve(__dirname, "src/utils") },
+        { find: "@jizo", replacement: resolve(__dirname, "src/electron/api") },
       ],
     },
     build: {

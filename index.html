@@ -3,28 +3,48 @@
 
 <head>
   <link rel="stylesheet" href="/src/ui/styles/index.scss" />
-  <link rel="icon" type="image/x-icon" href="/jizo.ico">
+  <link rel="icon" type="image/x-icon" href="/public/jizo.ico">
 </head>
 
 <body data-theme="dark">
 
   <main id="main-content">
-    <div class="cc-banner">
-      <!-- Toggle dark-mode -->
-      <div id="toggle-theme" class="toggle-btn mt-4">
-        <input type="checkbox" id="dark-mode-toggle" />
-        <label for="dark-mode-toggle">
-          <em class="sr-only">Toggle Dark Mode</em>
-        </label>
-      </div>
-    </div>
+    <div class="container-fluid">
 
-    <div class="container pt-6">
-      <!-- main container-->
-      <section class="row" aria-label="Introduction">
-        <div class="col-6 mx-auto">
-          <h1 class="mb-4 text-center">Hey.</h1>
-          <h2 class="mb-4 text-center">My name is Jiz&#333;.</h2>
+      <div class="cc-banner">
+        <!-- Toggle dark-mode -->
+        <div id="toggle-theme" class="toggle-btn mt-4">
+          <input type="checkbox" id="dark-mode-toggle" />
+          <label for="dark-mode-toggle">
+            <em class="sr-only">Toggle Dark Mode</em>
+          </label>
+        </div>
+      </div>
+
+      <div class="row">
+
+        <div class="col flex-0">
+          <nav id="nav-index" class="cc-load" data-rendered="true">
+            <ul>
+              <li>
+                <cc-dropdown class="cc-load">
+                  <span slot="label">Index</span>
+                  <a href="/">Welcome</a>
+                </cc-dropdown>
+              </li>
+              <li>
+                <cc-dropdown class="cc-load">
+                  <span slot="label">Test</span>
+                  <a href="/pages/test/">Test Page</a>
+                </cc-dropdown>
+              </li>
+            </ul>
+          </nav>
+        </div>
+
+        <div class="col-2 text-center">
+          <h1 class="mb-4">Hey.</h1>
+          <h2 class="mb-4">My name is Jiz&#333;.</h2>
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" height="250" width="250" class="mx-auto mb-5">
             <defs>
               <style>
@@ -86,108 +106,15 @@
               <path class="bda20d31-6664-4ece-8e9e-5e20e04d0c93" d="M325,111.3S306.91,73.69,269.1,93" />
             </g>
           </svg>
-          <p class="mb-4 text-center">It's my job to ensure we are all working towards a web that is accessible to
+          <p class="mb-4">It's my job to ensure we are all working towards a web that is accessible to
             everyone.</p>
-          <p class="mb-4 text-center">Sometimes, developers forget to be as inclusive as possible. I am here to help
+          <p class="mb-4">Sometimes, developers forget to be as inclusive as possible. I am here to help
             guide them back toward that path.</p>
-          <p class="mb-4 text-center">Let's get started!</p>
+          <p class="mb-4">Let's get started!</p>
         </div>
-      </section>
 
-      <section aria-label="Report Actions" class="text-center">
-        <!-- axe report -->
-        <cc-modal class="cc-load">
-          <span slot="trigger" class="mb-3">Create a Report</span>
-          <div slot="content">
-            <div class="container">
-              <div class="row">
-                <div class="col">
-                  <form id="axe__create-report" class="text-left">
-                    <label>
-                      Enter a URL to test:
-                      <input type="text" id="axe__report-target" placeholder="https://google.com" />
-                    </label>
-                    <label>
-                      Enter a filename:
-                      <input type="text" id="axe__report-target" placeholder="test" />
-                    </label>
-                    <span>Files will be saved in <code>.json</code> format.</span>
-                    <button id="axe__report-submit" class="btn__rounded loader text-center mt-4" type="submit">
-                      <span class="loader__1"></span>
-                      <span>Run Report</span>
-                    </button>
-                  </form>
-                </div>
-              </div>
-            </div>
-          </div>
-        </cc-modal>
-
-        <!-- url list -->
-        <cc-modal class="cc-load">
-          <span slot="trigger" class="mb-3">Create a URL List</span>
-          <div slot="content">
-            <div class="container">
-              <div class="row">
-                <div class="col">
-                  <form id="url__create-report" class="text-left">
-                    <label>
-                      Enter a root URL:
-                      <input type="text" id="url__report-target" placeholder="https://google.com" />
-                    </label>
-                    <label>
-                      Enter a filename:
-                      <input type="text" id="url__report-target" placeholder="test" />
-                    </label>
-                    <span>Files will be saved in <code>.csv</code> format.</span>
-                    <button id="url__report-submit" class="btn__rounded loader text-center mt-4" type="submit">
-                      <span class="loader__1"></span>
-                      <span>Run Report</span>
-                    </button>
-                  </form>
-                </div>
-              </div>
-            </div>
-          </div>
-        </cc-modal>
-
-        <!-- view -->
-        <cc-modal class="cc-load" data-close-on="filePickerChanged">
-          <span slot="trigger" class="mb-3" id="btn__view-report">View a Report</span>
-          <div slot="content">
-            <div class="container">
-              <div class="row">
-                <div class="col">
-                  <cc-file-picker data-file-type="json" data-action="view-report"
-                    class="mb-5 text-center"></cc-file-picker>
-                </div>
-              </div>
-            </div>
-          </div>
-        </cc-modal>
-
-        <!-- bulk -->
-        <cc-modal class="cc-load" data-close-on="filePickerChanged">
-          <span slot="trigger" class="mb-3" id="btn__view-report">Generate Bulk Report</span>
-          <div slot="content">
-            <div class="container">
-              <div class="row">
-                <div class="col">
-                  <p>Files should be uploaded as <code>.csv</code> only.</p>
-                  <cc-file-picker data-file-type="csv" data-action="create-bulk-axe-report"
-                    class="mb-5 text-center"></cc-file-picker>
-                </div>
-              </div>
-            </div>
-          </div>
-        </cc-modal>
-      </section>
-      <!-- end main container-->
-
-      <cc-axe-report-viewer class="mb-5 text-center cc-load" data-hide-text></cc-axe-report-viewer>
-    </div>
-
-    <cc-node-js-panel></cc-node-js-panel>
+      </div>
+    <div>
   </main>
 
   <script type="module" src="/src/main.ts"></script>
