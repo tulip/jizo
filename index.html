@@ -8,10 +8,9 @@
   <body data-theme="dark">
     <main id="main-content">
       <div class="container-fluid">
-
         <div class="row">
-          <div class="col flex-0">
-            <nav id="nav-index" class="cc-load" data-rendered="true">
+          <div id="nav-index" class="col flex-0">
+            <nav class="cc-load" data-rendered="true">
               <div class="cc-banner nav-index__logo mb-3">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -53,7 +52,10 @@
                       }
                     </style>
                   </defs>
-                  <g id="ff3b9b2f-34b3-4dda-81e3-3ec5cd3203e9" data-name="Layer 1">
+                  <g
+                    id="ff3b9b2f-34b3-4dda-81e3-3ec5cd3203e9"
+                    data-name="Layer 1"
+                  >
                     <ellipse
                       class="fc293f58-1a82-4a5a-a47a-225f075104cc"
                       cx="250"
@@ -100,7 +102,10 @@
                       d="M68,328c63,148,278,184,364.33,0C429,361,411,399,406.44,405.22c-162.44,167.78-312.72,0-312.72,0S74,374,68,328Z"
                     />
                   </g>
-                  <g id="a7d967e5-561f-466e-84bf-bd8f2c345fc3" data-name="Layer 3">
+                  <g
+                    id="a7d967e5-561f-466e-84bf-bd8f2c345fc3"
+                    data-name="Layer 3"
+                  >
                     <path
                       d="M252.27,152.5c18.09-1.07,9-18.27,9-18.27H241.59S232.54,152.5,252.27,152.5Z"
                     />
@@ -119,7 +124,7 @@
 
               <!-- Toggle dark-mode -->
               <div class="pos-relative">
-                <div id="toggle-theme" class="toggle-btn my-4 d-flex">
+                <div id="toggle-theme" class="toggle-btn toggle-theme my-4 d-flex">
                   <input type="checkbox" id="dark-mode-toggle" />
                   <label for="dark-mode-toggle">
                     <em class="">Toggle Dark Mode</em>
@@ -127,39 +132,49 @@
                 </div>
               </div>
 
+              <!-- Nav items -->
               <ul>
                 <li>
                   <cc-dropdown class="cc-load">
-                    <span slot="label">Index</span>
-                    <a href="/">Welcome</a>
+                    <span slot="label">Create</span>
+                    <a href="/">Single URL Report</a>
+                    <a href="/">Multiple URL Report</a>
+                    <a href="/">Sitemap Report</a>
                   </cc-dropdown>
                 </li>
                 <li>
                   <cc-dropdown class="cc-load">
-                    <span slot="label">Test</span>
-                    <a href="/pages/test/">Test Page</a>
+                    <span slot="label">Observe</span>
+                    <a href="/">View a Report</a>
                   </cc-dropdown>
                 </li>
               </ul>
             </nav>
           </div>
 
-          <div class="col-2 text-center">
-            <p>
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quis
-              dolor veritatis eveniet quisquam ipsum, exercitationem nostrum
-              tempora eius, dolores labore impedit fuga quaerat repellendus
-              itaque fugiat, illo consectetur facilis quas ipsam praesentium!
-              Aliquam dolores aliquid perspiciatis corrupti fugit nesciunt
-              blanditiis possimus! Assumenda deleniti, nesciunt obcaecati eum
-              rerum cumque officia ut perferendis mollitia qui consectetur
-              dignissimos pariatur reprehenderit veniam dolore ex voluptatem in.
-              Numquam at, impedit fuga tempore earum porro odit eum molestias,
-              reprehenderit unde rerum.
+          <div class="col-6 pt-3">
+            <h2 class="mb-4">Your Path Toward Web Accessibility Harmony</h2>
+            <p class="mb-4">
+              Jiz&#333; is a free, open-source software designed to help
+              bring the power of inclusivity to your online presence. Inspired
+              by the bodhisattva, Jiz&#333; is here to lead souls back toward
+              the enlightened path of Web Accessibility.
             </p>
+            <p class="mb-4">
+              Jiz&#333; captures comprehensive information about accessibility
+              errors in your web applications without breaking the bank. Jiz&#333;
+              believes in breaking down barriers to accessibility, not your
+              budget. This is only possible thanks to some of the following technologies
+            </p>
+            <ul class="mb-4">
+              <li class="d-inline"><code>@axe-core/cli</code></li>
+              <li class="d-inline ml-1"><code>puppeteer</code></li>
+              <li class="d-inline ml-1"><code>lighthouse</code></li>
+              <li class="d-inline ml-1"><code>electron</code></li>
+            </ul>
+            <h3>Select a menu item to get started on your journey.</h3>
           </div>
         </div>
-
       </div>
     </main>
 

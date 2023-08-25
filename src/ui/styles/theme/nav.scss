@@ -2,46 +2,53 @@ $nav-bs-open: 2px 3px 4px -1px rgb(0, 0, 0, 0.1);
 $nav-width: 225px;
 
 #nav-index {
-  width: $nav-width;
+  margin: -#{($gutter-y * 2)} $gutter-x -#{($gutter-y * 2)} -#{($gutter-x * 2)};
+  padding: $gutter-lg;
+  background-color: var(--c-bg-color-grey);
+  height: 100vh;
 
-  > ul > li > cc-dropdown {
-    .cc-dropdown {
-      border: $border;
-      border-radius: math.div($br-1, 2);
-      border-color: var(--c-border-color);
-      background-color: var(--c-bg-color-grey);
+  > nav {
+    width: $nav-width;
 
-      > .dropdown-label {
-        background-color: var(--c-bg-color);
-      }
+    > ul > li > cc-dropdown {
+      .cc-dropdown {
+        border: $border;
+        border-radius: math.div($br-1, 2);
+        border-color: var(--c-border-color);
+        background-color: var(--c-bg-color-grey);
 
-      > * {
-        display: block;
-        @include padding($m-2 $m-4);
-      }
+        > .dropdown-label {
+          background-color: var(--c-bg-color);
+        }
 
-      &[open] > .dropdown-label {
-        box-shadow: $nav-bs-open;
+        > * {
+          display: block;
+          @include padding($m-2 $m-4);
+        }
+
+        &[open] > .dropdown-label {
+          box-shadow: $nav-bs-open;
+        }
       }
     }
-  }
 
-  .nav-index {
-    &__logo {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      justify-content: center;
+    .nav-index {
+      &__logo {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
 
-      svg {
-        margin-right: $m-4;
-      }
+        svg {
+          margin-right: $m-4;
+        }
 
-      > h1, h2, h3, h4, h5 {
-        text-transform: uppercase;
-        font-weight: $fw-black;
-        letter-spacing: $m-3;
-        margin-bottom: 0;
+        > h1, h2, h3, h4, h5 {
+          text-transform: uppercase;
+          font-weight: $fw-black;
+          letter-spacing: $m-3;
+          margin-bottom: 0;
+        }
       }
     }
   }
@@ -49,7 +56,7 @@ $nav-width: 225px;
 
 // Dark Mode Override
 body[data-theme='dark'] {
-  #nav-index > ul > li > cc-dropdown > .cc-dropdown {
+  #nav-index > nav > ul > li > cc-dropdown > .cc-dropdown {
     background-color: $c-black;
   }
 }
