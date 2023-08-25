@@ -1,123 +1,168 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <link rel="stylesheet" href="/src/ui/styles/index.scss" />
+    <link rel="icon" type="image/x-icon" href="/public/jizo.ico" />
+  </head>
 
-<head>
-  <link rel="stylesheet" href="/src/ui/styles/index.scss" />
-  <link rel="icon" type="image/x-icon" href="/public/jizo.ico">
-</head>
+  <body data-theme="dark">
+    <main id="main-content">
+      <div class="container-fluid">
 
-<body data-theme="dark">
+        <div class="row">
+          <div class="col flex-0">
+            <nav id="nav-index" class="cc-load" data-rendered="true">
+              <div class="cc-banner nav-index__logo mb-3">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 500 500"
+                  height="45"
+                  width="45"
+                >
+                  <defs>
+                    <style>
+                      .fc293f58-1a82-4a5a-a47a-225f075104cc {
+                        fill: #dcdbda;
+                      }
 
-  <main id="main-content">
-    <div class="container-fluid">
+                      .ff9de51f-9a36-41f1-a53d-9af379f819ca {
+                        fill: #7f7f7f;
+                      }
 
-      <div class="cc-banner">
-        <!-- Toggle dark-mode -->
-        <div id="toggle-theme" class="toggle-btn mt-4">
-          <input type="checkbox" id="dark-mode-toggle" />
-          <label for="dark-mode-toggle">
-            <em class="sr-only">Toggle Dark Mode</em>
-          </label>
+                      .e8f4bfef-004f-4e16-8fd1-99154fd87e8b {
+                        fill: #ed3232;
+                      }
+
+                      .ae019bb4-11dc-48d0-bf1a-b6fe91060880 {
+                        fill: #b70000;
+                      }
+
+                      .bcbbf6e8-c3c7-4344-9b56-a5e281889804 {
+                        fill: #6d6d6d;
+                      }
+
+                      .a5cca6d6-e964-4205-a3d5-db67e004e2a4 {
+                        fill: #bababa;
+                      }
+
+                      .bda20d31-6664-4ece-8e9e-5e20e04d0c93 {
+                        fill: none;
+                        stroke: #000;
+                        stroke-miterlimit: 10;
+                        stroke-width: 2px;
+                      }
+                    </style>
+                  </defs>
+                  <g id="ff3b9b2f-34b3-4dda-81e3-3ec5cd3203e9" data-name="Layer 1">
+                    <ellipse
+                      class="fc293f58-1a82-4a5a-a47a-225f075104cc"
+                      cx="250"
+                      cy="300"
+                      rx="184"
+                      ry="200"
+                    />
+                    <path
+                      class="ff9de51f-9a36-41f1-a53d-9af379f819ca"
+                      d="M132.94,145.67,136,143l226.35-1.39,4.32,3.78C367,199,330,248,255,253,161,252,121,168,132.94,145.67Z"
+                    />
+                    <path
+                      class="e8f4bfef-004f-4e16-8fd1-99154fd87e8b"
+                      d="M143.75,149.11S120,195.34,110.4,229.55s12.36,72.32,12.36,72.32l36.61-3.29s-13.46-40.66-8-60,34.33-61.73,34.33-61.73Z"
+                    />
+                    <path
+                      class="e8f4bfef-004f-4e16-8fd1-99154fd87e8b"
+                      d="M144,125c6-6,205-5,211,1s12,17.08,4,49c0,0-15,61-87,72s-121-49-121-49-18-26-17-44S138,131,144,125Z"
+                    />
+                    <path
+                      class="ae019bb4-11dc-48d0-bf1a-b6fe91060880"
+                      d="M152,126c1-20,194-15,196,0,0,0-11,74-96,77C163,203,152,126,152,126Z"
+                    />
+                    <circle
+                      class="fc293f58-1a82-4a5a-a47a-225f075104cc"
+                      cx="250"
+                      cy="100"
+                      r="99"
+                    />
+                    <path
+                      class="ae019bb4-11dc-48d0-bf1a-b6fe91060880"
+                      d="M135.52,166c10.48,31,28.63,45.18,28.63,45.18l-2.3,4.15S139,194,135.52,166Z"
+                    />
+                    <path
+                      class="ff9de51f-9a36-41f1-a53d-9af379f819ca"
+                      d="M111.89,432s-9.89-11-23-35.26C254,556,411,397,411,396.78,402,415,388.41,432,388.41,432S340,484,253,492C164,487,111.89,432,111.89,432Z"
+                    />
+                    <path
+                      class="bcbbf6e8-c3c7-4344-9b56-a5e281889804"
+                      d="M108.78,428.19S240,560,391.3,428.11C390,430,340,500,250,500S108.78,428.19,108.78,428.19Z"
+                    />
+                    <path
+                      class="a5cca6d6-e964-4205-a3d5-db67e004e2a4"
+                      d="M68,328c63,148,278,184,364.33,0C429,361,411,399,406.44,405.22c-162.44,167.78-312.72,0-312.72,0S74,374,68,328Z"
+                    />
+                  </g>
+                  <g id="a7d967e5-561f-466e-84bf-bd8f2c345fc3" data-name="Layer 3">
+                    <path
+                      d="M252.27,152.5c18.09-1.07,9-18.27,9-18.27H241.59S232.54,152.5,252.27,152.5Z"
+                    />
+                    <path
+                      class="bda20d31-6664-4ece-8e9e-5e20e04d0c93"
+                      d="M175,111.66S193.09,74,230.9,93.39"
+                    />
+                    <path
+                      class="bda20d31-6664-4ece-8e9e-5e20e04d0c93"
+                      d="M325,111.3S306.91,73.69,269.1,93"
+                    />
+                  </g>
+                </svg>
+                <h1 class="h2">Jiz&#333;</h1>
+              </div>
+
+              <!-- Toggle dark-mode -->
+              <div class="pos-relative">
+                <div id="toggle-theme" class="toggle-btn my-4 d-flex">
+                  <input type="checkbox" id="dark-mode-toggle" />
+                  <label for="dark-mode-toggle">
+                    <em class="">Toggle Dark Mode</em>
+                  </label>
+                </div>
+              </div>
+
+              <ul>
+                <li>
+                  <cc-dropdown class="cc-load">
+                    <span slot="label">Index</span>
+                    <a href="/">Welcome</a>
+                  </cc-dropdown>
+                </li>
+                <li>
+                  <cc-dropdown class="cc-load">
+                    <span slot="label">Test</span>
+                    <a href="/pages/test/">Test Page</a>
+                  </cc-dropdown>
+                </li>
+              </ul>
+            </nav>
+          </div>
+
+          <div class="col-2 text-center">
+            <p>
+              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quis
+              dolor veritatis eveniet quisquam ipsum, exercitationem nostrum
+              tempora eius, dolores labore impedit fuga quaerat repellendus
+              itaque fugiat, illo consectetur facilis quas ipsam praesentium!
+              Aliquam dolores aliquid perspiciatis corrupti fugit nesciunt
+              blanditiis possimus! Assumenda deleniti, nesciunt obcaecati eum
+              rerum cumque officia ut perferendis mollitia qui consectetur
+              dignissimos pariatur reprehenderit veniam dolore ex voluptatem in.
+              Numquam at, impedit fuga tempore earum porro odit eum molestias,
+              reprehenderit unde rerum.
+            </p>
+          </div>
         </div>
+
       </div>
+    </main>
 
-      <div class="row">
-
-        <div class="col flex-0">
-          <nav id="nav-index" class="cc-load" data-rendered="true">
-            <ul>
-              <li>
-                <cc-dropdown class="cc-load">
-                  <span slot="label">Index</span>
-                  <a href="/">Welcome</a>
-                </cc-dropdown>
-              </li>
-              <li>
-                <cc-dropdown class="cc-load">
-                  <span slot="label">Test</span>
-                  <a href="/pages/test/">Test Page</a>
-                </cc-dropdown>
-              </li>
-            </ul>
-          </nav>
-        </div>
-
-        <div class="col-2 text-center">
-          <h1 class="mb-4">Hey.</h1>
-          <h2 class="mb-4">My name is Jiz&#333;.</h2>
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" height="250" width="250" class="mx-auto mb-5">
-            <defs>
-              <style>
-                .fc293f58-1a82-4a5a-a47a-225f075104cc {
-                  fill: #dcdbda;
-                }
-
-                .ff9de51f-9a36-41f1-a53d-9af379f819ca {
-                  fill: #7f7f7f;
-                }
-
-                .e8f4bfef-004f-4e16-8fd1-99154fd87e8b {
-                  fill: #ed3232;
-                }
-
-                .ae019bb4-11dc-48d0-bf1a-b6fe91060880 {
-                  fill: #b70000;
-                }
-
-                .bcbbf6e8-c3c7-4344-9b56-a5e281889804 {
-                  fill: #6d6d6d;
-                }
-
-                .a5cca6d6-e964-4205-a3d5-db67e004e2a4 {
-                  fill: #bababa;
-                }
-
-                .bda20d31-6664-4ece-8e9e-5e20e04d0c93 {
-                  fill: none;
-                  stroke: #000;
-                  stroke-miterlimit: 10;
-                  stroke-width: 2px;
-                }
-              </style>
-            </defs>
-            <g id="ff3b9b2f-34b3-4dda-81e3-3ec5cd3203e9" data-name="Layer 1">
-              <ellipse class="fc293f58-1a82-4a5a-a47a-225f075104cc" cx="250" cy="300" rx="184" ry="200" />
-              <path class="ff9de51f-9a36-41f1-a53d-9af379f819ca"
-                d="M132.94,145.67,136,143l226.35-1.39,4.32,3.78C367,199,330,248,255,253,161,252,121,168,132.94,145.67Z" />
-              <path class="e8f4bfef-004f-4e16-8fd1-99154fd87e8b"
-                d="M143.75,149.11S120,195.34,110.4,229.55s12.36,72.32,12.36,72.32l36.61-3.29s-13.46-40.66-8-60,34.33-61.73,34.33-61.73Z" />
-              <path class="e8f4bfef-004f-4e16-8fd1-99154fd87e8b"
-                d="M144,125c6-6,205-5,211,1s12,17.08,4,49c0,0-15,61-87,72s-121-49-121-49-18-26-17-44S138,131,144,125Z" />
-              <path class="ae019bb4-11dc-48d0-bf1a-b6fe91060880"
-                d="M152,126c1-20,194-15,196,0,0,0-11,74-96,77C163,203,152,126,152,126Z" />
-              <circle class="fc293f58-1a82-4a5a-a47a-225f075104cc" cx="250" cy="100" r="99" />
-              <path class="ae019bb4-11dc-48d0-bf1a-b6fe91060880"
-                d="M135.52,166c10.48,31,28.63,45.18,28.63,45.18l-2.3,4.15S139,194,135.52,166Z" />
-              <path class="ff9de51f-9a36-41f1-a53d-9af379f819ca"
-                d="M111.89,432s-9.89-11-23-35.26C254,556,411,397,411,396.78,402,415,388.41,432,388.41,432S340,484,253,492C164,487,111.89,432,111.89,432Z" />
-              <path class="bcbbf6e8-c3c7-4344-9b56-a5e281889804"
-                d="M108.78,428.19S240,560,391.3,428.11C390,430,340,500,250,500S108.78,428.19,108.78,428.19Z" />
-              <path class="a5cca6d6-e964-4205-a3d5-db67e004e2a4"
-                d="M68,328c63,148,278,184,364.33,0C429,361,411,399,406.44,405.22c-162.44,167.78-312.72,0-312.72,0S74,374,68,328Z" />
-            </g>
-            <g id="a7d967e5-561f-466e-84bf-bd8f2c345fc3" data-name="Layer 3">
-              <path d="M252.27,152.5c18.09-1.07,9-18.27,9-18.27H241.59S232.54,152.5,252.27,152.5Z" />
-              <path class="bda20d31-6664-4ece-8e9e-5e20e04d0c93" d="M175,111.66S193.09,74,230.9,93.39" />
-              <path class="bda20d31-6664-4ece-8e9e-5e20e04d0c93" d="M325,111.3S306.91,73.69,269.1,93" />
-            </g>
-          </svg>
-          <p class="mb-4">It's my job to ensure we are all working towards a web that is accessible to
-            everyone.</p>
-          <p class="mb-4">Sometimes, developers forget to be as inclusive as possible. I am here to help
-            guide them back toward that path.</p>
-          <p class="mb-4">Let's get started!</p>
-        </div>
-
-      </div>
-    <div>
-  </main>
-
-  <script type="module" src="/src/main.ts"></script>
-</body>
-
+    <script type="module" src="/src/main.ts"></script>
+  </body>
 </html>

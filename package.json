@@ -5,7 +5,8 @@
   "license": "MIT",
   "main": "./dist/main/index.js",
   "scripts": {
-    "start": "electron-vite preview --outDir=dist",
+    "start": "npm run dev",
+    "preview": "electron-vite preview --outDir=dist",
     "dev": "electron-vite dev --outDir=dist",
     "package": "electron-vite build --outDir=dist && electron-forge package",
     "make": "electron-vite build --outDir=dist && electron-forge make",

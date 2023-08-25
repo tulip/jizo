@@ -224,4 +224,22 @@ $index: 1;
 .overflow-hidden {
   overflow: hidden !important;
 }
+
+.w-100 {
+  width: 100%;
+}
+/*#endregion */
+
+/*#region Position Helpers */
+.pos-relative {
+  position: relative !important;
+}
+
+.pos-absolute {
+  position: absolute !important;
+}
+
+.pos-fixed {
+  position: fixed !important;
+}
 /*#endregion */
