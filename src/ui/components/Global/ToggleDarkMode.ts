@@ -39,6 +39,12 @@ const ToggleDarkMode = (element: HTMLElement) => {
     self
       .querySelector(':scope > input')!
       .addEventListener('click', toggleTheme);
+
+    self
+      .querySelector(':scope > label')!
+      .addEventListener('focus', () => {
+        console.log('focusssss');
+      });
   };
 
   const init = () => {

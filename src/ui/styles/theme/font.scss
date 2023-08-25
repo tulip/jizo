@@ -1,0 +1,11 @@
+a {
+  color: var(--c-link-color);
+  transition: color linear 2s;
+
+  &:hover,
+  &:focus,
+  &:focus-within {
+    color: var(--c-link-hover-color);
+    transition: color linear 2s;
+  }
+}

@@ -6,12 +6,16 @@
   --c-f-color: #{$fc-def};
   --c-f-color__inverse: #{$fc-lite};
   --c-hr-color: #{$border-color-def};
-  --c-btn-f-color: #{$c-black};
-  
+
+  --c-link-hover-color: #{$c-red};
+
   --c-border-color: #{$border-color-def};
 
-  --c-btn-bg-color: #{lighten($c-blue, 70%)};
-  
+  --c-btn-f-color: #{$c-white};
+  --c-btn-bg-color: #{lighten($c-blue, 10%)};
+  --c-btn-hover-f-color: #{darken($c-blue, 10%)};
+  --c-btn-hover-bg-color: #{lighten($c-blue, 50%)};
+
   --c-btn-box-shadow: #{$bs-def};
 }
 
@@ -24,5 +28,14 @@ body[data-theme='dark'] {
   --c-f-color__inverse: #{$fc-def};
   --c-hr-color: #{$border-color-lite};
 
+  --c-link-hover-color: #{$c-red};
+
   --c-border-color: #{$border-color-lite};
+
+  --c-btn-f-color: #{$c-white};
+  --c-btn-bg-color: #{lighten($c-blue, 10%)};
+  --c-btn-hover-f-color: #{darken($c-blue, 10%)};
+  --c-btn-hover-bg-color: #{lighten($c-blue, 50%)};
+
+  --c-btn-box-shadow: #{$bs-def};
 }

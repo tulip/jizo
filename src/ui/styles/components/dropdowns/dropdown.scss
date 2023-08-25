@@ -34,7 +34,7 @@
 
     > *:not(summary) {
       opacity: 1;
-      @include transition(opacity);
+      @include transition-fast(all);
     }
   }
 }

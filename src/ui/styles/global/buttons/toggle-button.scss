@@ -4,6 +4,10 @@ $toggle-btn-size: $m-5; // 32px
 $toggle-btn-x: $m-1; // 4px
 $toggle-tween: $m-6; // 64px
 
+// some color fun~~
+$c-sun: #FCA903;
+$c-moon: #C4C4C4;
+
 .toggle-btn {
   position: relative;
   width: $toggle-width;
@@ -22,6 +26,14 @@ $toggle-tween: $m-6; // 64px
           left: calc(100% - #{$toggle-btn-x});
           transform: translateX(-100%);
           background-color: $c-white;
+        }
+
+        &:hover,
+        &:focus,
+        &:focus-within {
+          &:after {
+            background-color: $c-moon;
+          }
         }
       }
     }
@@ -53,6 +65,14 @@ $toggle-tween: $m-6; // 64px
     // animation tweening
     &:active:after {
       width: $toggle-tween;
+    }
+
+    &:hover,
+    &:focus,
+    &:focus-within {
+      &:after {
+        background-color: $c-sun;
+      }
     }
   }
 }

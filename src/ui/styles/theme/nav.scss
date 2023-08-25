@@ -18,7 +18,15 @@ $nav-width: 225px;
         background-color: var(--c-bg-color-grey);
 
         > .dropdown-label {
-          background-color: var(--c-bg-color);
+          color: var(--c-btn-f-color);
+          background-color: var(--c-btn-bg-color);
+
+          &:hover,
+          &:focus,
+          &:focus-within {
+            color: var(--c-btn-hover-f-color);
+            background-color: var(--c-btn-hover-bg-color);
+          }
         }
 
         > * {
@@ -51,12 +59,5 @@ $nav-width: 225px;
         }
       }
     }
-  }
-}
-
-// Dark Mode Override
-body[data-theme='dark'] {
-  #nav-index > nav > ul > li > cc-dropdown > .cc-dropdown {
-    background-color: $c-black;
   }
 }
