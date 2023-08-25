@@ -57,7 +57,6 @@ export const inheritParentSelectors = function (
   }
 };
 
-
 export const debounce = function(callback: Function) {
   let timer: any;
   return () => {

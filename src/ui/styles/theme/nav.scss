@@ -61,3 +61,16 @@ $nav-width: 225px;
     }
   }
 }
+
+// Theme Overrides
+body[data-theme='dark'] {
+  #nav-index > nav > ul > li > cc-dropdown > .cc-dropdown {
+    background-color: $c-black;
+  }
+}
+
+body[data-theme='light'] {
+  #nav-index > nav > ul > li > cc-dropdown > .cc-dropdown {
+    background-color: $c-white;
+  }
+}

@@ -42,8 +42,10 @@ const ToggleDarkMode = (element: HTMLElement) => {
 
     self
       .querySelector(':scope > label')!
-      .addEventListener('focus', () => {
-        console.log('focusssss');
+      .addEventListener('keydown', (e: Event) => {
+        if ((e as KeyboardEvent).key === 'Enter') {
+          (self.querySelector(':scope > input')! as HTMLElement).click();
+        }
       });
   };
 
