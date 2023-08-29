@@ -140,9 +140,9 @@
                 <li>
                   <cc-dropdown class="cc-load">
                     <span slot="label">Create</span>
-                    <a href="/pages/report-mono/">Single URL Report</a>
-                    <a href="/pages/report-bulk/">Multiple URL Report</a>
-                    <a href="/pages/report-sitemap/">Sitemap Report</a>
+                    <cc-link href="/pages/report-mono/">Single URL Report</cc-link>
+                    <cc-link href="/pages/report-bulk/">Multiple URL Report</cc-link>
+                    <cc-link href="/pages/report-sitemap/">Sitemap Report</cc-link>
                   </cc-dropdown>
                 </li>
                 <li>
@@ -156,26 +156,9 @@
           </div>
 
           <div class="col-6 pt-3">
-            <h2 class="mb-4">Your Path Toward Web Accessibility Harmony</h2>
-            <p class="mb-4">
-              Jiz&#333; is a free, open-source software designed to help bring
-              the power of inclusivity to your online presence. Inspired by the
-              bodhisattva, Jiz&#333; is here to lead souls back toward the
-              enlightened path of Web Accessibility.
-            </p>
-            <p class="mb-4">
-              With Jiz&#333; by your side, you can effortlessly uncover and rectify
-              any obstacles that may impede users with disabilities from
-              accessing your website. Together, we'll pave the way to a more
-              egalitarian, diverse, and inclusive online existence
-            </p>
-            <ul class="mb-4">
-              <li class="d-inline"><code>@axe-core/cli</code></li>
-              <li class="d-inline ml-1"><code>puppeteer</code></li>
-              <li class="d-inline ml-1"><code>lighthouse</code></li>
-              <li class="d-inline ml-1"><code>electron</code></li>
-            </ul>
-            <h3>Select a menu item to get started on your journey.</h3>
+            <cc-static-router data-href="/pages">
+              <!-- ~~ things render here ~~ -->
+            </cc-static-router>
           </div>
         </div>
       </div>

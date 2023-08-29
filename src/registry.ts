@@ -118,6 +118,26 @@ export default class Registry {
         }
       }
 
+      if (document.querySelectorAll(`${this.prefix}-static-router`).length) {
+        if (
+          !this.registry.filter((item) => item.name === "StaticRouter").length
+        ) {
+          await import("@components/Panels/StaticRouter/StaticRouter").then((module) => {
+            registry.push(module.default);
+          });
+        }
+      }
+
+      if (document.querySelectorAll(`${this.prefix}-link`).length) {
+        if (
+          !this.registry.filter((item) => item.name === "Link").length
+        ) {
+          await import("@components/Links/Link").then((module) => {
+            registry.push(module.default);
+          });
+        }
+      }
+
       resolve(registry);
     });
   };

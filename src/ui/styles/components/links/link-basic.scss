@@ -1,0 +1,15 @@
+@import '@styles/variables';
+@import '@styles/mixins';
+
+cc-link {
+  cursor: pointer;
+
+  &:hover,
+  &:focus,
+  &:focus-within {
+    > a {
+      color: var(--c-link-hover-color);
+      @include transition-fast(color);
+    }
+  }
+}

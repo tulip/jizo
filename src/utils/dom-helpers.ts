@@ -48,13 +48,16 @@ export const inheritParentSelectors = function (
   parent: Element,
   child: Element
 ) {
-  parent.classList.forEach((cssClass) => child.classList.add(cssClass));
-  parent.removeAttribute("class");
+  const attrs = parent.attributes;
+  const attrNames = { ...attrs };
 
-  if (parent.id) {
-    child.id = parent.id;
-    parent.removeAttribute("id");
-  }
+  for(let i = 0; i < Object.keys(attrNames).length; i++) {
+    child.setAttribute(attrs[i].name, attrs[i].value);
+  };
+
+  for(let i = 0; i < Object.keys(attrNames).length; i++) {
+    attrs.removeNamedItem(attrs[0].name);
+  };
 };
 
 export const debounce = function(callback: Function) {
