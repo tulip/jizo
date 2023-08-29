@@ -1,5 +1,6 @@
 {
-  "name": "axe-report-viewer",
+  "name": "jizo",
+  "icon": "./public/jizo.ico",
   "private": true,
   "version": "0.0.0",
   "license": "MIT",

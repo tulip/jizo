@@ -40,7 +40,7 @@ export default class StaticRouter extends HTMLElement {
 
   private async renderPage() {
     const page: Response | Error = await this.getPage(
-      `${this.href}/index.html`
+      `.${this.href}/index.html`
     );
     const panel = this.querySelector(`#static-router-${this.id}`);
 

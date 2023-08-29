@@ -11,7 +11,6 @@ $nav-width: 225px;
     min-width: $nav-width;
     display: flex;
     flex-direction: column;
-    height: 100%;
 
     > ul > li > cc-dropdown {
       .cc-dropdown {
