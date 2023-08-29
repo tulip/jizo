@@ -1,4 +1,5 @@
 import { DomHelpers } from "@utils";
+import "@styles/components/buttons/button-basic.scss";
 
 export default class ButtonBasic extends HTMLElement {
   constructor() {

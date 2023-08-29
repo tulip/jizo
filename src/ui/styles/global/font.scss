@@ -43,6 +43,13 @@ p {
   line-height: map-get($line-heights, 'lh-2');
 }
 
+a,
+button {
+  &[disabled] {
+    pointer-events: none;
+  }
+}
+
 code {
   background-color: var(--c-bg-color-grey);
   padding: calc(#{$m-1} / 2);

@@ -1,9 +1,11 @@
 import { DomHelpers } from "@utils";
+import RouterHistory from "./RouterHistory";
 
 export default class StaticRouter extends HTMLElement {
   public id: string = crypto.randomUUID();
   public href: string;
   public state: string;
+  public history: RouterHistory;
   private observer: MutationObserver | null;
 
   constructor(href: string = "#", state: string = "loading") {
@@ -11,6 +13,7 @@ export default class StaticRouter extends HTMLElement {
 
     this.href = this.dataset.href ? this.dataset.href : href;
     this.state = this.dataset.state ? this.dataset.state : state;
+    this.history = new RouterHistory(this);
     this.observer = null;
 
     globalThis.StaticRouter = this;
@@ -28,6 +31,7 @@ export default class StaticRouter extends HTMLElement {
 
   private clone() {
     this.innerHTML = this.template;
+    this.state = "loading";
 
     if (this.href !== "#") {
       this.renderPage();
@@ -49,7 +53,15 @@ export default class StaticRouter extends HTMLElement {
       if (markup.body.querySelector("script")) {
         this.injectBodyScripts(Array.from(markup.querySelectorAll("script")));
       }
+
+      await globalThis.Listeners.loadListeners();
+      await globalThis.Registry.loadModules().then((registry: Array<CustomElementConstructor>) => {
+        globalThis.Registry.registry = registry;
+        globalThis.Registry.initRegistry();
+      });
     }
+
+    this.state = "idle";
   }
 
   private injectBodyScripts(scripts: Array<HTMLScriptElement>) {
@@ -65,12 +77,7 @@ export default class StaticRouter extends HTMLElement {
     });
   }
 
-  // @ts-ignore
-  private connectedCallback() {
-    this.clone();
-
-    this.state = "idle";
-
+  private initListeners() {
     this.observer = new MutationObserver((mutationList) => {
       mutationList.forEach((mutation) => {
         if (mutation.type === 'attributes' && mutation.attributeName) {
@@ -81,10 +88,17 @@ export default class StaticRouter extends HTMLElement {
         }
       });
     });
+
     this.observer.observe(this, {
       childList: true,
       attributes: true,
-    })
+    });
+  }
+
+  // @ts-ignore
+  private connectedCallback() {
+    this.clone();
+    this.initListeners();
     DomHelpers.loadComponent(this);
   }
 

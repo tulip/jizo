@@ -4,6 +4,7 @@ declare global {
   var Watcher: InterfaceObserver;
   var StaticRouter: StaticRouter;
   var Registry: Registry;
+  var Listeners: Listeners;
   var jizo: Jizo;
   var electron: ElectronApi;
 

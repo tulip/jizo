@@ -1,0 +1,9 @@
+.svg-icon {
+  display: inherit;
+
+  > svg {
+    max-height: $fs-5;
+    max-width: $fs-5;
+    min-height: $fs-5;
+  }
+}

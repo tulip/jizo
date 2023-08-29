@@ -2,10 +2,17 @@ a {
   color: var(--c-link-color);
   @include transition-fast(color);
 
-  &:hover,
-  &:focus,
-  &:focus-within {
-    color: var(--c-link-hover-color);
-    @include transition-fast(color);
+  &:not([disabled]) {
+    &:hover,
+    &:focus,
+    &:focus-within {
+      color: var(--c-link-hover-color);
+      @include transition-fast(color);
+    }
+  };
+
+  &[disabled] {
+    cursor: default;
+    opacity: 0.5;
   }
 }

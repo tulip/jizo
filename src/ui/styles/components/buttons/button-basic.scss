@@ -1,0 +1,18 @@
+@import '@styles/variables';
+@import '@styles/mixins';
+
+.cc-basic-btn {
+  padding: $gutter-sm;
+  background-color: var(--c-btn-bg-color);
+  border-radius: $br-1;
+  cursor: pointer;
+  @include transition-fast(all);
+
+  &:hover,
+  &:focus,
+  &:focus-within {
+    color: var(--c-btn-hover-f-color);
+    background-color: var(--c-btn-hover-bg-color);
+    @include transition-fast(all);
+  }
+}

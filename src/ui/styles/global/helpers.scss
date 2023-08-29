@@ -54,6 +54,10 @@
   margin-bottom: 0 !important;
 }
 
+.m-0 {
+  margin: 0 !important;
+}
+
 .mt-auto {
   margin-top: auto !important;
 }
@@ -145,6 +149,10 @@ $index: 1;
   padding-bottom: 0 !important;
 }
 
+.p-0 {
+  padding: 0 !important;
+}
+
 $index: 1;
 @each $name, $padding, $i in $margins {
   .pt-#{$index} {
@@ -223,6 +231,10 @@ $index: 1;
 
 .overflow-hidden {
   overflow: hidden !important;
+}
+
+.h-100 {
+  height: 100vh !important;
 }
 
 .w-100 {

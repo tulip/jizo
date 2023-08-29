@@ -42,7 +42,10 @@ export default class Link extends HTMLElement {
 
     this.addEventListener('click', (event: MouseEvent) => {
       event.preventDefault();
-      globalThis.StaticRouter.setAttribute('data-href', this.href);
+      if ((event.target as HTMLElement).querySelector(':scope [disabled]')) {
+        return;
+      }
+      globalThis.StaticRouter.history.navigate(this.href);
     });
 
     DomHelpers.loadComponent(this);

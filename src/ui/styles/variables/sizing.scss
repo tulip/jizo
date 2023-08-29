@@ -37,6 +37,7 @@ $gutter-y: $m-3;
 $gutter-x: math.div($m-4, 2);
 $gutter-def: $gutter-y $gutter-x;
 $gutter-lg: ($gutter-y * 2) ($gutter-x * 2);
+$gutter-sm: ($gutter-y / 2) $gutter-x;
 
 $gutters: (
   'gutter-y': $gutter-y,

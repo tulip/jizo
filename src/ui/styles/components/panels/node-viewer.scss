@@ -52,7 +52,8 @@ cc-node-js-panel {
     width: 100%;
 
     p, span {
-        @include font($font-family: monospace, $font-color: $c-white);
+        @include font($font-family: monospace);
+        color: $c-white;
     }
     p {
         display: block;
@@ -83,7 +84,8 @@ cc-node-js-panel {
   .btn {
     &__close,
     &__show {
-      @include font($font-size: $fs-1, $font-color: var(--c-f-color__inverse));
+      @include font($font-size: $fs-1);
+      color: var(--c-f-color__inverse);
       background-color: var(--c-bg-color__inverse);
       position: absolute;
       padding: $m-2;

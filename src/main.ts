@@ -26,9 +26,23 @@ if (document.getElementById("toggle-theme")) {
 
 const REGISTRY = new Registry(COMPONENT_PREFIX);
 globalThis.Registry = REGISTRY;
+globalThis.Listeners = {
+  loadListeners: async () => {
+    return new Promise(resolve => {
+      if (document.getElementById("axe__create-report")) {
+        document.getElementById("axe__create-report")!.removeEventListener("submit", axeReportHandler.handleCreateAxeReport);
+        document.getElementById("axe__create-report")!.addEventListener("submit", axeReportHandler.handleCreateAxeReport);
+      };
 
-document.getElementById("axe__create-report")?.addEventListener("submit", axeReportHandler.handleCreateAxeReport);
-document.getElementById("url__create-report")?.addEventListener("submit", axeReportHandler.handleCreateUrlList);
+      if (document.getElementById("url__create-report")) {
+        document.getElementById("url__create-report")!.removeEventListener("submit", axeReportHandler.handleCreateUrlList);
+        document.getElementById("url__create-report")!.addEventListener("submit", axeReportHandler.handleCreateUrlList);
+      };
+
+      resolve(true);
+    })
+  }
+}
 
 document.addEventListener("filePickerChanged", async (event) => {
   const details = (
