@@ -5,12 +5,13 @@ $nav-width: 225px;
   margin: -#{($gutter-y * 2)} $gutter-x -#{($gutter-y * 2)} -#{($gutter-x * 2)};
   padding: #{($gutter-y * 2)} $gutter-x #{($gutter-y * 2)} #{($gutter-x * 2)};;
   background-color: var(--c-bg-color-grey);
-  height: 100vh;
+  min-height: 100vh;
 
   > nav {
     min-width: $nav-width;
     display: flex;
     flex-direction: column;
+    height: 100%;
 
     > ul > li > cc-dropdown {
       .cc-dropdown {
